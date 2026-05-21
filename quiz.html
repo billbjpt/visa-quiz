@@ -13,11 +13,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-/* Page wrapper */
 .page { display: none; min-height: 100vh; flex-direction: column; }
 .page.active { display: flex; }
 
-/* Header */
 .header {
   background: linear-gradient(135deg, #0a2347 0%, #1a3a6b 100%);
   padding: 20px 16px 30px;
@@ -27,9 +25,7 @@ body {
 }
 .header h1 { font-size: 28px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
 .header .subtitle { font-size: 14px; color: #b8c9e0; line-height: 1.5; }
-.header .logo { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; }
 
-/* Progress bar */
 .progress-bar {
   height: 4px; background: #e0e3e8; margin: 0; position: relative;
 }
@@ -41,12 +37,10 @@ body {
   text-align: center; font-size: 12px; color: #888; padding: 4px 0 10px;
 }
 
-/* Content area */
 .content {
   flex: 1; padding: 16px; max-width: 480px; margin: 0 auto; width: 100%;
 }
 
-/* Question card */
 .question-card {
   background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -61,7 +55,6 @@ body {
   color: #0a2347;
 }
 
-/* Options */
 .option {
   display: block; width: 100%; padding: 14px 16px; margin-bottom: 8px;
   border: 2px solid #e8eaef; border-radius: 10px; background: #fafbfc;
@@ -78,9 +71,7 @@ body {
   font-size: 13px; font-weight: 600; color: #555; margin-right: 10px;
 }
 .option.selected .opt-letter { background: #0a2347; color: #fff; }
-.option .opt-label { font-size: 12px; color: #999; margin-left: 6px; }
 
-/* Navigation buttons */
 .btn-row { display: flex; gap: 10px; margin-top: 4px; }
 .btn {
   flex: 1; padding: 14px; border: none; border-radius: 10px;
@@ -95,12 +86,10 @@ body {
 .btn-submit { background: linear-gradient(135deg, #d4af37, #f0d060); color: #1a2a3a; }
 .btn-submit:active { opacity: .9; }
 
-/* Intro page */
 .intro-card {
   background: #fff; border-radius: 16px; overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 10px 0;
 }
-.intro-cover { width: 100%; display: block; }
 .intro-body { padding: 20px 24px 28px; }
 .intro-body h2 { font-size: 22px; color: #0a2347; margin-bottom: 12px; text-align: center; }
 .intro-body p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 10px; }
@@ -120,7 +109,6 @@ body {
 }
 .btn-start:active { transform: scale(0.97); opacity: .9; }
 
-/* Result page */
 .result-card {
   background: #fff; border-radius: 16px; overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 10px 0;
@@ -133,8 +121,6 @@ body {
 .result-banner.result-c { background: linear-gradient(135deg, #b03030, #d04444); }
 .result-banner .emoji { font-size: 48px; margin-bottom: 8px; }
 .result-banner h2 { font-size: 24px; margin-bottom: 4px; }
-.result-banner .score { font-size: 42px; font-weight: 800; opacity: .9; }
-.result-banner .label { font-size: 14px; opacity: .8; margin-top: 4px; }
 .result-body { padding: 20px 24px; }
 .result-body h3 { font-size: 16px; color: #333; margin-bottom: 10px; }
 .result-body ul { list-style: none; padding: 0; }
@@ -144,7 +130,6 @@ body {
 }
 .result-body li:last-child { border-bottom: none; }
 .result-body li::before { content: "✅ "; }
-.result-body li.warn::before { content: "⚠️ "; }
 .result-cta {
   background: #f8f4eb; margin: 0 24px 20px; padding: 16px; border-radius: 12px;
   border-left: 4px solid #d4af37;
@@ -166,19 +151,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Footer */
 .footer {
   text-align: center; padding: 14px; font-size: 11px; color: #aaa;
 }
 
-/* Result detail chart */
-.result-chart { margin: 16px 0; }
-.result-bar-wrapper { margin-bottom: 10px; }
-.result-bar-label { font-size: 13px; color: #555; margin-bottom: 4px; }
-.result-bar-track { height: 8px; background: #e8eaef; border-radius: 4px; overflow: hidden; }
-.result-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
-
-/* Special note */
 .special-note {
   background: #fff8e6; border: 1px solid #f0d060; border-radius: 10px;
   padding: 14px 16px; margin: 16px 0 0;
@@ -186,7 +162,6 @@ body {
 .special-note .title { font-weight: 700; color: #b8860b; font-size: 14px; margin-bottom: 6px; }
 .special-note p { font-size: 13px; color: #666; line-height: 1.6; }
 
-/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -200,7 +175,7 @@ body {
 </head>
 <body>
 
-<!-- ============ PAGE 0: INTRO ============ -->
+<!-- PAGE 0: INTRO -->
 <div id="page-intro" class="page active">
   <div class="header" style="padding-bottom:20px;">
     <h1>🇺🇸 美签过签率</h1>
@@ -225,17 +200,17 @@ body {
   </div>
 </div>
 
-<!-- ============ PAGES 1-13: QUESTIONS ============ -->
+<!-- PAGE: QUIZ -->
 <div id="page-quiz" class="page">
   <div class="header" style="padding:12px 16px 16px;">
     <h1 style="font-size:20px;">美签过签率</h1>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-  <div class="progress-text" id="progressText">第 1 / 13 题</div>
+  <div class="progress-text" id="progressText"></div>
   <div class="content" id="quizContent"></div>
 </div>
 
-<!-- ============ PAGE: RESULT ============ -->
+<!-- PAGE: RESULT -->
 <div id="page-result" class="page">
   <div class="header" style="padding:14px 16px 18px;">
     <h1 style="font-size:20px;">测评结果</h1>
@@ -244,8 +219,11 @@ body {
 </div>
 
 <script>
-// ---- DATA ----
+// ==================== QUIZ DATA ====================
+// All questions. No scores shown to user. 
+// v = internal score value only (hidden from user)
 const questions = [
+  // Q1: Age
   {
     q: "您的年龄段？",
     opts: [
@@ -255,16 +233,19 @@ const questions = [
       { l: "D", t: "50岁以上", v: 20 }
     ]
   },
+  // Q2: Career status - BRANCH QUESTION
   {
     q: "您目前的职业状态是？",
+    isBranch: true,
     opts: [
-      { l: "A", t: "在职", v: 0, skip: false, jumpLabel: "继续第3题" },
-      { l: "B", t: "学生", v: 10, skip: true, jumpLabel: "直接计10分，跳过第3题" },
-      { l: "C", t: "无业", v: 0, skip: false, jumpLabel: "继续第3题（非在职版）" },
-      { l: "D", t: "退休", v: 0, skip: false, jumpLabel: "继续第3题（非在职版）" }
-    ],
-    isBranch: true
+      { l: "A", t: "在职", v: 0, jobType: "employed" },
+      { l: "B", t: "学生", v: 10, jobType: "student" },
+      { l: "C", t: "无业", v: 0, jobType: "other" },
+      { l: "D", t: "退休", v: 0, jobType: "other" }
+    ]
   },
+  // Q3: Career direction - ONLY for employed (Q2=A)
+  // If student/unemployed/retired → skip this question entirely
   {
     q: "您的职业方向是？",
     opts: [
@@ -274,9 +255,9 @@ const questions = [
       { l: "D", t: "科技/工程/研发", v: 5, sensitive: true },
       { l: "E", t: "公务员/政府/军队/国防相关", v: 5, sensitive: true },
       { l: "F", t: "教师/律师/文体从业者", v: 15, sensitive: false }
-    ],
-    isCareerQ: true
+    ]
   },
+  // Q4: Income
   {
     q: "您的月均收入（税后）？",
     opts: [
@@ -286,6 +267,7 @@ const questions = [
       { l: "D", t: "20000元以上", v: 25 }
     ]
   },
+  // Q5: Marriage
   {
     q: "您的婚姻状况？",
     opts: [
@@ -296,6 +278,7 @@ const questions = [
       { l: "E", t: "合法分居", v: 8 }
     ]
   },
+  // Q6: Children
   {
     q: "您的子女情况？",
     opts: [
@@ -304,6 +287,7 @@ const questions = [
       { l: "C", t: "有子女，均已成年", v: 10 }
     ]
   },
+  // Q7: Property
   {
     q: "您名下是否有房产或车产？",
     opts: [
@@ -313,6 +297,7 @@ const questions = [
       { l: "D", t: "房产车产齐全，均无贷款", v: 30 }
     ]
   },
+  // Q8: Travel history
   {
     q: "您的护照出入境记录？",
     opts: [
@@ -322,6 +307,7 @@ const questions = [
       { l: "D", t: "去过欧洲、澳洲、加拿大等西方国家", v: 30 }
     ]
   },
+  // Q9: Purpose
   {
     q: "您此次赴美的主要目的？",
     opts: [
@@ -331,6 +317,7 @@ const questions = [
       { l: "D", t: "团队旅游或有明确邀请的短期交流", v: 20 }
     ]
   },
+  // Q10: Companion
   {
     q: "您的同行人情况？",
     opts: [
@@ -340,6 +327,7 @@ const questions = [
       { l: "D", t: "跟随公司团组或行业组织出行", v: 20 }
     ]
   },
+  // Q11: Duration
   {
     q: "您计划在美国停留多久？",
     opts: [
@@ -349,8 +337,10 @@ const questions = [
       { l: "D", t: "1周以内", v: 20 }
     ]
   },
+  // Q12: Rejection history
   {
     q: "您的拒签与再签情况？",
+    isRejectionQ: true,
     opts: [
       { l: "A", t: "从未被任何国家拒签过", v: 10 },
       { l: "B", t: "曾被美国拒签但后来拿到了美签", v: 5 },
@@ -359,21 +349,18 @@ const questions = [
       { l: "E", t: "曾被美国拒签2次或以上", v: -30 },
       { l: "F", t: "曾被加拿大/英国/澳大利亚/新西兰拒签", v: -20 },
       { l: "G", t: "曾因材料问题/不良记录被拒签或遣返", v: -40 }
-    ],
-    isRejectionQ: true
+    ]
   }
 ];
 
-// ---- STATE ----
+// ==================== STATE ====================
 let currentQ = 0;
 let selected = {};
-let customCareerOpts = null; // for Q3 when Q2!=A
 
 function startQuiz() {
   showPage('page-quiz');
   currentQ = 0;
   selected = {};
-  customCareerOpts = null;
   renderQuestion();
 }
 
@@ -382,56 +369,85 @@ function showPage(id) {
   document.getElementById(id).classList.add('active');
 }
 
-function renderQuestion() {
-  // Determine if Q3 needs custom options based on Q2
-  let qData = questions[currentQ];
+// ==================== DETAILED QUESTION FLOW ====================
+// Q0 (age) + Q1 (career) → if student → skip Q2 (career_dir) → Q3+
+// Total questions a user sees: 12 or 13 depending on skip
+
+function getQuestionsForUser() {
+  // Returns the ordered list of question indices the current user should see
+  const indices = [0];      // Q1: age
+  indices.push(1);           // Q2: career status — always show
   
-  if (currentQ === 2) {
-    // Q3 - check Q2 answer
-    const q2Ans = selected[1];
-    if (q2Ans !== undefined) {
-      const q2Opt = questions[1].opts[q2Ans];
-      if (q2Opt && q2Opt.skip) {
-        // Student - skip Q3
-        nextQuestion();
-        return;
-      }
+  const q2Ans = selected[1];
+  if (q2Ans !== undefined) {
+    const q2Opt = questions[1].opts[q2Ans];
+    if (q2Opt && q2Opt.jobType === "employed") {
+      indices.push(2);       // Q3: career direction — only for employed
     }
+    // student/unemployed/retired → skip Q3
+  } else {
+    indices.push(2);         // Not yet answered Q2 — show Q3 as default
   }
   
-  const container = document.getElementById('quizContent');
-  const total = questions.length;
-  const pct = ((currentQ) / total * 100);
+  // Remaining questions (4-12 = indices 3-11 in questions array)
+  for (let i = 3; i < questions.length; i++) {
+    indices.push(i);
+  }
+  return indices;
+}
+
+function getTotalQuestionCount() {
+  return getQuestionsForUser().length;
+}
+
+function getActualQIndex(displayIdx) {
+  // Given a display index (0-based among what user sees), return actual questions[] index
+  const qList = getQuestionsForUser();
+  if (displayIdx < qList.length) return qList[displayIdx];
+  return displayIdx; // fallback
+}
+
+function getDisplayIdx(actualIdx) {
+  const qList = getQuestionsForUser();
+  return qList.indexOf(actualIdx);
+}
+
+function renderQuestion() {
+  const qList = getQuestionsForUser();
+  const total = qList.length;
+  const actualIdx = qList[currentQ];
+  const qData = questions[actualIdx];
+  
+  // Progress
+  const pct = (currentQ / total * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = `第 ${currentQ+1} / ${total} 题`;
   
+  // Build HTML
+  const container = document.getElementById('quizContent');
   let html = '<div class="question-card">';
   html += `<div class="question-number">第 ${currentQ+1} 题</div>`;
   html += `<div class="question-text">${qData.q}</div>`;
   
-  // Show jump label for branching questions
   if (qData.isBranch) {
-    html += '<div class="tooltip">选择后自动跳转</div>';
+    html += '<div class="tooltip">选择后自动进入下一题</div>';
   }
   
   qData.opts.forEach((opt, idx) => {
-    const sel = selected[currentQ] === idx ? ' selected' : '';
+    const sel = selected[actualIdx] === idx ? ' selected' : '';
     const letter = opt.l || String.fromCharCode(65 + idx);
     
     html += `<div class="option${sel}" onclick="selectOpt(${idx})">`;
     html += `<span class="opt-letter">${letter}</span>${opt.t}`;
-    if (opt.jumpLabel) {
-      html += `<span class="opt-label">—— ${opt.jumpLabel}</span>`;
-    }
     if (opt.sensitive) {
-      html += `<span class="opt-label">⚠️</span>`;
+      html += `<span style="margin-left:6px;">⚠️</span>`;
     }
     html += '</div>';
   });
   
   html += '</div>';
   
-  // Navigation buttons
+  // Navigation
   html += '<div class="btn-row">';
   if (currentQ > 0) {
     html += `<button class="btn btn-prev" onclick="prevQuestion()">← 上一题</button>`;
@@ -440,10 +456,10 @@ function renderQuestion() {
   }
   
   if (currentQ < total - 1) {
-    const disabled = selected[currentQ] === undefined ? ' disabled' : '';
+    const disabled = selected[actualIdx] === undefined ? ' disabled' : '';
     html += `<button class="btn btn-next${disabled}" onclick="nextQuestion()" id="btnNext">下一题 →</button>`;
   } else {
-    const disabled = selected[currentQ] === undefined ? ' disabled' : '';
+    const disabled = selected[actualIdx] === undefined ? ' disabled' : '';
     html += `<button class="btn btn-submit${disabled}" onclick="submitQuiz()" id="btnNext">查看结果</button>`;
   }
   html += '</div>';
@@ -452,39 +468,30 @@ function renderQuestion() {
 }
 
 function selectOpt(idx) {
-  selected[currentQ] = idx;
+  const qList = getQuestionsForUser();
+  const actualIdx = qList[currentQ];
+  selected[actualIdx] = idx;
   
-  // Handle branch logic for Q2
-  if (currentQ === 1) {
-    const opt = questions[1].opts[idx];
-    // For "在职" (A), show 6 options; for others, show different options
-    // We don't need to modify Q3 opts here, we handle it in render
+  // Auto-advance on branch questions (Q2: career status)
+  if (questions[actualIdx].isBranch) {
+    // Auto skip to next question
+    setTimeout(() => nextQuestion(), 200);
+    return;
   }
   
-  // Refresh to update UI
   renderQuestion();
   
-  // Enable button
   const btn = document.getElementById('btnNext');
   if (btn) btn.disabled = false;
 }
 
 function nextQuestion() {
-  if (selected[currentQ] === undefined) return;
-  
-  // Q2 branch: if student, skip Q3
-  if (currentQ === 1) {
-    const opt = questions[1].opts[selected[1]];
-    if (opt && opt.skip) {
-      // Student - skip Q3, go to Q4
-      currentQ = 3;
-      renderQuestion();
-      return;
-    }
-  }
+  const qList = getQuestionsForUser();
+  const actualIdx = qList[currentQ];
+  if (selected[actualIdx] === undefined) return;
   
   currentQ++;
-  if (currentQ >= questions.length) {
+  if (currentQ >= qList.length) {
     submitQuiz();
   } else {
     renderQuestion();
@@ -493,50 +500,35 @@ function nextQuestion() {
 
 function prevQuestion() {
   if (currentQ > 0) {
-    // Q3 skip-back: if we skipped from Q2 to Q4, go back to Q2
-    if (currentQ === 3) {
-      const q2Opt = questions[1].opts[selected[1]];
-      if (q2Opt && q2Opt.skip) {
-        currentQ = 1;
-        renderQuestion();
-        return;
-      }
-    }
     currentQ--;
     renderQuestion();
   }
 }
 
+// ==================== RESULT ====================
 function submitQuiz() {
-  if (selected[questions.length - 1] === undefined) return;
+  const qList = getQuestionsForUser();
+  
+  // Verify last question answered
+  const lastActualIdx = qList[qList.length - 1];
+  if (selected[lastActualIdx] === undefined) return;
   
   // Calculate score
   let score = 0;
   let hasSensitive = false;
   let hasNegativeRejection = false;
   
-  for (let i = 0; i < questions.length; i++) {
-    const ansIdx = selected[i];
+  for (let actualIdx = 0; actualIdx < questions.length; actualIdx++) {
+    const ansIdx = selected[actualIdx];
     if (ansIdx === undefined) continue;
     
-    const q = questions[i];
-    
-    // Q2: record career type for Q3
-    if (i === 1) {
-      const opt = q.opts[ansIdx];
-      if (opt && opt.skip) {
-        // student gets +10 already, skip Q3 score
-        continue;
-      }
-    }
-    
+    const q = questions[actualIdx];
     const opt = q.opts[ansIdx];
     if (!opt) continue;
     
-    score += opt.v || 0;
+    score += (opt.v || 0);
     if (opt.sensitive) hasSensitive = true;
     
-    // Check negative rejection scores
     if (q.isRejectionQ && (opt.v || 0) < 0) {
       hasNegativeRejection = true;
     }
@@ -548,7 +540,7 @@ function submitQuiz() {
 function showResult(score, hasSensitive, hasNegativeRejection) {
   showPage('page-result');
   
-  let level, emoji, colorClass, title, desc, features, extraNote;
+  let level, emoji, colorClass, title, features;
   
   if (score >= 125) {
     level = 'A';
@@ -578,8 +570,7 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
     colorClass = 'result-c';
     title = '建议专业指导';
     features = [
-      '行政审核概率较高',
-      '不建议自行填表送签',
+      '行政审核概率较高，不建议自行填表送签',
       '免费电话诊断/拒签史及敏感背景复盘',
       '面签环节避坑指南',
       '再签成功率预判与送签策略建议'
@@ -592,8 +583,6 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
   html += `<div class="result-banner ${colorClass}">`;
   html += `<div class="emoji">${emoji}</div>`;
   html += `<h2>${title}</h2>`;
-  html += `<div class="score">${score}</div>`;
-  html += `<div class="label">综合评分</div>`;
   html += '</div>';
   
   html += '<div class="result-body">';
@@ -605,7 +594,6 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
   html += '</ul>';
   
   // Special warnings
-  let hasWarning = false;
   if (hasSensitive || hasNegativeRejection) {
     html += '<div class="special-note">';
     html += '<div class="title">⚠️ 特别注意</div>';
@@ -634,7 +622,6 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
 
 function copyContact() {
   const text = '回复【美国 + 我的微信号：xxx】，仅微信联系。';
-  // Try clipboard API
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => {
       alert('已复制：' + text);
