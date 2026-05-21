@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>美签过签率测评</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  background: #f5f6fa;
+  color: #222;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+/* Page wrapper */
+.page { display: none; min-height: 100vh; flex-direction: column; }
+.page.active { display: flex; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0a2347 0%, #1a3a6b 100%);
+  padding: 20px 16px 30px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.header h1 { font-size: 28px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+.header .subtitle { font-size: 14px; color: #b8c9e0; line-height: 1.5; }
+.header .logo { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; }
+
+/* Progress bar */
+.progress-bar {
+  height: 4px; background: #e0e3e8; margin: 0; position: relative;
+}
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, #d4af37, #f0d060);
+  border-radius: 0 2px 2px 0; transition: width .4s ease;
+}
+.progress-text {
+  text-align: center; font-size: 12px; color: #888; padding: 4px 0 10px;
+}
+
+/* Content area */
+.content {
+  flex: 1; padding: 16px; max-width: 480px; margin: 0 auto; width: 100%;
+}
+
+/* Question card */
+.question-card {
+  background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.question-number {
+  display: inline-block; background: #0a2347; color: #d4af37;
+  padding: 3px 12px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  margin-bottom: 12px;
+}
+.question-text {
+  font-size: 17px; font-weight: 600; line-height: 1.6; margin-bottom: 16px;
+  color: #0a2347;
+}
+
+/* Options */
+.option {
+  display: block; width: 100%; padding: 14px 16px; margin-bottom: 8px;
+  border: 2px solid #e8eaef; border-radius: 10px; background: #fafbfc;
+  font-size: 15px; line-height: 1.5; color: #333; text-align: left;
+  cursor: pointer; transition: all .2s; -webkit-tap-highlight-color: transparent;
+}
+.option:active { transform: scale(0.98); }
+.option.selected {
+  border-color: #0a2347; background: #edf2fa; color: #0a2347; font-weight: 600;
+}
+.option .opt-letter {
+  display: inline-block; width: 24px; height: 24px; line-height: 24px;
+  text-align: center; border-radius: 50%; background: #e0e3e8;
+  font-size: 13px; font-weight: 600; color: #555; margin-right: 10px;
+}
+.option.selected .opt-letter { background: #0a2347; color: #fff; }
+.option .opt-label { font-size: 12px; color: #999; margin-left: 6px; }
+
+/* Navigation buttons */
+.btn-row { display: flex; gap: 10px; margin-top: 4px; }
+.btn {
+  flex: 1; padding: 14px; border: none; border-radius: 10px;
+  font-size: 16px; font-weight: 600; cursor: pointer; transition: all .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-prev { background: #e8eaef; color: #555; }
+.btn-prev:active { background: #d0d3da; }
+.btn-next { background: #0a2347; color: #fff; }
+.btn-next:active { background: #15305a; }
+.btn-next:disabled { background: #b0b8c8; cursor: not-allowed; }
+.btn-submit { background: linear-gradient(135deg, #d4af37, #f0d060); color: #1a2a3a; }
+.btn-submit:active { opacity: .9; }
+
+/* Intro page */
+.intro-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 10px 0;
+}
+.intro-cover { width: 100%; display: block; }
+.intro-body { padding: 20px 24px 28px; }
+.intro-body h2 { font-size: 22px; color: #0a2347; margin-bottom: 12px; text-align: center; }
+.intro-body p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 10px; }
+.intro-body .highlight { color: #0a2347; font-weight: 600; }
+.intro-stats {
+  display: flex; justify-content: space-around; margin: 16px 0 20px;
+  padding: 12px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+}
+.intro-stat { text-align: center; }
+.intro-stat .num { font-size: 28px; font-weight: 700; color: #0a2347; }
+.intro-stat .label { font-size: 12px; color: #888; margin-top: 2px; }
+.btn-start {
+  display: block; width: 100%; padding: 16px; border: none; border-radius: 12px;
+  background: linear-gradient(135deg, #0a2347, #1a3a6b); color: #fff;
+  font-size: 18px; font-weight: 700; text-align: center; cursor: pointer;
+  letter-spacing: 2px; transition: all .2s; -webkit-tap-highlight-color: transparent;
+}
+.btn-start:active { transform: scale(0.97); opacity: .9; }
+
+/* Result page */
+.result-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 10px 0;
+}
+.result-banner {
+  padding: 30px 20px; text-align: center; color: #fff;
+}
+.result-banner.result-a { background: linear-gradient(135deg, #1b7a3f, #2d9f5e); }
+.result-banner.result-b { background: linear-gradient(135deg, #c47020, #e8942a); }
+.result-banner.result-c { background: linear-gradient(135deg, #b03030, #d04444); }
+.result-banner .emoji { font-size: 48px; margin-bottom: 8px; }
+.result-banner h2 { font-size: 24px; margin-bottom: 4px; }
+.result-banner .score { font-size: 42px; font-weight: 800; opacity: .9; }
+.result-banner .label { font-size: 14px; opacity: .8; margin-top: 4px; }
+.result-body { padding: 20px 24px; }
+.result-body h3 { font-size: 16px; color: #333; margin-bottom: 10px; }
+.result-body ul { list-style: none; padding: 0; }
+.result-body li {
+  padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+  font-size: 14px; line-height: 1.6; color: #555;
+}
+.result-body li:last-child { border-bottom: none; }
+.result-body li::before { content: "✅ "; }
+.result-body li.warn::before { content: "⚠️ "; }
+.result-cta {
+  background: #f8f4eb; margin: 0 24px 20px; padding: 16px; border-radius: 12px;
+  border-left: 4px solid #d4af37;
+}
+.result-cta p { font-size: 14px; color: #333; line-height: 1.7; margin-bottom: 4px; }
+.result-cta strong { color: #0a2347; }
+.btn-contact {
+  display: block; width: 100%; padding: 14px; margin-top: 8px;
+  border: none; border-radius: 10px;
+  background: linear-gradient(135deg, #d4af37, #f0d060); color: #1a2a3a;
+  font-size: 16px; font-weight: 700; text-align: center; cursor: pointer;
+  letter-spacing: 1px; -webkit-tap-highlight-color: transparent;
+}
+.btn-contact:active { opacity: .9; }
+.btn-restart {
+  display: block; width: 100%; padding: 12px; margin: 10px 0 4px;
+  border: 2px solid #ddd; border-radius: 10px; background: #fff;
+  font-size: 14px; color: #888; text-align: center; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Footer */
+.footer {
+  text-align: center; padding: 14px; font-size: 11px; color: #aaa;
+}
+
+/* Result detail chart */
+.result-chart { margin: 16px 0; }
+.result-bar-wrapper { margin-bottom: 10px; }
+.result-bar-label { font-size: 13px; color: #555; margin-bottom: 4px; }
+.result-bar-track { height: 8px; background: #e8eaef; border-radius: 4px; overflow: hidden; }
+.result-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+
+/* Special note */
+.special-note {
+  background: #fff8e6; border: 1px solid #f0d060; border-radius: 10px;
+  padding: 14px 16px; margin: 16px 0 0;
+}
+.special-note .title { font-weight: 700; color: #b8860b; font-size: 14px; margin-bottom: 6px; }
+.special-note p { font-size: 13px; color: #666; line-height: 1.6; }
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page.active .question-card,
+.page.active .result-card,
+.page.active .intro-card { animation: fadeIn .35s ease; }
+
+.tooltip { font-size: 12px; color: #999; margin-top: -8px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 0: INTRO ============ -->
+<div id="page-intro" class="page active">
+  <div class="header" style="padding-bottom:20px;">
+    <h1>🇺🇸 美签过签率</h1>
+    <div class="subtitle">VISA ASSESSMENT</div>
+  </div>
+  <div class="content">
+    <div class="intro-card">
+      <div class="intro-body">
+        <h2>测测你的美签过签率</h2>
+        <p>你准备申请美国签证，但心里没底？</p>
+        <p>签证官每天看几百份申请，我们根据美签审核核心逻辑设计了 <span class="highlight">13 道题</span>，3 分钟测出你的出签潜力。</p>
+        <div class="intro-stats">
+          <div class="intro-stat"><div class="num">13</div><div class="label">测评题目</div></div>
+          <div class="intro-stat"><div class="num">3</div><div class="label">分钟完成</div></div>
+          <div class="intro-stat"><div class="num">3</div><div class="label">档结果</div></div>
+        </div>
+        <p style="font-size:13px;color:#999;text-align:center;">根据美国签证官审核逻辑，基于DS-160核心要素设计</p>
+        <button class="btn-start" onclick="startQuiz()">开始测评 →</button>
+      </div>
+    </div>
+    <div class="footer">帮得签证 · 专业美签服务</div>
+  </div>
+</div>
+
+<!-- ============ PAGES 1-13: QUESTIONS ============ -->
+<div id="page-quiz" class="page">
+  <div class="header" style="padding:12px 16px 16px;">
+    <h1 style="font-size:20px;">美签过签率</h1>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-text" id="progressText">第 1 / 13 题</div>
+  <div class="content" id="quizContent"></div>
+</div>
+
+<!-- ============ PAGE: RESULT ============ -->
+<div id="page-result" class="page">
+  <div class="header" style="padding:14px 16px 18px;">
+    <h1 style="font-size:20px;">测评结果</h1>
+  </div>
+  <div class="content" id="resultContent"></div>
+</div>
+
+<script>
+// ---- DATA ----
+const questions = [
+  {
+    q: "您的年龄段？",
+    opts: [
+      { l: "A", t: "20岁以下", v: 10 },
+      { l: "B", t: "20-30岁", v: 15 },
+      { l: "C", t: "30-50岁", v: 25 },
+      { l: "D", t: "50岁以上", v: 20 }
+    ]
+  },
+  {
+    q: "您目前的职业状态是？",
+    opts: [
+      { l: "A", t: "在职", v: 0, skip: false, jumpLabel: "继续第3题" },
+      { l: "B", t: "学生", v: 10, skip: true, jumpLabel: "直接计10分，跳过第3题" },
+      { l: "C", t: "无业", v: 0, skip: false, jumpLabel: "继续第3题（非在职版）" },
+      { l: "D", t: "退休", v: 0, skip: false, jumpLabel: "继续第3题（非在职版）" }
+    ],
+    isBranch: true
+  },
+  {
+    q: "您的职业方向是？",
+    opts: [
+      { l: "A", t: "行政/人事/财务/销售/普通文职", v: 15, sensitive: false },
+      { l: "B", t: "私营企业主/个体工商户", v: 15, sensitive: false },
+      { l: "C", t: "医生/护士/生物医学", v: 5, sensitive: true },
+      { l: "D", t: "科技/工程/研发", v: 5, sensitive: true },
+      { l: "E", t: "公务员/政府/军队/国防相关", v: 5, sensitive: true },
+      { l: "F", t: "教师/律师/文体从业者", v: 15, sensitive: false }
+    ],
+    isCareerQ: true
+  },
+  {
+    q: "您的月均收入（税后）？",
+    opts: [
+      { l: "A", t: "5000元以下", v: 5 },
+      { l: "B", t: "5000-10000元", v: 10 },
+      { l: "C", t: "10000-20000元", v: 20 },
+      { l: "D", t: "20000元以上", v: 25 }
+    ]
+  },
+  {
+    q: "您的婚姻状况？",
+    opts: [
+      { l: "A", t: "单身/未婚", v: 5 },
+      { l: "B", t: "已婚", v: 15 },
+      { l: "C", t: "离异", v: 10 },
+      { l: "D", t: "丧偶", v: 8 },
+      { l: "E", t: "合法分居", v: 8 }
+    ]
+  },
+  {
+    q: "您的子女情况？",
+    opts: [
+      { l: "A", t: "无子女", v: 0 },
+      { l: "B", t: "有未成年子女", v: 20 },
+      { l: "C", t: "有子女，均已成年", v: 10 }
+    ]
+  },
+  {
+    q: "您名下是否有房产或车产？",
+    opts: [
+      { l: "A", t: "无", v: 0 },
+      { l: "B", t: "有一项，正在还贷", v: 10 },
+      { l: "C", t: "有房产（无贷款）或车产", v: 20 },
+      { l: "D", t: "房产车产齐全，均无贷款", v: 30 }
+    ]
+  },
+  {
+    q: "您的护照出入境记录？",
+    opts: [
+      { l: "A", t: "白本，从未出过国", v: 0 },
+      { l: "B", t: "仅去过东南亚等发展中国家", v: 10 },
+      { l: "C", t: "去过日韩、新加坡等亚洲发达国家", v: 20 },
+      { l: "D", t: "去过欧洲、澳洲、加拿大等西方国家", v: 30 }
+    ]
+  },
+  {
+    q: "您此次赴美的主要目的？",
+    opts: [
+      { l: "A", t: "探亲/访友（有直系亲属在美）", v: 5 },
+      { l: "B", t: "纯自助旅游", v: 15 },
+      { l: "C", t: "商务出差/参加会议/参展", v: 25 },
+      { l: "D", t: "团队旅游或有明确邀请的短期交流", v: 20 }
+    ]
+  },
+  {
+    q: "您的同行人情况？",
+    opts: [
+      { l: "A", t: "独自一人出行", v: 10 },
+      { l: "B", t: "与朋友结伴", v: 15 },
+      { l: "C", t: "与配偶或家人一同出行", v: 25 },
+      { l: "D", t: "跟随公司团组或行业组织出行", v: 20 }
+    ]
+  },
+  {
+    q: "您计划在美国停留多久？",
+    opts: [
+      { l: "A", t: "1个月以上", v: 5 },
+      { l: "B", t: "2周至1个月", v: 10 },
+      { l: "C", t: "1-2周", v: 25 },
+      { l: "D", t: "1周以内", v: 20 }
+    ]
+  },
+  {
+    q: "您的拒签与再签情况？",
+    opts: [
+      { l: "A", t: "从未被任何国家拒签过", v: 10 },
+      { l: "B", t: "曾被美国拒签但后来拿到了美签", v: 5 },
+      { l: "C", t: "曾被美国拒签，现在条件有重大积极变化", v: -10 },
+      { l: "D", t: "曾被美国拒签，条件无明显变化", v: -25 },
+      { l: "E", t: "曾被美国拒签2次或以上", v: -30 },
+      { l: "F", t: "曾被加拿大/英国/澳大利亚/新西兰拒签", v: -20 },
+      { l: "G", t: "曾因材料问题/不良记录被拒签或遣返", v: -40 }
+    ],
+    isRejectionQ: true
+  }
+];
+
+// ---- STATE ----
+let currentQ = 0;
+let selected = {};
+let customCareerOpts = null; // for Q3 when Q2!=A
+
+function startQuiz() {
+  showPage('page-quiz');
+  currentQ = 0;
+  selected = {};
+  customCareerOpts = null;
+  renderQuestion();
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function renderQuestion() {
+  // Determine if Q3 needs custom options based on Q2
+  let qData = questions[currentQ];
+  
+  if (currentQ === 2) {
+    // Q3 - check Q2 answer
+    const q2Ans = selected[1];
+    if (q2Ans !== undefined) {
+      const q2Opt = questions[1].opts[q2Ans];
+      if (q2Opt && q2Opt.skip) {
+        // Student - skip Q3
+        nextQuestion();
+        return;
+      }
+    }
+  }
+  
+  const container = document.getElementById('quizContent');
+  const total = questions.length;
+  const pct = ((currentQ) / total * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `第 ${currentQ+1} / ${total} 题`;
+  
+  let html = '<div class="question-card">';
+  html += `<div class="question-number">第 ${currentQ+1} 题</div>`;
+  html += `<div class="question-text">${qData.q}</div>`;
+  
+  // Show jump label for branching questions
+  if (qData.isBranch) {
+    html += '<div class="tooltip">选择后自动跳转</div>';
+  }
+  
+  qData.opts.forEach((opt, idx) => {
+    const sel = selected[currentQ] === idx ? ' selected' : '';
+    const letter = opt.l || String.fromCharCode(65 + idx);
+    
+    html += `<div class="option${sel}" onclick="selectOpt(${idx})">`;
+    html += `<span class="opt-letter">${letter}</span>${opt.t}`;
+    if (opt.jumpLabel) {
+      html += `<span class="opt-label">—— ${opt.jumpLabel}</span>`;
+    }
+    if (opt.sensitive) {
+      html += `<span class="opt-label">⚠️</span>`;
+    }
+    html += '</div>';
+  });
+  
+  html += '</div>';
+  
+  // Navigation buttons
+  html += '<div class="btn-row">';
+  if (currentQ > 0) {
+    html += `<button class="btn btn-prev" onclick="prevQuestion()">← 上一题</button>`;
+  } else {
+    html += '<div></div>';
+  }
+  
+  if (currentQ < total - 1) {
+    const disabled = selected[currentQ] === undefined ? ' disabled' : '';
+    html += `<button class="btn btn-next${disabled}" onclick="nextQuestion()" id="btnNext">下一题 →</button>`;
+  } else {
+    const disabled = selected[currentQ] === undefined ? ' disabled' : '';
+    html += `<button class="btn btn-submit${disabled}" onclick="submitQuiz()" id="btnNext">查看结果</button>`;
+  }
+  html += '</div>';
+  
+  container.innerHTML = html;
+}
+
+function selectOpt(idx) {
+  selected[currentQ] = idx;
+  
+  // Handle branch logic for Q2
+  if (currentQ === 1) {
+    const opt = questions[1].opts[idx];
+    // For "在职" (A), show 6 options; for others, show different options
+    // We don't need to modify Q3 opts here, we handle it in render
+  }
+  
+  // Refresh to update UI
+  renderQuestion();
+  
+  // Enable button
+  const btn = document.getElementById('btnNext');
+  if (btn) btn.disabled = false;
+}
+
+function nextQuestion() {
+  if (selected[currentQ] === undefined) return;
+  
+  // Q2 branch: if student, skip Q3
+  if (currentQ === 1) {
+    const opt = questions[1].opts[selected[1]];
+    if (opt && opt.skip) {
+      // Student - skip Q3, go to Q4
+      currentQ = 3;
+      renderQuestion();
+      return;
+    }
+  }
+  
+  currentQ++;
+  if (currentQ >= questions.length) {
+    submitQuiz();
+  } else {
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (currentQ > 0) {
+    // Q3 skip-back: if we skipped from Q2 to Q4, go back to Q2
+    if (currentQ === 3) {
+      const q2Opt = questions[1].opts[selected[1]];
+      if (q2Opt && q2Opt.skip) {
+        currentQ = 1;
+        renderQuestion();
+        return;
+      }
+    }
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+function submitQuiz() {
+  if (selected[questions.length - 1] === undefined) return;
+  
+  // Calculate score
+  let score = 0;
+  let hasSensitive = false;
+  let hasNegativeRejection = false;
+  
+  for (let i = 0; i < questions.length; i++) {
+    const ansIdx = selected[i];
+    if (ansIdx === undefined) continue;
+    
+    const q = questions[i];
+    
+    // Q2: record career type for Q3
+    if (i === 1) {
+      const opt = q.opts[ansIdx];
+      if (opt && opt.skip) {
+        // student gets +10 already, skip Q3 score
+        continue;
+      }
+    }
+    
+    const opt = q.opts[ansIdx];
+    if (!opt) continue;
+    
+    score += opt.v || 0;
+    if (opt.sensitive) hasSensitive = true;
+    
+    // Check negative rejection scores
+    if (q.isRejectionQ && (opt.v || 0) < 0) {
+      hasNegativeRejection = true;
+    }
+  }
+  
+  showResult(score, hasSensitive, hasNegativeRejection);
+}
+
+function showResult(score, hasSensitive, hasNegativeRejection) {
+  showPage('page-result');
+  
+  let level, emoji, colorClass, title, desc, features, extraNote;
+  
+  if (score >= 125) {
+    level = 'A';
+    emoji = '🎉';
+    colorClass = 'result-a';
+    title = '低风险 · 出签率高';
+    features = [
+      '同类申请人出签率很高',
+      '面签常见问题应答指导',
+      '个人拒签风险分析',
+      '拒签退款等更多活动详情'
+    ];
+  } else if (score >= 90) {
+    level = 'B';
+    emoji = '⚡';
+    colorClass = 'result-b';
+    title = '有潜质 · 需注意';
+    features = [
+      '你的条件具备出签潜质',
+      '签证材料清单/填表注意事项',
+      '个人拒签风险分析',
+      '面签常见问题应答指导'
+    ];
+  } else {
+    level = 'C';
+    emoji = '⚠️';
+    colorClass = 'result-c';
+    title = '建议专业指导';
+    features = [
+      '行政审核概率较高',
+      '不建议自行填表送签',
+      '免费电话诊断/拒签史及敏感背景复盘',
+      '面签环节避坑指南',
+      '再签成功率预判与送签策略建议'
+    ];
+  }
+  
+  const container = document.getElementById('resultContent');
+  
+  let html = '<div class="result-card">';
+  html += `<div class="result-banner ${colorClass}">`;
+  html += `<div class="emoji">${emoji}</div>`;
+  html += `<h2>${title}</h2>`;
+  html += `<div class="score">${score}</div>`;
+  html += `<div class="label">综合评分</div>`;
+  html += '</div>';
+  
+  html += '<div class="result-body">';
+  html += '<h3>建议方案</h3>';
+  html += '<ul>';
+  features.forEach(f => {
+    html += `<li>${f}</li>`;
+  });
+  html += '</ul>';
+  
+  // Special warnings
+  let hasWarning = false;
+  if (hasSensitive || hasNegativeRejection) {
+    html += '<div class="special-note">';
+    html += '<div class="title">⚠️ 特别注意</div>';
+    if (hasSensitive) {
+      html += '<p>您的职业或背景涉及敏感领域，签证审查可能需要行政审核（AP/Check），建议联系专业顾问评估后再送签。</p>';
+    }
+    if (hasNegativeRejection) {
+      html += '<p>您有拒签记录，申请表格填写和面签准备需要特别注意。建议在专业指导下准备再签材料。</p>';
+    }
+    html += '</div>';
+  }
+  
+  html += '</div>';
+  
+  // CTA
+  html += '<div class="result-cta">';
+  html += '<p><strong>回复【办理国家 + 您的微信/手机号】</strong>，并备注偏好方式（如：仅微信 / 可电话），即可获取专属签证评估方案。</p>';
+  html += '<button class="btn-contact" onclick="copyContact()">📋 复制联系模板</button>';
+  html += '</div>';
+  
+  html += `<button class="btn-restart" onclick="startQuiz()">🔄 重新测评</button>`;
+  html += '</div>';
+  
+  container.innerHTML = html;
+}
+
+function copyContact() {
+  const text = '回复【美国 + 我的微信号：xxx】，仅微信联系。';
+  // Try clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('已复制：' + text);
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); alert('已复制！'); } catch(e) { alert('请手动复制：' + text); }
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
