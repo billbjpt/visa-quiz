@@ -639,6 +639,10 @@ function sanitizeName(s) {
   // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格
   return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '');
 }
+function materialUrl(countryName, visaType) {
+  const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
+  return window.location.origin + '/visa-quiz/pdf/' + encodeURI(pdfName);
+}
 function showMaterials(countryName, visaType) {
   // 优先查找硬编码的 materials 数据
   const c = getCountry(countryName);
@@ -646,10 +650,8 @@ function showMaterials(countryName, visaType) {
     window.open(c.materials[visaType].url, '_blank');
     return;
   }
-  // 动态构造PDF路径: pdf/{国家}_{签证类型}.pdf
-  const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
-  const pdfUrl = window.location.origin + '/visa-quiz/pdf/' + encodeURI(pdfName);
-  window.open(pdfUrl, '_blank');
+  // 动态构造PDF路径
+  window.open(materialUrl(countryName, visaType), '_blank');
 }
 
 function closeModal(e) {
@@ -749,7 +751,7 @@ function createCountryCard(c) {
     item.innerHTML = `
       <span class="visa-type">${type}</span>
       <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-      <a class="visa-dl" onclick="showMaterials('${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 材料</a>
+      <a class=\"visa-dl\" href=\"${materialUrl(c.name, type)}\" target=\"_blank\">📄 材料</a>
     `;
     list.appendChild(item);
   });
