@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>关于我们 · 帮得签证</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #f7f8fa;
+  --card-bg: #fff;
+  --text: #333;
+  --text-muted: #777;
+  --accent: #0d1e44;
+  --gold: #c8a832;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111;
+    --card-bg: #1e1e1e;
+    --text: #e0e0e0;
+    --text-muted: #999;
+    --accent: #3a6bb5;
+    --gold: #d4b84a;
+  }
+}
+body {
+  font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+h1 {
+  font-size: 22px;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 4px;
+  letter-spacing: 2px;
+}
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.section {
+  margin-bottom: 20px;
+}
+.section h2 {
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section p {
+  font-size: 14px;
+  color: var(--text);
+  text-indent: 2em;
+}
+.section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+}
+.section ul li {
+  font-size: 14px;
+  padding: 2px 0;
+  padding-left: 1.5em;
+  position: relative;
+}
+.section ul li::before {
+  content: "✦";
+  color: var(--gold);
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+.quote {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  padding: 12px 0;
+  letter-spacing: 3px;
+}
+.btn-back {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.btn-back:active { opacity: 0.8; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="card" style="text-align:center;">
+    <h1>帮得签证</h1>
+    <div class="subtitle">您的签证小管家</div>
+    <div class="quote">✦ 帮得签证，开启无忧旅程 ✦</div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:14px;text-indent:2em;">
+      我们是专业的证照及文旅服务商，为您打造一站式签证解决方案。出国旅游、商务洽谈、探亲访友，我们助您拿到开启世界大门的"钥匙"。这里不仅有最新签证资讯，更有安全专业的服务。选择帮得签证，开启无忧旅程。感谢关注！
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="section">
+      <h2>🌍 精准方案，全程无忧</h2>
+      <p>无论是旅游、商务还是探亲，我们根据您的需求量身定制签证申请方案。我们熟悉各国签证政策，确保申请流程高效、材料精准，让您的签证申请一路畅通。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section">
+      <h2>🕵 专家团队，安全护航</h2>
+      <p>我们的团队由资深签证顾问和专业旅行专家组成，他们凭借丰富的经验为您提供全方位的指导和建议。我们采用先进的加密技术，确保您的个人信息安全，严格遵循国际隐私法规，保护您的隐私。从咨询、准备材料到递交申请、跟踪进度，全程陪伴，让您省心省力。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section">
+      <h2>🌐 实时更新，最新资讯</h2>
+      <p>签证政策不断变化，我们始终为您提供最新、最准确的信息。实时更新的签证资讯，确保您的申请符合最新要求，避免不必要的麻烦。</p>
+    </div>
+  </div>
+
+  <a class="btn-back" href="https://billbjpt.github.io/visa-quiz/">← 查看签证产品</a>
+
+</div>
+</body>
+</html>
