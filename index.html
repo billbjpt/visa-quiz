@@ -26,14 +26,14 @@
     --bg-card: #1e1e1e;
     --bg-modal: #2a2a2a;
     --bg-hint: rgba(255,255,255,0.08);
-    --text-primary: #e0e0e0;
-    --text-secondary: #bbb;
-    --text-muted: #999;
-    --text-light: #777;
-    --text-white: #eee;
-    --border-light: #333;
-    --accent-main: #3a6bb5;
-    --accent-blue: #4a9eff;
+    --text-primary: #f5f5f5;
+    --text-secondary: #ddd;
+    --text-muted: #c0c0c0;
+    --text-light: #aaa;
+    --text-white: #fff;
+    --border-light: #444;
+    --accent-main: #5a8cd4;
+    --accent-blue: #6ab4ff;
   }
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -866,7 +866,7 @@ function showDownloads() {
       const tagHtml = d.tag ? `<span class="dl-tag">${d.tag}</span>` : "";
       const btnHtml = d.url
         ? `<a class="dl-btn" href="${d.url}" target="_blank" rel="noopener">⬇ 下载</a>`
-        : `<span class="dl-btn dl-btn-outline" style="color:#999;border-color:#ccc;">暂无文件</span>`;
+        : `<span class="dl-btn dl-btn-outline">暂无文件</span>`;
       const div = document.createElement("div");
       div.className = "dl-item";
       div.innerHTML = `
@@ -905,7 +905,7 @@ init();
 }
 .no-pdf-modal .icon { font-size: 48px; margin: 15px 0; }
 .no-pdf-modal .title { font-size: 18px; font-weight: 600; margin: 10px 0; color: var(--text-primary); }
-.no-pdf-modal .sub { font-size: 14px; color: var(--text-muted); margin: 5px 0 20px; }
+.no-pdf-modal .sub { font-size: 14px; color: var(--text-secondary); margin: 5px 0 20px; }
 .no-pdf-modal .btn {
   background: var(--accent-blue);
   color: #fff;
