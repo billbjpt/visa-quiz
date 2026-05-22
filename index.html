@@ -7,130 +7,130 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
-background: #f0f2f5;
-color: #222;
-min-height: 100vh;
+  font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  background: #f0f2f5;
+  color: #222;
+  min-height: 100vh;
 }
 
 /* ========== HEADER ========== */
 .header {
-background: linear-gradient(135deg, #0d1e44 0%, #1a3a6b 100%);
-padding: 24px 16px 16px;
-color: #fff;
-text-align: center;
-position: sticky;
-top: 0;
-z-index: 100;
+  background: linear-gradient(135deg, #0d1e44 0%, #1a3a6b 100%);
+  padding: 24px 16px 16px;
+  color: #fff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .header h1 { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
 .header .brand-sub {
-font-size: 12px;
-color: #8ab4f8;
-margin-top: 2px;
-letter-spacing: 1px;
+  font-size: 12px;
+  color: #8ab4f8;
+  margin-top: 2px;
+  letter-spacing: 1px;
 }
 .header .slogan {
-font-size: 13px;
-color: #ffd866;
-margin-top: 6px;
-font-weight: 600;
-letter-spacing: 2px;
+  font-size: 13px;
+  color: #ffd866;
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 /* ========== SEARCH ========== */
 .search-bar {
-margin: 10px 16px 0;
-position: relative;
+  margin: 10px 16px 0;
+  position: relative;
 }
 .search-bar input {
-width: 100%;
-padding: 10px 14px 10px 36px;
-border: none;
-border-radius: 8px;
-background: rgba(255,255,255,0.15);
-color: #fff;
-font-size: 14px;
-outline: none;
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
 }
 .search-bar input::placeholder { color: rgba(255,255,255,0.5); }
 .search-bar .icon {
-position: absolute;
-left: 12px;
-top: 50%;
-transform: translateY(-50%);
-color: rgba(255,255,255,0.5);
-font-size: 16px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 16px;
 }
 
 /* ========== NOTICE BOARD ========== */
 .notice-board {
-margin: 8px 16px 0;
-padding: 8px 12px;
-background: rgba(255,215,0,0.12);
-border: 1px solid rgba(255,215,0,0.25);
-border-radius: 8px;
-font-size: 12px;
-color: #ffd866;
-display: flex;
-align-items: center;
-gap: 6px;
-line-height: 1.6;
-overflow: hidden;
-white-space: nowrap;
+  margin: 8px 16px 0;
+  padding: 8px 12px;
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.25);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #ffd866;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .notice-board .nt-icon { flex-shrink: 0; font-size: 14px; }
 .notice-board .nt-wrap {
-flex: 1;
-overflow: hidden;
-position: relative;
-height: 1.6em;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 1.6em;
 }
 .notice-board .nt-text {
-display: inline-block;
-white-space: nowrap;
-animation: scrollNotice 20s linear infinite;
-padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollNotice 20s linear infinite;
+  padding-left: 100%;
 }
 @keyframes scrollNotice {
-0% { transform: translateX(0); }
-100% { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* ========== CONTINENT NAV ========== */
 .continent-nav {
-display: flex;
-overflow-x: auto;
-padding: 10px 16px;
-gap: 8px;
-background: #fff;
-border-bottom: 1px solid #e8eaef;
-position: sticky;
-top: 120px;
-z-index: 99;
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 16px;
+  gap: 8px;
+  background: #fff;
+  border-bottom: 1px solid #e8eaef;
+  position: sticky;
+  top: 120px;
+  z-index: 99;
 }
 .continent-nav::-webkit-scrollbar { display: none; }
 .continent-tab {
-flex-shrink: 0;
-padding: 6px 14px;
-border-radius: 20px;
-font-size: 13px;
-font-weight: 600;
-background: #f0f2f5;
-color: #666;
-border: none;
-cursor: pointer;
-transition: all .2s;
-white-space: nowrap;
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f0f2f5;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
 }
 .continent-tab.active {
-background: #0d1e44;
-color: #fff;
+  background: #0d1e44;
+  color: #fff;
 }
 .continent-tab .count {
-font-size: 11px;
-opacity: .7;
-margin-left: 2px;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 2px;
 }
 
 .content { padding: 12px 16px 80px; max-width: 640px; margin: 0 auto; }
@@ -139,27 +139,27 @@ margin-left: 2px;
 
 /* ========== COUNTRY CARD ========== */
 .country-card {
-background: #fff;
-border-radius: 12px;
-margin-bottom: 10px;
-overflow: hidden;
-box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .country-header {
-display: flex;
-align-items: center;
-padding: 14px 16px;
-cursor: pointer;
--webkit-tap-highlight-color: transparent;
-transition: background .15s;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .15s;
 }
 .country-header:active { background: #f8f9fb; }
 .country-flag { font-size: 24px; margin-right: 12px; width: 28px; text-align: center; }
 .country-name { font-size: 16px; font-weight: 600; color: #1a2a3a; flex: 1; }
 .country-count { font-size: 12px; color: #999; margin-right: 8px; }
 .country-arrow {
-font-size: 14px; color: #ccc;
-transition: transform .25s ease;
+  font-size: 14px; color: #ccc;
+  transition: transform .25s ease;
 }
 .country-card.expanded .country-arrow { transform: rotate(180deg); }
 
@@ -167,45 +167,45 @@ transition: transform .25s ease;
 .country-card.expanded .visa-list { display: block; }
 
 .visa-item {
-display: flex;
-align-items: center;
-padding: 10px 0;
-border-bottom: 1px solid #f0f2f5;
-gap: 6px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+  gap: 6px;
 }
 .visa-item:last-child { border-bottom: none; }
 .visa-type {
-flex: 1;
-font-size: 14px;
-color: #444;
+  flex: 1;
+  font-size: 14px;
+  color: #444;
 }
 .visa-price {
-font-size: 14px;
-font-weight: 600;
-color: #c8a832;
-min-width: 60px;
-text-align: right;
-white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: #c8a832;
+  min-width: 60px;
+  text-align: right;
+  white-space: nowrap;
 }
 .visa-dl {
-font-size: 12px;
-color: #07c;
-text-decoration: none;
-padding: 4px 10px;
-border: 1px solid #07c;
-border-radius: 6px;
-white-space: nowrap;
-cursor: pointer;
+  font-size: 12px;
+  color: #07c;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid #07c;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 .visa-dl:active { background: #07c; color: #fff; }
 
 /* ========== DOWNLOAD ITEMS ========== */
 .dl-item {
-display: flex;
-align-items: center;
-padding: 14px 0;
-border-bottom: 1px solid #f0f2f5;
-gap: 12px;
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f2f5;
+  gap: 12px;
 }
 .dl-item:last-child { border-bottom: none; }
 .dl-icon { font-size: 28px; flex-shrink: 0; }
@@ -213,86 +213,86 @@ gap: 12px;
 .dl-title { font-size: 14px; font-weight: 600; color: #1a2a3a; }
 .dl-desc { font-size: 12px; color: #888; margin-top: 2px; }
 .dl-btn {
-padding: 6px 14px;
-background: #0d1e44;
-color: #fff;
-border: none;
-border-radius: 6px;
-font-size: 12px;
-font-weight: 600;
-text-decoration: none;
-white-space: nowrap;
-cursor: pointer;
+  padding: 6px 14px;
+  background: #0d1e44;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
 }
 .dl-btn:active { opacity: .8; }
 .dl-btn-outline {
-background: transparent;
-color: #0d1e44;
-border: 1.5px solid #0d1e44;
+  background: transparent;
+  color: #0d1e44;
+  border: 1.5px solid #0d1e44;
 }
 .dl-tag {
-display: inline-block;
-font-size: 10px;
-padding: 1px 6px;
-border-radius: 4px;
-margin-left: 6px;
-background: #e8f4ff;
-color: #07c;
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  background: #e8f4ff;
+  color: #07c;
 }
 
 .no-result {
-text-align: center;
-padding: 40px 16px;
-color: #999;
-font-size: 14px;
+  text-align: center;
+  padding: 40px 16px;
+  color: #999;
+  font-size: 14px;
 }
 
 /* ========== MATERIAL MODAL ========== */
 .modal-overlay {
-display: none;
-position: fixed;
-top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(0,0,0,0.5);
-z-index: 500;
-justify-content: center;
-align-items: center;
-padding: 20px;
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 .modal-overlay.show { display: flex; }
 .modal-box {
-background: #fff;
-border-radius: 16px;
-width: 100%;
-max-width: 420px;
-max-height: 80vh;
-overflow-y: auto;
-padding: 24px 20px 20px;
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 20px 20px;
 }
 .modal-box h3 {
-font-size: 17px;
-margin-bottom: 4px;
-color: #1a2a3a;
+  font-size: 17px;
+  margin-bottom: 4px;
+  color: #1a2a3a;
 }
 .modal-box .modal-sub {
-font-size: 13px;
-color: #888;
-margin-bottom: 14px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 14px;
 }
 .modal-close {
-float: right;
-background: none;
-border: none;
-font-size: 22px;
-color: #999;
-cursor: pointer;
-padding: 0 4px;
+  float: right;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #999;
+  cursor: pointer;
+  padding: 0 4px;
 }
 .material-item {
-padding: 10px 0;
-border-bottom: 1px solid #f0f2f5;
-display: flex;
-align-items: flex-start;
-gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 .material-item:last-child { border-bottom: none; }
 .material-item .mat-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
@@ -300,33 +300,33 @@ gap: 8px;
 
 /* ========== FOOTER ========== */
 .footer {
-text-align: center;
-padding: 20px 16px;
-font-size: 12px;
-color: #aaa;
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 12px;
+  color: #aaa;
 }
 .footer .brand-name {
-font-weight: 600;
-color: #0d1e44;
+  font-weight: 600;
+  color: #0d1e44;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>🛂 帮得签证 · 产品目录</h1>
-<div class="brand-sub">您的签证小管家 · 一站式签证解决方案</div>
-<div class="slogan">✦ 帮得签证，开启无忧旅程 ✦</div>
-<div class="search-bar">
-<span class="icon">🔍</span>
-<input id="searchInput" type="text" placeholder="搜索国家、签证类型..." oninput="filterProducts()">
-</div>
-<div class="notice-board" id="noticeBoard">
-<span class="nt-icon">📢</span>
-<div class="nt-wrap">
-<span class="nt-text" id="noticeText">加载中...</span>
-</div>
-</div>
+  <h1>🛂 帮得签证 · 产品目录</h1>
+  <div class="brand-sub">您的签证小管家 · 一站式签证解决方案</div>
+  <div class="slogan">✦ 帮得签证，开启无忧旅程 ✦</div>
+  <div class="search-bar">
+    <span class="icon">🔍</span>
+    <input id="searchInput" type="text" placeholder="搜索国家、签证类型..." oninput="filterProducts()">
+  </div>
+  <div class="notice-board" id="noticeBoard">
+    <span class="nt-icon">📢</span>
+    <div class="nt-wrap">
+      <span class="nt-text" id="noticeText">加载中...</span>
+    </div>
+  </div>
 </div>
 
 <div class="continent-nav" id="continentNav"></div>
@@ -334,39 +334,39 @@ color: #0d1e44;
 <div class="content" id="content"></div>
 
 <div class="footer">
-<p><span class="brand-name">帮得签证</span> · 您的签证小管家</p>
-<p style="margin-top:4px;font-size:11px;color:#bbb;">
-签证办理 · 出国旅游 · 商务洽谈 · 探亲访友
-</p>
-<p style="margin-top:4px;font-size:11px;color:#ccc;">
-精准方案 · 专家团队 · 实时资讯 · 贴心客服
-</p>
-<p style="margin-top:4px;font-size:10px;color:#bbb;">
-<a href="admin.html" style="color:#8ab4f8;text-decoration:none;">管理后台</a>
-</p>
+  <p><span class="brand-name">帮得签证</span> · 您的签证小管家</p>
+  <p style="margin-top:4px;font-size:11px;color:#bbb;">
+    签证办理 · 出国旅游 · 商务洽谈 · 探亲访友
+  </p>
+  <p style="margin-top:4px;font-size:11px;color:#ccc;">
+    精准方案 · 专家团队 · 实时资讯 · 贴心客服
+  </p>
+  <p style="margin-top:4px;font-size:10px;color:#bbb;">
+    <a href="admin.html" style="color:#8ab4f8;text-decoration:none;">管理后台</a>
+  </p>
 </div>
 
 <!-- Material Modal -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-<div class="modal-box">
-<button class="modal-close" onclick="closeModal()">×</button>
-<h3 id="modalTitle">材料清单</h3>
-<div class="modal-sub" id="modalSub">国家 · 签证类型</div>
-<div id="modalContent"></div>
-</div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 id="modalTitle">材料清单</h3>
+    <div class="modal-sub" id="modalSub">国家 · 签证类型</div>
+    <div id="modalContent"></div>
+  </div>
 </div>
 
 <!-- Download Materials Modal -->
 <div class="modal-overlay" id="dlModal" onclick="if(event.target===this)closeDlModal()">
-<div class="modal-box">
-<button class="modal-close" onclick="closeDlModal()">×</button>
-<h3>📥 资料下载</h3>
-<div class="modal-sub">原始证件、表格模板等PDF文档</div>
-<div id="dlContent"></div>
-<div id="dlEmpty" style="text-align:center;padding:30px;color:#999;font-size:14px;">
-暂无资料，请关注后续更新
-</div>
-</div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDlModal()">×</button>
+    <h3>📥 资料下载</h3>
+    <div class="modal-sub">原始证件、表格模板等PDF文档</div>
+    <div id="dlContent"></div>
+    <div id="dlEmpty" style="text-align:center;padding:30px;color:#999;font-size:14px;">
+      暂无资料，请关注后续更新
+    </div>
+  </div>
 </div>
 
 <script>
@@ -376,187 +376,187 @@ color: #0d1e44;
 // 材料: url 为PDF链接, name 为文件名; 无材料则不填
 // ============================================================
 const SEED_DATA = {
-"欧洲": [
-{name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学T4":"¥3,000","陪读签证":"¥3,000","两年多次":"¥2,500","五年多次":"¥4,500","十年多次":"¥6,500"},materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/英国_个人旅游.pdf",name:"英国_个人旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/英国_商务.pdf",name:"英国_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/英国_探亲访友.pdf",name:"英国_探亲访友.pdf"},"留学T4":{url:"https://billbjpt.github.io/visa-quiz/pdf/英国_留学T4.pdf",name:"英国_留学T4.pdf"},"陪读签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/英国_陪读签证.pdf",name:"英国_陪读签证.pdf"}}}, flag:"🇬🇧",
-materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
-{name:"法国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/法国_商务.pdf",name:"法国_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/法国_探亲访友.pdf",name:"法国_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/法国_旅游.pdf",name:"法国_旅游.pdf"}}}, flag:"🇫🇷",
-materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
-{name:"德国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/德国_商务.pdf",name:"德国_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/德国_探亲访友.pdf",name:"德国_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/德国_旅游.pdf",name:"德国_旅游.pdf"}}}, flag:"🇩🇪",
-materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"}}},
-{name:"意大利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/意大利_商务.pdf",name:"意大利_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/意大利_探亲访友.pdf",name:"意大利_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/意大利_旅游.pdf",name:"意大利_旅游.pdf"}}}, flag:"🇮🇹"},
-{name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/西班牙_商务.pdf",name:"西班牙_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/西班牙_探亲访友.pdf",name:"西班牙_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/西班牙_旅游.pdf",name:"西班牙_旅游.pdf"}}}, flag:"🇪🇸"},
-{name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/葡萄牙_商务.pdf",name:"葡萄牙_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/葡萄牙_探亲访友.pdf",name:"葡萄牙_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/葡萄牙_旅游.pdf",name:"葡萄牙_旅游.pdf"}}}, flag:"🇵🇹"},
-{name:"荷兰", types:["商务","探亲访友","旅游","过境签"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","过境签":"¥600"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/荷兰_商务.pdf",name:"荷兰_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/荷兰_探亲访友.pdf",name:"荷兰_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/荷兰_旅游.pdf",name:"荷兰_旅游.pdf"}}}, flag:"🇳🇱"},
-{name:"比利时", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/比利时_商务.pdf",name:"比利时_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/比利时_探亲访友.pdf",name:"比利时_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/比利时_旅游.pdf",name:"比利时_旅游.pdf"}}}, flag:"🇧🇪"},
-{name:"卢森堡", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/卢森堡_商务.pdf",name:"卢森堡_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/卢森堡_探亲访友.pdf",name:"卢森堡_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/卢森堡_旅游.pdf",name:"卢森堡_旅游.pdf"}}}, flag:"🇱🇺"},
-{name:"瑞士", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞士_商务.pdf",name:"瑞士_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞士_探亲访友.pdf",name:"瑞士_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞士_旅游.pdf",name:"瑞士_旅游.pdf"}}}, flag:"🇨🇭"},
-{name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","滑雪签":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/奥地利_商务.pdf",name:"奥地利_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/奥地利_探亲访友.pdf",name:"奥地利_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/奥地利_旅游.pdf",name:"奥地利_旅游.pdf"}}}, flag:"🇦🇹"},
-{name:"希腊", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/希腊_商务.pdf",name:"希腊_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/希腊_探亲访友.pdf",name:"希腊_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/希腊_旅游.pdf",name:"希腊_旅游.pdf"}}}, flag:"🇬🇷"},
-{name:"瑞典", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞典_商务.pdf",name:"瑞典_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞典_探亲访友.pdf",name:"瑞典_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/瑞典_旅游.pdf",name:"瑞典_旅游.pdf"}}}, flag:"🇸🇪"},
-{name:"挪威", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/挪威_商务.pdf",name:"挪威_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/挪威_探亲访友.pdf",name:"挪威_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/挪威_旅游.pdf",name:"挪威_旅游.pdf"}}}, flag:"🇳🇴"},
-{name:"丹麦", types:["商务","探亲访友","旅游","格陵兰"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","格陵兰":"¥2,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/丹麦_商务.pdf",name:"丹麦_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/丹麦_探亲访友.pdf",name:"丹麦_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/丹麦_旅游.pdf",name:"丹麦_旅游.pdf"}}}, flag:"🇩🇰"},
-{name:"芬兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/芬兰_商务.pdf",name:"芬兰_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/芬兰_探亲访友.pdf",name:"芬兰_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/芬兰_旅游.pdf",name:"芬兰_旅游.pdf"}}}, flag:"🇫🇮"},
-{name:"冰岛", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/冰岛_商务.pdf",name:"冰岛_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/冰岛_探亲访友.pdf",name:"冰岛_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/冰岛_旅游.pdf",name:"冰岛_旅游.pdf"}}}, flag:"🇮🇸"},
-{name:"爱尔兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/爱尔兰_商务.pdf",name:"爱尔兰_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/爱尔兰_探亲访友.pdf",name:"爱尔兰_探亲访友.pdf"}}}, flag:"🇮🇪"},
-{name:"波兰", types:["商务","探亲访友","旅游","工作签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","工作签":"¥3,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/波兰_商务.pdf",name:"波兰_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/波兰_探亲访友.pdf",name:"波兰_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/波兰_旅游.pdf",name:"波兰_旅游.pdf"}}}, flag:"🇵🇱"},
-{name:"捷克", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/捷克_商务.pdf",name:"捷克_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/捷克_探亲访友.pdf",name:"捷克_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/捷克_旅游.pdf",name:"捷克_旅游.pdf"}}}, flag:"🇨🇿"},
-{name:"匈牙利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/匈牙利_商务.pdf",name:"匈牙利_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/匈牙利_探亲访友.pdf",name:"匈牙利_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/匈牙利_旅游.pdf",name:"匈牙利_旅游.pdf"}}}, flag:"🇭🇺"},
-{name:"斯洛伐克", types:["个人旅游","商务","探亲访友","文化体育"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","文化体育":"¥2,000"},materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/斯洛伐克_个人旅游.pdf",name:"斯洛伐克_个人旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/斯洛伐克_商务.pdf",name:"斯洛伐克_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/斯洛伐克_探亲访友.pdf",name:"斯洛伐克_探亲访友.pdf"},"文化体育":{url:"https://billbjpt.github.io/visa-quiz/pdf/斯洛伐克_文化体育.pdf",name:"斯洛伐克_文化体育.pdf"}}}, flag:"🇸🇰"},
-{name:"克罗地亚", types:["商务","探亲访友","旅游","电子签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","电子签":"¥600"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/克罗地亚_商务.pdf",name:"克罗地亚_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/克罗地亚_探亲访友.pdf",name:"克罗地亚_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/克罗地亚_旅游.pdf",name:"克罗地亚_旅游.pdf"}}}, flag:"🇭🇷"},
-{name:"保加利亚", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/保加利亚_商务.pdf",name:"保加利亚_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/保加利亚_探亲访友.pdf",name:"保加利亚_探亲访友.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/保加利亚_旅游.pdf",name:"保加利亚_旅游.pdf"}}}, flag:"🇧🇬"},
-{name:"罗马尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇷🇴"},
-{name:"塞尔维亚", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,200"}, flag:"🇷🇸"},
-{name:"俄罗斯", types:["个人旅游","商务","电子签","探亲访友"], prices:{"个人旅游":"¥800","商务":"¥1,200","电子签":"¥500","探亲访友":"¥1,000"},materials:{"电子签":{url:"https://billbjpt.github.io/visa-quiz/pdf/俄罗斯_电子签.pdf",name:"俄罗斯_电子签.pdf"}}}, flag:"🇷🇺"},
-{name:"塞浦路斯", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇾"},
-{name:"斯洛文尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇮"},
-{name:"爱沙尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇪"},
-{name:"拉脱维亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇻"},
-{name:"立陶宛", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇹"},
-{name:"马耳他", types:["商务","旅游","探亲访友"], prices:{"商务":"¥1,800","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇲🇹"},
-{name:"摩纳哥", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥1,800"}, flag:"🇲🇨"},
-{name:"乌克兰", types:["商务","旅游","电子签"], prices:{"商务":"¥1,500","旅游":"¥1,200","电子签":"¥600"}, flag:"🇺🇦"},
-{name:"白俄罗斯", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇧🇾"},
-{name:"土耳其", types:["电子签","商务","旅游"], prices:{"电子签":"¥400","商务":"¥1,200","旅游":"¥800"}, flag:"🇹🇷"},
-{name:"梵蒂冈", types:["旅游"], prices:{"旅游":"¥1,000"}, flag:"🇻🇦"},
-],
-"美洲": [
-{name:"美国", types:["B1/B2签证","B1/B2免面谈","C或D类(过境/机组)","EVUS登记","F1留学签证","J1访问学者","M1职业培训","签证代传递","H1B工作签","L1跨国经理"], prices:{"B1/B2签证":"¥1,800","B1/B2免面谈":"¥2,500","C或D类(过境/机组)":"¥2,500","EVUS登记":"¥200","F1留学签证":"¥3,500","J1访问学者":"¥3,500","M1职业培训":"¥3,500","签证代传递":"¥1,500","H1B工作签":"¥5,000","L1跨国经理":"¥6,000"},materials:{"B1/B2免面谈":{url:"https://billbjpt.github.io/visa-quiz/pdf/美国_B1_B2免面谈.pdf",name:"美国_B1_B2免面谈.pdf"},"C或D类(过境/机组)":{url:"https://billbjpt.github.io/visa-quiz/pdf/美国_C或D类_过境_机组.pdf",name:"美国_C或D类_过境_机组.pdf"},"EVUS登记":{url:"https://billbjpt.github.io/visa-quiz/pdf/美国_EVUS登记.pdf",name:"美国_EVUS登记.pdf"},"F1留学签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/美国_F1留学签证.pdf",name:"美国_F1留学签证.pdf"},"签证代传递":{url:"https://billbjpt.github.io/visa-quiz/pdf/美国_签证代传递.pdf",name:"美国_签证代传递.pdf"}}}, flag:"🇺🇸",
-materials:{"B1/B2签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"},"EVUS登记":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"}}},
-{name:"加拿大", types:["旅游","商务","探亲访友","超级签证","留学签证","工作签证"], prices:{"旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","超级签证":"¥2,500","留学签证":"¥3,500","工作签证":"¥4,000"},materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/加拿大_旅游.pdf",name:"加拿大_旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/加拿大_商务.pdf",name:"加拿大_商务.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/加拿大_探亲访友.pdf",name:"加拿大_探亲访友.pdf"},"超级签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/加拿大_超级签证.pdf",name:"加拿大_超级签证.pdf"}}}, flag:"🇨🇦"},
-{name:"巴西", types:["商务","旅游","探亲访友"], prices:{"商务":"¥2,000","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇧🇷"},
-{name:"阿根廷", types:["个人旅游","商务","电子签（AVE）"], prices:{"个人旅游":"¥1,800","商务":"¥2,000","电子签（AVE）":"¥1,200"},materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/阿根廷_个人旅游.pdf",name:"阿根廷_个人旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/阿根廷_商务.pdf",name:"阿根廷_商务.pdf"}}}, flag:"🇦🇷"},
-{name:"厄瓜多尔", types:["另纸签","电子签"], prices:{"另纸签":"¥1,500","电子签":"¥800"},materials:{"电子签":{url:"https://billbjpt.github.io/visa-quiz/pdf/厄瓜多尔_电子签.pdf",name:"厄瓜多尔_电子签.pdf"}}}, flag:"🇪🇨"},
-{name:"玻利维亚", types:["个人旅游","商务"], prices:{"个人旅游":"¥1,500","商务":"¥1,800"}, flag:"🇧🇴"},
-{name:"智利", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇱"},
-{name:"秘鲁", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇵🇪"},
-{name:"哥伦比亚", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇴"},
-{name:"墨西哥", types:["旅游","商务","电子签"], prices:{"旅游":"¥1,200","商务":"¥1,500","电子签":"¥800"}, flag:"🇲🇽"},
-{name:"古巴", types:["旅游卡","商务"], prices:{"旅游卡":"¥500","商务":"¥1,200"}, flag:"🇨🇺"},
-{name:"巴拿马", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇵🇦"},
-{name:"哥斯达黎加", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇷"},
-{name:"乌拉圭", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇺🇾"},
-{name:"巴拉圭", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥1,800"}, flag:"🇵🇾"},
-{name:"委内瑞拉", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,800"}, flag:"🇻🇪"},
-{name:"巴哈马", types:["旅游"], prices:{"旅游":"¥1,200"}, flag:"🇧🇸"},
-{name:"牙买加", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇯🇲"},
-{name:"多米尼加共和国", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇩🇴"},
-{name:"开曼群岛", types:["旅游"], prices:{"旅游":"¥1,200"}, flag:"🇰🇾"},
-],
-"亚洲": [
-{name:"日本", types:["单次旅游","三年多次","五年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","三年多次":"¥800","五年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥500"}, flag:"🇯🇵",
-materials:{"单次旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"三年多次":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"}}},
-{name:"韩国", types:["单次旅游","五年多次","十年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","五年多次":"¥800","十年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥600"}, flag:"🇰🇷"},
-{name:"朝鲜", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇰🇵"},
-{name:"印度", types:["旅游","商务","电子签","探亲访友"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","探亲访友":"¥800"},materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/印度_旅游.pdf",name:"印度_旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/印度_商务.pdf",name:"印度_商务.pdf"}}}, flag:"🇮🇳"},
-{name:"越南", types:["另纸签","电子签","落地签批文","商务","探亲访友"], prices:{"另纸签":"¥500","电子签":"¥300","落地签批文":"¥200","商务":"¥600","探亲访友":"¥500"},materials:{"另纸签":{url:"https://billbjpt.github.io/visa-quiz/pdf/越南_另纸签.pdf",name:"越南_另纸签.pdf"},"电子签":{url:"https://billbjpt.github.io/visa-quiz/pdf/越南_电子签.pdf",name:"越南_电子签.pdf"},"落地签批文":{url:"https://billbjpt.github.io/visa-quiz/pdf/越南_落地签批文.pdf",name:"越南_落地签批文.pdf"}}}, flag:"🇻🇳"},
-{name:"印度尼西亚", types:["旅游电子签C1_D1","商务电子签C2_D2","电子落地签B1","商务签"], prices:{"旅游电子签C1_D1":"¥500","商务电子签C2_D2":"¥800","电子落地签B1":"¥600","商务签":"¥800"}, flag:"🇮🇩",materials:{"旅游电子签C1_D1":{url:"https://billbjpt.github.io/visa-quiz/pdf/印度尼西亚_旅游电子签C1_D1.pdf",name:"印度尼西亚旅游电子签证资料须知.pdf"},"商务电子签C2_D2":{url:"https://billbjpt.github.io/visa-quiz/pdf/印度尼西亚_商务电子签C2_D2.pdf",name:"印度尼西亚商务电子签证资料须知.pdf"}}}, flag:"🇮🇩"},
-{name:"柬埔寨", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥500","电子签":"¥300"}, flag:"🇰🇭"},
-{name:"老挝", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥500"}, flag:"🇱🇦"},
-{name:"缅甸", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥500","电子签":"¥300"}, flag:"🇲🇲"},
-{name:"泰国", types:["旅游","商务","落地签"], prices:{"旅游":"¥300","商务":"¥500","落地签":"¥200"}, flag:"🇹🇭"},
-{name:"马来西亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥300","商务":"¥500","电子签":"¥200"}, flag:"🇲🇾"},
-{name:"菲律宾", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥500","商务":"¥700","探亲访友":"¥600"}, flag:"🇵🇭"},
-{name:"新加坡", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥400","商务":"¥600","探亲访友":"¥500"}, flag:"🇸🇬"},
-{name:"蒙古", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇲🇳"},
-{name:"哈萨克斯坦", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇰🇿"},
-{name:"乌兹别克斯坦", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"},materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/乌兹别克斯坦_旅游.pdf",name:"乌兹别克斯坦_旅游.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/乌兹别克斯坦_商务.pdf",name:"乌兹别克斯坦_商务.pdf"}}}, flag:"🇺🇿"},
-{name:"吉尔吉斯斯坦", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇰🇬"},
-{name:"塔吉克斯坦", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇹🇯"},
-{name:"土库曼斯坦", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇹🇲"},
-{name:"以色列", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥1,200","商务":"¥1,500","探亲访友":"¥1,200"}, flag:"🇮🇱"},
-{name:"沙特阿拉伯", types:["商务","旅游","朝觐签"], prices:{"商务":"¥2,000","旅游":"¥1,500","朝觐签":"¥2,500"}, flag:"🇸🇦"},
-{name:"阿联酋", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥600","电子签":"¥300"}, flag:"🇦🇪"},
-{name:"卡塔尔", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇶🇦"},
-{name:"阿曼", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇴🇲"},
-{name:"巴林", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇧🇭"},
-{name:"科威特", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇰🇼"},
-{name:"约旦", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥400"}, flag:"🇯🇴"},
-{name:"黎巴嫩", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇱🇧"},
-{name:"伊朗", types:["旅游","商务","落地签"], prices:{"旅游":"¥600","商务":"¥800","落地签":"¥500"}, flag:"🇮🇷"},
-{name:"伊拉克", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,500"}, flag:"🇮🇶"},
-{name:"也门", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇾🇪"},
-{name:"叙利亚", types:["商务","旅游"], prices:{"商务":"¥2,500","旅游":"¥2,000"}, flag:"🇸🇾"},
-{name:"斯里兰卡", types:["电子签","旅游","商务"], prices:{"电子签":"¥300","旅游":"¥500","商务":"¥700"}, flag:"🇱🇰"},
-{name:"马尔代夫", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥600"}, flag:"🇲🇻"},
-{name:"孟加拉国", types:["商务","旅游"], prices:{"商务":"¥800","旅游":"¥600"}, flag:"🇧🇩"},
-{name:"尼泊尔", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥600"}, flag:"🇳🇵"},
-{name:"不丹", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥2,000"}, flag:"🇧🇹"},
-{name:"巴基斯坦", types:["商务","旅游"], prices:{"商务":"¥600","旅游":"¥500"}, flag:"🇵🇰"},
-{name:"阿富汗", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇦🇫"},
-{name:"东帝汶", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇹🇱"},
-{name:"文莱", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥700"}, flag:"🇧🇳"},
-{name:"亚美尼亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"}, flag:"🇦🇲"},
-{name:"阿塞拜疆", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇦🇿"},
-{name:"格鲁吉亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥800","电子签":"¥300"}, flag:"🇬🇪"},
-],
-"大洋洲": [
-{name:"澳大利亚", types:["旅游","商务","探亲访友","过境签","留学签证","打工度假","工作签证"], prices:{"旅游":"¥1,500","商务":"¥2,000","探亲访友":"¥1,500","过境签":"¥800","留学签证":"¥4,000","打工度假":"¥2,000","工作签证":"¥5,000"},materials:{"过境签":{url:"https://billbjpt.github.io/visa-quiz/pdf/澳大利亚_过境签.pdf",name:"澳大利亚_过境签.pdf"}}}, flag:"🇦🇺",
-materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
-{name:"新西兰", types:["个人旅游","商务","探亲访友","留学签证","打工度假"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学签证":"¥4,000","打工度假":"¥2,000"},materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/新西兰_探亲访友.pdf",name:"新西兰_探亲访友.pdf"}}}, flag:"🇳🇿"},
-{name:"斐济", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇫🇯"},
-{name:"巴布亚新几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇵🇬"},
-{name:"瓦努阿图", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇻🇺"},
-{name:"所罗门群岛", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇧"},
-{name:"萨摩亚", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇼🇸"},
-{name:"汤加", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇹🇴"},
-{name:"密克罗尼西亚", types:["旅游"], prices:{"旅游":"¥500"}, flag:"🇫🇲"},
-{name:"马绍尔群岛", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥900"}, flag:"🇲🇭"},
-{name:"帕劳", types:["旅游"], prices:{"旅游":"¥600"}, flag:"🇵🇼"},
-],
-"非洲": [
-{name:"南非", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥1,200","商务":"¥1,500","探亲访友":"¥1,200"},materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/南非_旅游.pdf",name:"南非_旅游.pdf"},"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/南非_探亲访友.pdf",name:"南非_探亲访友.pdf"}}}, flag:"🇿🇦"},
-{name:"埃及", types:["旅游","商务","电子签","落地签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","落地签":"¥300"}, flag:"🇪🇬"},
-{name:"摩洛哥", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇲🇦"},
-{name:"突尼斯", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇹🇳"},
-{name:"阿尔及利亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇩🇿"},
-{name:"肯尼亚", types:["电子签","旅游","商务"], prices:{"电子签":"¥500","旅游":"¥800","商务":"¥1,200"}, flag:"🇰🇪"},
-{name:"埃塞俄比亚", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥600"}, flag:"🇪🇹"},
-{name:"坦桑尼亚", types:["商务","旅游","落地签"], prices:{"商务":"¥1,200","旅游":"¥1,000","落地签":"¥500"}, flag:"🇹🇿"},
-{name:"乌干达", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇺🇬"},
-{name:"几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇬🇳"},
-{name:"尼日利亚", types:["商务","旅游","探亲访友"], prices:{"商务":"¥1,500","旅游":"¥1,200","探亲访友":"¥1,500"},materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/尼日利亚_商务.pdf",name:"尼日利亚_商务.pdf"},"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/尼日利亚_旅游.pdf",name:"尼日利亚_旅游.pdf"}}}, flag:"🇳🇬"},
-{name:"加纳", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇬🇭"},
-{name:"安哥拉", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇦🇴"},
-{name:"莫桑比克", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇲🇿"},
-{name:"赞比亚", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇿🇲"},
-{name:"津巴布韦", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇿🇼"},
-{name:"纳米比亚", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,200"}, flag:"🇳🇦"},
-{name:"博茨瓦纳", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,200"}, flag:"🇧🇼"},
-{name:"马达加斯加", types:["旅游","商务","落地签"], prices:{"旅游":"¥800","商务":"¥1,200","落地签":"¥500"}, flag:"🇲🇬"},
-{name:"毛里求斯", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇲🇺"},
-{name:"塞舌尔", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇸🇨"},
-{name:"喀麦隆", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇲"},
-{name:"科特迪瓦", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇮"},
-{name:"刚果（金）", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,500"}, flag:"🇨🇩"},
-{name:"刚果（布）", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇨🇬"},
-{name:"塞内加尔", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇸🇳"},
-{name:"苏丹", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇸🇩"},
-{name:"南苏丹", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇸🇸"},
-{name:"利比里亚", types:["商务"], prices:{"商务":"¥1,500"}, flag:"🇱🇷"},
-{name:"塞拉利昂", types:["商务"], prices:{"商务":"¥1,500"}, flag:"🇸🇱"},
-{name:"吉布提", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇩🇯"},
-{name:"索马里", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇸🇴"},
-{name:"贝宁", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥800","电子签":"¥500"}, flag:"🇧🇯"},
-{name:"多哥", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇹🇬"},
-{name:"卢旺达", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥1,000","电子签":"¥400"}, flag:"🇷🇼"},
-{name:"布隆迪", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇧🇮"},
-{name:"莱索托", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,000"}, flag:"🇱🇸"},
-{name:"斯威士兰", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,000"}, flag:"🇸🇿"},
-{name:"马拉维", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇲🇼"},
-{name:"佛得角", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇨🇻"},
-{name:"圣多美和普林西比", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇸🇹"},
-{name:"赤道几内亚", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇬🇶"},
-{name:"毛里塔尼亚", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇲🇷"},
-{name:"马里", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇲🇱"},
-{name:"布基纳法索", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇧🇫"},
-{name:"尼日尔", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇳🇪"},
-{name:"乍得", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇹🇩"},
-{name:"中非共和国", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇨🇫"},
-{name:"加蓬", types:["商务","旅游","电子签"], prices:{"商务":"¥1,500","旅游":"¥1,200","电子签":"¥600"}, flag:"🇬🇦"},
-{name:"冈比亚", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇬🇲"},
-{name:"利比亚", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇱🇾"},
-{name:"厄立特里亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇷"},
-]
+  "欧洲": [
+    {name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学T4":"¥3,000","陪读签证":"¥3,000","两年多次":"¥2,500","五年多次":"¥4,500","十年多次":"¥6,500"}, flag:"🇬🇧",
+     materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
+     {name:"法国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇫🇷",
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
+    {name:"德国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇩🇪",
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"}}},
+    {name:"意大利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇹"},
+    {name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇪🇸"},
+    {name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇵🇹"},
+    {name:"荷兰", types:["商务","探亲访友","旅游","过境签"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","过境签":"¥600"}, flag:"🇳🇱"},
+    {name:"比利时", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇧🇪"},
+    {name:"卢森堡", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇺"},
+    {name:"瑞士", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇭"},
+    {name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","滑雪签":"¥1,200"}, flag:"🇦🇹"},
+    {name:"希腊", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇬🇷"},
+    {name:"瑞典", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇸🇪"},
+    {name:"挪威", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇳🇴"},
+    {name:"丹麦", types:["商务","探亲访友","旅游","格陵兰"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","格陵兰":"¥2,000"}, flag:"🇩🇰"},
+    {name:"芬兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇫🇮"},
+    {name:"冰岛", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇮🇸"},
+    {name:"爱尔兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇪"},
+    {name:"波兰", types:["商务","探亲访友","旅游","工作签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","工作签":"¥3,000"}, flag:"🇵🇱"},
+    {name:"捷克", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇨🇿"},
+    {name:"匈牙利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇭🇺"},
+    {name:"斯洛伐克", types:["个人旅游","商务","探亲访友","文化体育"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","文化体育":"¥2,000"}, flag:"🇸🇰"},
+    {name:"克罗地亚", types:["商务","探亲访友","旅游","电子签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","电子签":"¥600"}, flag:"🇭🇷"},
+    {name:"保加利亚", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇧🇬"},
+    {name:"罗马尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇷🇴"},
+    {name:"塞尔维亚", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,200"}, flag:"🇷🇸"},
+    {name:"俄罗斯", types:["个人旅游","商务","电子签","探亲访友"], prices:{"个人旅游":"¥800","商务":"¥1,200","电子签":"¥500","探亲访友":"¥1,000"}, flag:"🇷🇺"},
+    {name:"塞浦路斯", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇾"},
+    {name:"斯洛文尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇮"},
+    {name:"爱沙尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇪"},
+    {name:"拉脱维亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇻"},
+    {name:"立陶宛", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇹"},
+    {name:"马耳他", types:["商务","旅游","探亲访友"], prices:{"商务":"¥1,800","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇲🇹"},
+    {name:"摩纳哥", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥1,800"}, flag:"🇲🇨"},
+    {name:"乌克兰", types:["商务","旅游","电子签"], prices:{"商务":"¥1,500","旅游":"¥1,200","电子签":"¥600"}, flag:"🇺🇦"},
+    {name:"白俄罗斯", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇧🇾"},
+    {name:"土耳其", types:["电子签","商务","旅游"], prices:{"电子签":"¥400","商务":"¥1,200","旅游":"¥800"}, flag:"🇹🇷"},
+    {name:"梵蒂冈", types:["旅游"], prices:{"旅游":"¥1,000"}, flag:"🇻🇦"},
+  ],
+  "美洲": [
+    {name:"美国", types:["B1/B2签证","B1/B2免面谈","C或D类(过境/机组)","EVUS登记","F1留学签证","J1访问学者","M1职业培训","签证代传递","H1B工作签","L1跨国经理"], prices:{"B1/B2签证":"¥1,800","B1/B2免面谈":"¥2,500","C或D类(过境/机组)":"¥2,500","EVUS登记":"¥200","F1留学签证":"¥3,500","J1访问学者":"¥3,500","M1职业培训":"¥3,500","签证代传递":"¥1,500","H1B工作签":"¥5,000","L1跨国经理":"¥6,000"}, flag:"🇺🇸",
+     materials:{"B1/B2签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"},"EVUS登记":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"}}},
+    {name:"加拿大", types:["旅游","商务","探亲访友","超级签证","留学签证","工作签证"], prices:{"旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","超级签证":"¥2,500","留学签证":"¥3,500","工作签证":"¥4,000"}, flag:"🇨🇦"},
+    {name:"巴西", types:["商务","旅游","探亲访友"], prices:{"商务":"¥2,000","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇧🇷"},
+    {name:"阿根廷", types:["个人旅游","商务","电子签（AVE）"], prices:{"个人旅游":"¥1,800","商务":"¥2,000","电子签（AVE）":"¥1,200"}, flag:"🇦🇷"},
+    {name:"厄瓜多尔", types:["另纸签","电子签"], prices:{"另纸签":"¥1,500","电子签":"¥800"}, flag:"🇪🇨"},
+    {name:"玻利维亚", types:["个人旅游","商务"], prices:{"个人旅游":"¥1,500","商务":"¥1,800"}, flag:"🇧🇴"},
+    {name:"智利", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇱"},
+    {name:"秘鲁", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇵🇪"},
+    {name:"哥伦比亚", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇴"},
+    {name:"墨西哥", types:["旅游","商务","电子签"], prices:{"旅游":"¥1,200","商务":"¥1,500","电子签":"¥800"}, flag:"🇲🇽"},
+    {name:"古巴", types:["旅游卡","商务"], prices:{"旅游卡":"¥500","商务":"¥1,200"}, flag:"🇨🇺"},
+    {name:"巴拿马", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇵🇦"},
+    {name:"哥斯达黎加", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇷"},
+    {name:"乌拉圭", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇺🇾"},
+    {name:"巴拉圭", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥1,800"}, flag:"🇵🇾"},
+    {name:"委内瑞拉", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,800"}, flag:"🇻🇪"},
+    {name:"巴哈马", types:["旅游"], prices:{"旅游":"¥1,200"}, flag:"🇧🇸"},
+    {name:"牙买加", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇯🇲"},
+    {name:"多米尼加共和国", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇩🇴"},
+    {name:"开曼群岛", types:["旅游"], prices:{"旅游":"¥1,200"}, flag:"🇰🇾"},
+  ],
+  "亚洲": [
+    {name:"日本", types:["单次旅游","三年多次","五年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","三年多次":"¥800","五年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥500"}, flag:"🇯🇵",
+     materials:{"单次旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"三年多次":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"}}},
+    {name:"韩国", types:["单次旅游","五年多次","十年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","五年多次":"¥800","十年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥600"}, flag:"🇰🇷"},
+    {name:"朝鲜", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇰🇵"},
+    {name:"印度", types:["旅游","商务","电子签","探亲访友"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","探亲访友":"¥800"}, flag:"🇮🇳"},
+    {name:"越南", types:["另纸签","电子签","落地签批文","商务","探亲访友"], prices:{"另纸签":"¥500","电子签":"¥300","落地签批文":"¥200","商务":"¥600","探亲访友":"¥500"}, flag:"🇻🇳"},
+    {name:"印度尼西亚", types:["旅游电子签C1/D1","商务电子签C2/D2","电子落地签B1","商务签"], prices:{"旅游电子签C1/D1":"¥500","商务电子签C2/D2":"¥800","电子落地签B1":"¥600","商务签":"¥800"}, flag:"🇮🇩"},
+    {name:"柬埔寨", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥500","电子签":"¥300"}, flag:"🇰🇭"},
+    {name:"老挝", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥500"}, flag:"🇱🇦"},
+    {name:"缅甸", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥500","电子签":"¥300"}, flag:"🇲🇲"},
+    {name:"泰国", types:["旅游","商务","落地签"], prices:{"旅游":"¥300","商务":"¥500","落地签":"¥200"}, flag:"🇹🇭"},
+    {name:"马来西亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥300","商务":"¥500","电子签":"¥200"}, flag:"🇲🇾"},
+    {name:"菲律宾", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥500","商务":"¥700","探亲访友":"¥600"}, flag:"🇵🇭"},
+    {name:"新加坡", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥400","商务":"¥600","探亲访友":"¥500"}, flag:"🇸🇬"},
+    {name:"蒙古", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇲🇳"},
+    {name:"哈萨克斯坦", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇰🇿"},
+    {name:"乌兹别克斯坦", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"}, flag:"🇺🇿"},
+    {name:"吉尔吉斯斯坦", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇰🇬"},
+    {name:"塔吉克斯坦", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇹🇯"},
+    {name:"土库曼斯坦", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇹🇲"},
+    {name:"以色列", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥1,200","商务":"¥1,500","探亲访友":"¥1,200"}, flag:"🇮🇱"},
+    {name:"沙特阿拉伯", types:["商务","旅游","朝觐签"], prices:{"商务":"¥2,000","旅游":"¥1,500","朝觐签":"¥2,500"}, flag:"🇸🇦"},
+    {name:"阿联酋", types:["旅游","商务","电子签"], prices:{"旅游":"¥400","商务":"¥600","电子签":"¥300"}, flag:"🇦🇪"},
+    {name:"卡塔尔", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇶🇦"},
+    {name:"阿曼", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇴🇲"},
+    {name:"巴林", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇧🇭"},
+    {name:"科威特", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇰🇼"},
+    {name:"约旦", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥400"}, flag:"🇯🇴"},
+    {name:"黎巴嫩", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇱🇧"},
+    {name:"伊朗", types:["旅游","商务","落地签"], prices:{"旅游":"¥600","商务":"¥800","落地签":"¥500"}, flag:"🇮🇷"},
+    {name:"伊拉克", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,500"}, flag:"🇮🇶"},
+    {name:"也门", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇾🇪"},
+    {name:"叙利亚", types:["商务","旅游"], prices:{"商务":"¥2,500","旅游":"¥2,000"}, flag:"🇸🇾"},
+    {name:"斯里兰卡", types:["电子签","旅游","商务"], prices:{"电子签":"¥300","旅游":"¥500","商务":"¥700"}, flag:"🇱🇰"},
+    {name:"马尔代夫", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥600"}, flag:"🇲🇻"},
+    {name:"孟加拉国", types:["商务","旅游"], prices:{"商务":"¥800","旅游":"¥600"}, flag:"🇧🇩"},
+    {name:"尼泊尔", types:["旅游","商务"], prices:{"旅游":"¥400","商务":"¥600"}, flag:"🇳🇵"},
+    {name:"不丹", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥2,000"}, flag:"🇧🇹"},
+    {name:"巴基斯坦", types:["商务","旅游"], prices:{"商务":"¥600","旅游":"¥500"}, flag:"🇵🇰"},
+    {name:"阿富汗", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇦🇫"},
+    {name:"东帝汶", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇹🇱"},
+    {name:"文莱", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥700"}, flag:"🇧🇳"},
+    {name:"亚美尼亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"}, flag:"🇦🇲"},
+    {name:"阿塞拜疆", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇦🇿"},
+    {name:"格鲁吉亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥800","电子签":"¥300"}, flag:"🇬🇪"},
+  ],
+  "大洋洲": [
+    {name:"澳大利亚", types:["旅游","商务","探亲访友","过境签","留学签证","打工度假","工作签证"], prices:{"旅游":"¥1,500","商务":"¥2,000","探亲访友":"¥1,500","过境签":"¥800","留学签证":"¥4,000","打工度假":"¥2,000","工作签证":"¥5,000"}, flag:"🇦🇺",
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
+    {name:"新西兰", types:["个人旅游","商务","探亲访友","留学签证","打工度假"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学签证":"¥4,000","打工度假":"¥2,000"}, flag:"🇳🇿"},
+    {name:"斐济", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇫🇯"},
+    {name:"巴布亚新几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇵🇬"},
+    {name:"瓦努阿图", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇻🇺"},
+    {name:"所罗门群岛", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇧"},
+    {name:"萨摩亚", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇼🇸"},
+    {name:"汤加", types:["旅游","商务"], prices:{"旅游":"¥500","商务":"¥800"}, flag:"🇹🇴"},
+    {name:"密克罗尼西亚", types:["旅游"], prices:{"旅游":"¥500"}, flag:"🇫🇲"},
+    {name:"马绍尔群岛", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥900"}, flag:"🇲🇭"},
+    {name:"帕劳", types:["旅游"], prices:{"旅游":"¥600"}, flag:"🇵🇼"},
+  ],
+  "非洲": [
+    {name:"南非", types:["旅游","商务","探亲访友"], prices:{"旅游":"¥1,200","商务":"¥1,500","探亲访友":"¥1,200"}, flag:"🇿🇦"},
+    {name:"埃及", types:["旅游","商务","电子签","落地签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","落地签":"¥300"}, flag:"🇪🇬"},
+    {name:"摩洛哥", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇲🇦"},
+    {name:"突尼斯", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇹🇳"},
+    {name:"阿尔及利亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇩🇿"},
+    {name:"肯尼亚", types:["电子签","旅游","商务"], prices:{"电子签":"¥500","旅游":"¥800","商务":"¥1,200"}, flag:"🇰🇪"},
+    {name:"埃塞俄比亚", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥600"}, flag:"🇪🇹"},
+    {name:"坦桑尼亚", types:["商务","旅游","落地签"], prices:{"商务":"¥1,200","旅游":"¥1,000","落地签":"¥500"}, flag:"🇹🇿"},
+    {name:"乌干达", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇺🇬"},
+    {name:"几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇬🇳"},
+    {name:"尼日利亚", types:["商务","旅游","探亲访友"], prices:{"商务":"¥1,500","旅游":"¥1,200","探亲访友":"¥1,500"}, flag:"🇳🇬"},
+    {name:"加纳", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇬🇭"},
+    {name:"安哥拉", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇦🇴"},
+    {name:"莫桑比克", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇲🇿"},
+    {name:"赞比亚", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇿🇲"},
+    {name:"津巴布韦", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥1,000","电子签":"¥500"}, flag:"🇿🇼"},
+    {name:"纳米比亚", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,200"}, flag:"🇳🇦"},
+    {name:"博茨瓦纳", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,200"}, flag:"🇧🇼"},
+    {name:"马达加斯加", types:["旅游","商务","落地签"], prices:{"旅游":"¥800","商务":"¥1,200","落地签":"¥500"}, flag:"🇲🇬"},
+    {name:"毛里求斯", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇲🇺"},
+    {name:"塞舌尔", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇸🇨"},
+    {name:"喀麦隆", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇲"},
+    {name:"科特迪瓦", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇮"},
+    {name:"刚果（金）", types:["商务","旅游"], prices:{"商务":"¥2,000","旅游":"¥1,500"}, flag:"🇨🇩"},
+    {name:"刚果（布）", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇨🇬"},
+    {name:"塞内加尔", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇸🇳"},
+    {name:"苏丹", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇸🇩"},
+    {name:"南苏丹", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇸🇸"},
+    {name:"利比里亚", types:["商务"], prices:{"商务":"¥1,500"}, flag:"🇱🇷"},
+    {name:"塞拉利昂", types:["商务"], prices:{"商务":"¥1,500"}, flag:"🇸🇱"},
+    {name:"吉布提", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇩🇯"},
+    {name:"索马里", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇸🇴"},
+    {name:"贝宁", types:["商务","旅游","电子签"], prices:{"商务":"¥1,200","旅游":"¥800","电子签":"¥500"}, flag:"🇧🇯"},
+    {name:"多哥", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇹🇬"},
+    {name:"卢旺达", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥1,000","电子签":"¥400"}, flag:"🇷🇼"},
+    {name:"布隆迪", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥1,000"}, flag:"🇧🇮"},
+    {name:"莱索托", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,000"}, flag:"🇱🇸"},
+    {name:"斯威士兰", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,000"}, flag:"🇸🇿"},
+    {name:"马拉维", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇲🇼"},
+    {name:"佛得角", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,000"}, flag:"🇨🇻"},
+    {name:"圣多美和普林西比", types:["旅游","商务"], prices:{"旅游":"¥800","商务":"¥1,200"}, flag:"🇸🇹"},
+    {name:"赤道几内亚", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇬🇶"},
+    {name:"毛里塔尼亚", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇲🇷"},
+    {name:"马里", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇲🇱"},
+    {name:"布基纳法索", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇧🇫"},
+    {name:"尼日尔", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇳🇪"},
+    {name:"乍得", types:["商务","旅游"], prices:{"商务":"¥1,800","旅游":"¥1,200"}, flag:"🇹🇩"},
+    {name:"中非共和国", types:["商务"], prices:{"商务":"¥2,000"}, flag:"🇨🇫"},
+    {name:"加蓬", types:["商务","旅游","电子签"], prices:{"商务":"¥1,500","旅游":"¥1,200","电子签":"¥600"}, flag:"🇬🇦"},
+    {name:"冈比亚", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇬🇲"},
+    {name:"利比亚", types:["商务"], prices:{"商务":"¥2,500"}, flag:"🇱🇾"},
+    {name:"厄立特里亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇷"},
+  ]
 };
 
 const CONTINENT_ORDER = ["欧洲","美洲","亚洲","大洋洲","非洲"];
@@ -567,260 +567,260 @@ let activeContinent = CONTINENT_ORDER[0];
 
 // ========== DATA LOAD / SAVE ==========
 function loadData() {
-const stored = localStorage.getItem("bondtravel_catalog");
-if (stored) {
-try {
-data = JSON.parse(stored);
-return;
-} catch(e) {}
-}
-// Deep clone seed
-data = {};
-CONTINENT_ORDER.forEach(cont => {
-data[cont] = (SEED_DATA[cont] || []).map(c => ({
-...c,
-types: [...c.types],
-prices: {...c.prices},
-materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k,[...v]])) : {}
-}));
-});
-saveData();
+  const stored = localStorage.getItem("bondtravel_catalog");
+  if (stored) {
+    try {
+      data = JSON.parse(stored);
+      return;
+    } catch(e) {}
+  }
+  // Deep clone seed
+  data = {};
+  CONTINENT_ORDER.forEach(cont => {
+    data[cont] = (SEED_DATA[cont] || []).map(c => ({
+      ...c,
+      types: [...c.types],
+      prices: {...c.prices},
+      materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k,[...v]])) : {}
+    }));
+  });
+  saveData();
 }
 
 function saveData() {
-localStorage.setItem("bondtravel_catalog", JSON.stringify(data));
+  localStorage.setItem("bondtravel_catalog", JSON.stringify(data));
 }
 
 // ========== SEARCH FIX ==========
 function filterProducts() {
-const q = document.getElementById("searchInput").value.trim().toLowerCase();
-const sections = document.querySelectorAll(".continent-section");
-const tabs = document.querySelectorAll(".continent-tab");
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  const sections = document.querySelectorAll(".continent-section");
+  const tabs = document.querySelectorAll(".continent-tab");
 
-if (q) {
-// Search mode: show all sections
-sections.forEach(s => { s.style.display = "block"; });
-tabs.forEach(t => t.classList.remove("active"));
-} else {
-// Reset to active continent
-sections.forEach(s => s.classList.remove("active"));
-document.getElementById("section-" + activeContinent).classList.add("active");
-tabs.forEach(t => {
-if (t.dataset.continent === activeContinent) t.classList.add("active");
-});
-}
+  if (q) {
+    // Search mode: show all sections
+    sections.forEach(s => { s.style.display = "block"; });
+    tabs.forEach(t => t.classList.remove("active"));
+  } else {
+    // Reset to active continent
+    sections.forEach(s => s.classList.remove("active"));
+    document.getElementById("section-" + activeContinent).classList.add("active");
+    tabs.forEach(t => {
+      if (t.dataset.continent === activeContinent) t.classList.add("active");
+    });
+  }
 
-let visibleCount = 0;
-document.querySelectorAll(".country-card").forEach(card => {
-const name = card.dataset.country.toLowerCase();
-const types = JSON.parse(card.dataset.types || "[]");
-const match = !q || name.includes(q) || types.some(t => t.includes(q));
-card.style.display = match ? "" : "none";
-if (match) visibleCount++;
-});
+  let visibleCount = 0;
+  document.querySelectorAll(".country-card").forEach(card => {
+    const name = card.dataset.country.toLowerCase();
+    const types = JSON.parse(card.dataset.types || "[]");
+    const match = !q || name.includes(q) || types.some(t => t.includes(q));
+    card.style.display = match ? "" : "none";
+    if (match) visibleCount++;
+  });
 
-const nr = document.getElementById("noResult");
-if (q && visibleCount === 0) {
-if (!nr) {
-const el = document.createElement("div");
-el.id = "noResult";
-el.className = "no-result";
-document.getElementById("content").appendChild(el);
-}
-document.getElementById("noResult").textContent = '😕 未找到 "' + q + '"，试试其他关键词';
-document.getElementById("noResult").style.display = "";
-} else if (nr) {
-nr.style.display = "none";
-}
+  const nr = document.getElementById("noResult");
+  if (q && visibleCount === 0) {
+    if (!nr) {
+      const el = document.createElement("div");
+      el.id = "noResult";
+      el.className = "no-result";
+      document.getElementById("content").appendChild(el);
+    }
+    document.getElementById("noResult").textContent = '😕 未找到 "' + q + '"，试试其他关键词';
+    document.getElementById("noResult").style.display = "";
+  } else if (nr) {
+    nr.style.display = "none";
+  }
 }
 
 // ========== MATERIAL MODAL ==========
 function showMaterials(countryName, visaType) {
-const c = getCountry(countryName);
-if (!c) return;
-const mat = c.materials && c.materials[visaType];
-if (mat && mat.url) {
-window.open(mat.url, '_blank');
-} else {
-alert('暂无材料文档，请联系客服获取');
-}
+  const c = getCountry(countryName);
+  if (!c) return;
+  const mat = c.materials && c.materials[visaType];
+  if (mat && mat.url) {
+    window.open(mat.url, '_blank');
+  } else {
+    alert('暂无材料文档，请联系客服获取');
+  }
 }
 
 function closeModal(e) {
-document.getElementById("modalOverlay").classList.remove("show");
+  document.getElementById("modalOverlay").classList.remove("show");
 }
 
 // ========== HELPERS ==========
 function getCountry(name) {
-for (const cont of CONTINENT_ORDER) {
-const c = (data[cont] || []).find(x => x.name === name);
-if (c) return c;
-}
-return null;
+  for (const cont of CONTINENT_ORDER) {
+    const c = (data[cont] || []).find(x => x.name === name);
+    if (c) return c;
+  }
+  return null;
 }
 
 // ========== RENDER ==========
 function init() {
-loadData();
+  loadData();
 
-const nav = document.getElementById("continentNav");
-const content = document.getElementById("content");
+  const nav = document.getElementById("continentNav");
+  const content = document.getElementById("content");
 
-// Nav tabs
-CONTINENT_ORDER.forEach((cont, i) => {
-const btn = document.createElement("button");
-btn.className = "continent-tab" + (i === 0 ? " active" : "");
-btn.dataset.continent = cont;
-btn.textContent = CONTINENT_ICONS[cont] + " " + cont;
-const span = document.createElement("span");
-span.className = "count";
-const countries = data[cont] || [];
-span.textContent = "(" + countries.length + ")";
-btn.appendChild(span);
-btn.onclick = () => switchContinent(cont);
-nav.appendChild(btn);
-});
+  // Nav tabs
+  CONTINENT_ORDER.forEach((cont, i) => {
+    const btn = document.createElement("button");
+    btn.className = "continent-tab" + (i === 0 ? " active" : "");
+    btn.dataset.continent = cont;
+    btn.textContent = CONTINENT_ICONS[cont] + " " + cont;
+    const span = document.createElement("span");
+    span.className = "count";
+    const countries = data[cont] || [];
+    span.textContent = "(" + countries.length + ")";
+    btn.appendChild(span);
+    btn.onclick = () => switchContinent(cont);
+    nav.appendChild(btn);
+  });
 
-// Download tab
-const dlTab = document.createElement("button");
-dlTab.className = "continent-tab";
-dlTab.textContent = "📥 资料下载";
-dlTab.onclick = () => showDownloads();
-nav.appendChild(dlTab);
+  // Download tab
+  const dlTab = document.createElement("button");
+  dlTab.className = "continent-tab";
+  dlTab.textContent = "📥 资料下载";
+  dlTab.onclick = () => showDownloads();
+  nav.appendChild(dlTab);
 
-// Sections
-CONTINENT_ORDER.forEach((cont, i) => {
-const section = document.createElement("div");
-section.className = "continent-section" + (i === 0 ? " active" : "");
-section.id = "section-" + cont;
+  // Sections
+  CONTINENT_ORDER.forEach((cont, i) => {
+    const section = document.createElement("div");
+    section.className = "continent-section" + (i === 0 ? " active" : "");
+    section.id = "section-" + cont;
 
-const countries = data[cont] || [];
-countries.forEach(c => {
-// Only show countries that have at least one visa type with a real price
-const hasPrice = c.types.some(t => c.prices[t] && c.prices[t] !== "待询");
-if (hasPrice) section.appendChild(createCountryCard(c));
-});
+    const countries = data[cont] || [];
+    countries.forEach(c => {
+      // Only show countries that have at least one visa type with a real price
+      const hasPrice = c.types.some(t => c.prices[t] && c.prices[t] !== "待询");
+      if (hasPrice) section.appendChild(createCountryCard(c));
+    });
 
-content.appendChild(section);
-});
+    content.appendChild(section);
+  });
 
-// Notice board
-updateNotice();
+  // Notice board
+  updateNotice();
 
-// Search input fix: restore active continent on clear
-document.getElementById("searchInput").addEventListener("search", function() {
-if (!this.value) filterProducts();
-});
+  // Search input fix: restore active continent on clear
+  document.getElementById("searchInput").addEventListener("search", function() {
+    if (!this.value) filterProducts();
+  });
 }
 
 function createCountryCard(c) {
-const card = document.createElement("div");
-card.className = "country-card";
-card.id = "card-" + c.name;
-card.dataset.country = c.name;
-card.dataset.types = JSON.stringify(c.types);
+  const card = document.createElement("div");
+  card.className = "country-card";
+  card.id = "card-" + c.name;
+  card.dataset.country = c.name;
+  card.dataset.types = JSON.stringify(c.types);
 
-const flag = c.flag || "🌐";
+  const flag = c.flag || "🌐";
 
-const header = document.createElement("div");
-header.className = "country-header";
-header.onclick = () => card.classList.toggle("expanded");
-header.innerHTML = `
-<span class="country-flag">${flag}</span>
-<span class="country-name">${c.name}</span>
-<span class="country-count">${c.types.length}种</span>
-<span class="country-arrow">▼</span>
-`;
-card.appendChild(header);
+  const header = document.createElement("div");
+  header.className = "country-header";
+  header.onclick = () => card.classList.toggle("expanded");
+  header.innerHTML = `
+    <span class="country-flag">${flag}</span>
+    <span class="country-name">${c.name}</span>
+    <span class="country-count">${c.types.length}种</span>
+    <span class="country-arrow">▼</span>
+  `;
+  card.appendChild(header);
 
-const list = document.createElement("div");
-list.className = "visa-list";
+  const list = document.createElement("div");
+  list.className = "visa-list";
 
-c.types.forEach(type => {
-const price = c.prices[type] || "待询";
-const item = document.createElement("div");
-item.className = "visa-item";
-item.innerHTML = `
-<span class="visa-type">${type}</span>
-<span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-<a class="visa-dl" onclick="showMaterials('${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 材料</a>
-`;
-list.appendChild(item);
-});
+  c.types.forEach(type => {
+    const price = c.prices[type] || "待询";
+    const item = document.createElement("div");
+    item.className = "visa-item";
+    item.innerHTML = `
+      <span class="visa-type">${type}</span>
+      <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
+      <a class="visa-dl" onclick="showMaterials('${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 材料</a>
+    `;
+    list.appendChild(item);
+  });
 
-card.appendChild(list);
-return card;
+  card.appendChild(list);
+  return card;
 }
 
 function switchContinent(cont) {
-activeContinent = cont;
-document.querySelectorAll(".continent-tab").forEach(t => t.classList.remove("active"));
-document.querySelectorAll(".continent-section").forEach(s => s.classList.remove("active"));
-document.querySelector(`.continent-tab[data-continent="${cont}"]`).classList.add("active");
-document.getElementById("section-" + cont).classList.add("active");
+  activeContinent = cont;
+  document.querySelectorAll(".continent-tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".continent-section").forEach(s => s.classList.remove("active"));
+  document.querySelector(`.continent-tab[data-continent="${cont}"]`).classList.add("active");
+  document.getElementById("section-" + cont).classList.add("active");
 
-// Clear search
-document.getElementById("searchInput").value = "";
-filterProducts();
+  // Clear search
+  document.getElementById("searchInput").value = "";
+  filterProducts();
 }
 
 function updateNotice() {
-const saved = localStorage.getItem("bondtravel_notice");
-const text = saved || "🌟 帮得签证——您的签证小管家！专业签证办理，出国旅游、商务洽谈、探亲访友，一站式服务。点击展开查看详情 →";
-document.getElementById("noticeText").textContent = text;
+  const saved = localStorage.getItem("bondtravel_notice");
+  const text = saved || "🌟 帮得签证——您的签证小管家！专业签证办理，出国旅游、商务洽谈、探亲访友，一站式服务。点击展开查看详情 →";
+  document.getElementById("noticeText").textContent = text;
 }
 
 // ========== DOWNLOAD MATERIALS ==========
 function getDownloads() {
-const stored = localStorage.getItem("bondtravel_downloads");
-if (stored) { try { return JSON.parse(stored); } catch(e) {} }
-// Seed data
-const BASE = "https://billbjpt.github.io/visa-quiz/pdf/";
-return [
-{title:"在职证明模板（中英双语）", url:BASE+"employment_letter_template.pdf", desc:"通用在职证明模板，中英文对照，含公司信息、职位、收入等", icon:"📋", tag:"模板"},
-{title:"申根签证申请指南", url:BASE+"schengen_visa_guide.pdf", desc:"29国申根区签证全流程，材料清单+注意事项", icon:"🌍", tag:"指南"},
-{title:"美国DS-160填写指南", url:BASE+"us_visa_ds160_guide.pdf", desc:"DS-160在线表格逐项指南，常见错误避免", icon:"🇺🇸", tag:"指南"},
-{title:"签证材料通用清单", url:BASE+"visa_checklist_general.pdf", desc:"核心材料 + 在职/财务/特殊人群所需材料一览", icon:"📄", tag:"清单"},
-{title:"帮得签证公司简介", url:BASE+"bangde_visa_brochure.pdf", desc:"公司介绍、服务范围、联系方式", icon:"🏢", tag:"简介"},
-];
+  const stored = localStorage.getItem("bondtravel_downloads");
+  if (stored) { try { return JSON.parse(stored); } catch(e) {} }
+  // Seed data
+  const BASE = "https://billbjpt.github.io/visa-quiz/pdf/";
+  return [
+    {title:"在职证明模板（中英双语）", url:BASE+"employment_letter_template.pdf", desc:"通用在职证明模板，中英文对照，含公司信息、职位、收入等", icon:"📋", tag:"模板"},
+    {title:"申根签证申请指南", url:BASE+"schengen_visa_guide.pdf", desc:"29国申根区签证全流程，材料清单+注意事项", icon:"🌍", tag:"指南"},
+    {title:"美国DS-160填写指南", url:BASE+"us_visa_ds160_guide.pdf", desc:"DS-160在线表格逐项指南，常见错误避免", icon:"🇺🇸", tag:"指南"},
+    {title:"签证材料通用清单", url:BASE+"visa_checklist_general.pdf", desc:"核心材料 + 在职/财务/特殊人群所需材料一览", icon:"📄", tag:"清单"},
+    {title:"帮得签证公司简介", url:BASE+"bangde_visa_brochure.pdf", desc:"公司介绍、服务范围、联系方式", icon:"🏢", tag:"简介"},
+  ];
 }
 
 function showDownloads() {
-const downloads = getDownloads();
-const container = document.getElementById("dlContent");
-const empty = document.getElementById("dlEmpty");
+  const downloads = getDownloads();
+  const container = document.getElementById("dlContent");
+  const empty = document.getElementById("dlEmpty");
 
-container.innerHTML = "";
+  container.innerHTML = "";
 
-if (downloads.length === 0) {
-empty.style.display = "block";
-} else {
-empty.style.display = "none";
-downloads.forEach((d, i) => {
-const icon = d.icon || "📄";
-const tagHtml = d.tag ? `<span class="dl-tag">${d.tag}</span>` : "";
-const btnHtml = d.url
-? `<a class="dl-btn" href="${d.url}" target="_blank" rel="noopener">⬇ 下载</a>`
-: `<span class="dl-btn dl-btn-outline" style="color:#999;border-color:#ccc;">暂无文件</span>`;
-const div = document.createElement("div");
-div.className = "dl-item";
-div.innerHTML = `
-<span class="dl-icon">${icon}</span>
-<div class="dl-info">
-<div class="dl-title">${d.title}${tagHtml}</div>
-<div class="dl-desc">${d.desc || ""}</div>
-</div>
-${btnHtml}
-`;
-container.appendChild(div);
-});
-}
+  if (downloads.length === 0) {
+    empty.style.display = "block";
+  } else {
+    empty.style.display = "none";
+    downloads.forEach((d, i) => {
+      const icon = d.icon || "📄";
+      const tagHtml = d.tag ? `<span class="dl-tag">${d.tag}</span>` : "";
+      const btnHtml = d.url
+        ? `<a class="dl-btn" href="${d.url}" target="_blank" rel="noopener">⬇ 下载</a>`
+        : `<span class="dl-btn dl-btn-outline" style="color:#999;border-color:#ccc;">暂无文件</span>`;
+      const div = document.createElement("div");
+      div.className = "dl-item";
+      div.innerHTML = `
+        <span class="dl-icon">${icon}</span>
+        <div class="dl-info">
+          <div class="dl-title">${d.title}${tagHtml}</div>
+          <div class="dl-desc">${d.desc || ""}</div>
+        </div>
+        ${btnHtml}
+      `;
+      container.appendChild(div);
+    });
+  }
 
-document.getElementById("dlModal").classList.add("show");
+  document.getElementById("dlModal").classList.add("show");
 }
 
 function closeDlModal() {
-document.getElementById("dlModal").classList.remove("show");
+  document.getElementById("dlModal").classList.remove("show");
 }
 
 init();
