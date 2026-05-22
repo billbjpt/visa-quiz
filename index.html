@@ -795,7 +795,15 @@ function updateNotice() {
 function getDownloads() {
   const stored = localStorage.getItem("bondtravel_downloads");
   if (stored) { try { return JSON.parse(stored); } catch(e) {} }
-  return [];
+  // Seed data
+  const BASE = "https://billbjpt.github.io/visa-quiz/pdf/";
+  return [
+    {title:"在职证明模板（中英双语）", url:BASE+"employment_letter_template.pdf", desc:"通用在职证明模板，中英文对照，含公司信息、职位、收入等", icon:"📋", tag:"模板"},
+    {title:"申根签证申请指南", url:BASE+"schengen_visa_guide.pdf", desc:"29国申根区签证全流程，材料清单+注意事项", icon:"🌍", tag:"指南"},
+    {title:"美国DS-160填写指南", url:BASE+"us_visa_ds160_guide.pdf", desc:"DS-160在线表格逐项指南，常见错误避免", icon:"🇺🇸", tag:"指南"},
+    {title:"签证材料通用清单", url:BASE+"visa_checklist_general.pdf", desc:"核心材料 + 在职/财务/特殊人群所需材料一览", icon:"📄", tag:"清单"},
+    {title:"帮得签证公司简介", url:BASE+"bangde_visa_brochure.pdf", desc:"公司介绍、服务范围、联系方式", icon:"🏢", tag:"简介"},
+  ];
 }
 
 function showDownloads() {
