@@ -777,7 +777,7 @@ function createCountryCard(c) {
     item.innerHTML = `
       <span class="visa-type">${type}</span>
       <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-      <a class=\"visa-dl${hasPdf ? \"\" : \" no-pdf\"}\" href=\"${hasPdf ? materialUrl(c.name, type) : \"javascript:void(0)\"}\" target=\"${hasPdf ? \"_blank\" : \"_self\"}\" onclick=\"${hasPdf ? \"\" : \"showNoPdf()\"}\">📄 材料</a>
+      <a class=\"visa-dl${hasPdf ? '' : ' no-pdf'}\" href=\"${hasPdf ? materialUrl(c.name, type) : 'javascript:void(0)'}\" target=\"${hasPdf ? '_blank' : '_self'}\" onclick=\"${hasPdf ? '' : 'showNoPdf()'}\">📄 材料</a>
     `;
     list.appendChild(item);
   });
