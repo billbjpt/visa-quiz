@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>邦德旅行 · 管理后台</title>
+<title>帮得签证 · 管理后台</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -414,7 +414,7 @@ body {
 
 <div class="top-bar">
   <div>
-    <h1>🛠 邦德旅行 · 管理后台</h1>
+    <h1>🛠 帮得签证 · 管理后台</h1>
     <span class="admin-badge">管理员</span>
   </div>
   <div class="top-actions">
@@ -427,6 +427,23 @@ body {
   <label>📢 公告板内容（前台显示）</label>
   <textarea id="noticeInput" placeholder="输入公告内容，支持换行..."></textarea>
   <button onclick="saveNotice()">💾 保存公告</button>
+</div>
+
+<!-- Download Manager -->
+<div class="notice-editor" style="border-color:rgba(52,168,120,0.3);background:rgba(52,168,120,0.06);">
+  <label>📥 资料下载管理（前台"资料下载"栏目展示）</label>
+  <div id="dlManagerList"></div>
+  <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+    <input id="dlTitle" placeholder="资料名称（如：美国签证DS-160表）" style="flex:2;min-width:120px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
+    <input id="dlUrl" placeholder="PDF链接（完整URL）" style="flex:2;min-width:120px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
+    <input id="dlDesc" placeholder="描述（选填）" style="flex:1;min-width:80px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
+    <input id="dlIcon" placeholder="图标（选填，如📄📋📑）" style="flex:0 0 80px;text-align:center;padding:6px 4px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
+    <input id="dlTag" placeholder="标签（选填，如【PDF】）" style="flex:0 0 90px;text-align:center;padding:6px 4px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
+    <button onclick="addDownloadItem()" style="padding:6px 14px;background:#34a878;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">➕ 添加</button>
+  </div>
+  <div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.4);">
+    💡 PDF文件建议上传到 GitHub 仓库的 pdf/ 目录，链接格式如：<code style="color:#8ab4f8;">https://billbjpt.github.io/visa-quiz/pdf/xxx.pdf</code>
+  </div>
 </div>
 
 <!-- Action Panel -->
@@ -993,6 +1010,81 @@ function resetData() {
   toast("🔄 已恢复默认数据");
   render();
 }
+
+// ========== DOWNLOAD MANAGEMENT ==========
+function getDownloads() {
+  const stored = localStorage.getItem("bondtravel_downloads");
+  if (stored) { try { return JSON.parse(stored); } catch(e) {} }
+  return [];
+}
+function saveDownloads(dl) {
+  localStorage.setItem("bondtravel_downloads", JSON.stringify(dl));
+}
+function renderDownloadList() {
+  const dl = getDownloads();
+  const container = document.getElementById("dlManagerList");
+  container.innerHTML = "";
+  if (dl.length === 0) {
+    container.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.4);padding:8px 0;">暂无资料，在上方添加</div>';
+    return;
+  }
+  dl.forEach((d, i) => {
+    const row = document.createElement("div");
+    row.style.cssText = "display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:13px;";
+    row.innerHTML = `
+      <span style="font-size:18px;">${d.icon || "📄"}</span>
+      <span style="flex:1;color:#fff;">${d.title}</span>
+      <span style="flex:0 0 60px;font-size:11px;color:rgba(255,255,255,0.4);text-overflow:ellipsis;overflow:hidden;">${d.tag || ""}</span>
+      <span style="flex:0 0 40px;">
+        <button onclick="moveDl(${i},-1)" style="background:none;border:none;color:#8ab4f8;cursor:pointer;font-size:14px;" ${i===0?"disabled style='color:#555'":""}>↑</button>
+        <button onclick="moveDl(${i},1)" style="background:none;border:none;color:#8ab4f8;cursor:pointer;font-size:14px;" ${i===dl.length-1?"disabled style='color:#555'":""}>↓</button>
+      </span>
+      <button onclick="delDl(${i})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-size:16px;">×</button>
+    `;
+    container.appendChild(row);
+  });
+}
+function addDownloadItem() {
+  const title = document.getElementById("dlTitle").value.trim();
+  const url = document.getElementById("dlUrl").value.trim();
+  if (!title) { toast("⚠️ 请输入资料名称"); return; }
+  const dl = getDownloads();
+  dl.push({
+    title,
+    url: url || "",
+    desc: document.getElementById("dlDesc").value.trim(),
+    icon: document.getElementById("dlIcon").value.trim() || "📄",
+    tag: document.getElementById("dlTag").value.trim()
+  });
+  saveDownloads(dl);
+  renderDownloadList();
+  document.getElementById("dlTitle").value = "";
+  document.getElementById("dlUrl").value = "";
+  document.getElementById("dlDesc").value = "";
+  document.getElementById("dlIcon").value = "";
+  document.getElementById("dlTag").value = "";
+  toast("✅ 已添加资料：" + title);
+}
+function delDl(idx) {
+  const dl = getDownloads();
+  dl.splice(idx, 1);
+  saveDownloads(dl);
+  renderDownloadList();
+}
+function moveDl(idx, dir) {
+  const dl = getDownloads();
+  const target = idx + dir;
+  if (target < 0 || target >= dl.length) return;
+  [dl[idx], dl[target]] = [dl[target], dl[idx]];
+  saveDownloads(dl);
+  renderDownloadList();
+}
+// Update render to also render download list
+const origRender = render;
+render = function() {
+  origRender();
+  renderDownloadList();
+};
 
 // Init
 render();
