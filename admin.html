@@ -738,7 +738,7 @@ function loadData() {
   if (stored) { try { data = JSON.parse(stored); return; } catch(e) {} }
   data = {};
   CONTINENT_ORDER.forEach(c => {
-    data[c] = (SEED_DATA[c] || []).map(x => ({...x, types:[...x.types], prices:{...x.prices}, materials:x.materials ? Object.fromEntries(Object.entries(x.materials).map(([k,v])=>[k,[...v]])) : {}}));
+    data[c] = (SEED_DATA[c] || []).map(x => ({...x, types:[...x.types], prices:{...x.prices}, materials:x.materials ? Object.fromEntries(Object.entries(x.materials).map(([k,v])=>[k,Array.isArray(v)?[...v]:{...v}])) : {}}));
   });
   saveData();
 }

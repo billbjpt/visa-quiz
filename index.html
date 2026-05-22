@@ -581,7 +581,7 @@ function loadData() {
       ...c,
       types: [...c.types],
       prices: {...c.prices},
-      materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k,[...v]])) : {}
+      materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k, Array.isArray(v) ? [...v] : {...v}])) : {}
     }));
   });
   saveData();
