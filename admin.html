@@ -3,104 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>邦德旅行 · 产品目录</title>
+<title>邦德旅行 · 管理后台</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
-  background: #f0f2f5;
+  background: #0d1e44;
   color: #222;
   min-height: 100vh;
 }
 
-/* ========== HEADER ========== */
-.header {
-  background: linear-gradient(135deg, #0d1e44 0%, #1a3a6b 100%);
-  padding: 24px 16px 16px;
+/* ========== TOP BAR ========== */
+.top-bar {
+  background: #0a1530;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
-  text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.header h1 { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
-.header .brand-sub {
+.top-bar h1 { font-size: 18px; font-weight: 700; }
+.top-bar .admin-badge {
+  font-size: 11px;
+  background: #ffd866;
+  color: #0d1e44;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.top-actions {
+  display: flex;
+  gap: 6px;
+}
+.top-actions a {
   font-size: 12px;
   color: #8ab4f8;
-  margin-top: 2px;
-  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid #8ab4f8;
+  border-radius: 6px;
 }
-.header .slogan {
+.top-actions a:active { background: #8ab4f8; color: #fff; }
+
+/* ========== NOTICE EDITOR ========== */
+.notice-editor {
+  margin: 12px 16px;
+  background: rgba(255,215,0,0.08);
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 10px;
+  padding: 12px;
+}
+.notice-editor label {
   font-size: 13px;
   color: #ffd866;
-  margin-top: 6px;
   font-weight: 600;
-  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 6px;
+}
+.notice-editor textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: #fff;
+  padding: 8px;
+  font-size: 13px;
+  resize: vertical;
+  min-height: 50px;
+  outline: none;
+}
+.notice-editor textarea:focus { border-color: #ffd866; }
+.notice-editor button {
+  margin-top: 6px;
+  padding: 6px 16px;
+  background: #ffd866;
+  color: #0d1e44;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-/* ========== SEARCH ========== */
-.search-bar {
-  margin: 10px 16px 0;
+/* ========== PANEL ========== */
+.panel {
+  margin: 0 16px 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.panel button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+  min-width: 70px;
+}
+.btn-add { background: #34a878; color: #fff; }
+.btn-edit { background: #0d1e44; color: #fff; border: 1px solid rgba(255,255,255,0.2) !important; }
+.btn-save-all { background: #ffd866; color: #0d1e44; }
+.btn-export { background: #555; color: #fff; }
+.btn-import { background: #666; color: #fff; }
+.btn-reset { background: #c0392b; color: #fff; }
+.btn-cancel { background: #555; color: #fff; }
+
+/* ========== SEARCH (admin) ========== */
+.search-admin {
+  margin: 0 16px 10px;
   position: relative;
 }
-.search-bar input {
+.search-admin input {
   width: 100%;
   padding: 10px 14px 10px 36px;
   border: none;
   border-radius: 8px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
   color: #fff;
   font-size: 14px;
   outline: none;
 }
-.search-bar input::placeholder { color: rgba(255,255,255,0.5); }
-.search-bar .icon {
+.search-admin input::placeholder { color: rgba(255,255,255,0.4); }
+.search-admin .icon {
   position: absolute;
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255,255,255,0.5);
-  font-size: 16px;
-}
-
-/* ========== NOTICE BOARD ========== */
-.notice-board {
-  margin: 8px 16px 0;
-  padding: 8px 12px;
-  background: rgba(255,215,0,0.12);
-  border: 1px solid rgba(255,215,0,0.25);
-  border-radius: 8px;
-  font-size: 12px;
-  color: #ffd866;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  line-height: 1.6;
-  max-height: 60px;
-  overflow: hidden;
-  transition: max-height .3s;
-  cursor: pointer;
-}
-.notice-board.open { max-height: 300px; }
-.notice-board .nt-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
-.notice-board .nt-text { flex: 1; }
-.notice-board .nt-more {
-  flex-shrink: 0;
-  color: rgba(255,215,0,0.5);
-  font-size: 11px;
+  color: rgba(255,255,255,0.4);
 }
 
 /* ========== CONTINENT NAV ========== */
 .continent-nav {
   display: flex;
   overflow-x: auto;
-  padding: 10px 16px;
-  gap: 8px;
-  background: #fff;
-  border-bottom: 1px solid #e8eaef;
-  position: sticky;
-  top: 120px;
-  z-index: 99;
+  padding: 0 16px 10px;
+  gap: 6px;
 }
 .continent-nav::-webkit-scrollbar { display: none; }
 .continent-tab {
@@ -109,97 +151,153 @@ body {
   border-radius: 20px;
   font-size: 13px;
   font-weight: 600;
-  background: #f0f2f5;
-  color: #666;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
   border: none;
   cursor: pointer;
-  transition: all .2s;
   white-space: nowrap;
 }
 .continent-tab.active {
-  background: #0d1e44;
-  color: #fff;
-}
-.continent-tab .count {
-  font-size: 11px;
-  opacity: .7;
-  margin-left: 2px;
+  background: #ffd866;
+  color: #0d1e44;
 }
 
-.content { padding: 12px 16px 80px; max-width: 640px; margin: 0 auto; }
+/* ========== CONTENT ========== */
+.content { padding: 0 16px 100px; max-width: 640px; margin: 0 auto; }
 .continent-section { display: none; }
 .continent-section.active { display: block; }
 
-/* ========== COUNTRY CARD ========== */
+/* ========== COUNTRY CARD (admin) ========== */
 .country-card {
   background: #fff;
   border-radius: 12px;
   margin-bottom: 10px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .country-header {
   display: flex;
   align-items: center;
-  padding: 14px 16px;
+  padding: 12px 14px;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
   transition: background .15s;
 }
 .country-header:active { background: #f8f9fb; }
-.country-flag { font-size: 24px; margin-right: 12px; width: 28px; text-align: center; }
-.country-name { font-size: 16px; font-weight: 600; color: #1a2a3a; flex: 1; }
-.country-count { font-size: 12px; color: #999; margin-right: 8px; }
-.country-arrow {
-  font-size: 14px; color: #ccc;
-  transition: transform .25s ease;
+.country-flag { font-size: 22px; margin-right: 10px; }
+.country-name { font-size: 15px; font-weight: 600; color: #1a2a3a; flex: 1; }
+.country-actions { display: flex; gap: 4px; }
+.country-actions button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
 }
-.country-card.expanded .country-arrow { transform: rotate(180deg); }
+.btn-country-edit { background: #e8ecf1; color: #555; }
+.btn-country-del { background: #ffe0e0; color: #c0392b; }
 
-.visa-list { display: none; padding: 0 16px 14px; }
+.visa-list { display: none; padding: 0 14px 12px; }
 .country-card.expanded .visa-list { display: block; }
 
 .visa-item {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #f0f2f5;
   gap: 6px;
 }
 .visa-item:last-child { border-bottom: none; }
-.visa-type {
-  flex: 1;
-  font-size: 14px;
-  color: #444;
-}
-.visa-price {
-  font-size: 14px;
+.visa-type { flex: 1; font-size: 13px; color: #444; }
+.visa-price-input {
+  width: 80px;
+  padding: 4px 6px;
+  border: 2px solid #dab93c;
+  border-radius: 4px;
+  font-size: 13px;
   font-weight: 600;
   color: #c8a832;
-  min-width: 60px;
-  text-align: right;
-  white-space: nowrap;
+  text-align: center;
+  outline: none;
+  background: #fffdf0;
 }
-.visa-dl {
-  font-size: 12px;
+.visa-price-input:focus { border-color: #0d1e44; }
+.visa-mat-btn {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: #e8f4ff;
   color: #07c;
-  text-decoration: none;
-  padding: 4px 10px;
-  border: 1px solid #07c;
-  border-radius: 6px;
-  white-space: nowrap;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
-.visa-dl:active { background: #07c; color: #fff; }
 
-.no-result {
-  text-align: center;
-  padding: 40px 16px;
-  color: #999;
-  font-size: 14px;
+/* ========== ADD COUNTRY FORM ========== */
+.add-form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: none;
 }
+.add-form.show { display: block; }
+.add-form h3 { font-size: 15px; margin-bottom: 10px; color: #1a2a3a; }
+.add-form .row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.add-form label {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-bottom: 2px;
+}
+.add-form input, .add-form select {
+  flex: 1;
+  min-width: 80px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+}
+.add-form input:focus { border-color: #0d1e44; }
+.add-form .types-area {
+  width: 100%;
+  min-height: 50px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  resize: vertical;
+  outline: none;
+  margin-bottom: 8px;
+}
+.add-form .types-area:focus { border-color: #0d1e44; }
+.add-form .hint {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 8px;
+}
+.add-form .form-actions {
+  display: flex;
+  gap: 8px;
+}
+.add-form .form-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-form-add { background: #34a878; color: #fff; }
+.btn-form-cancel { background: #e8eaef; color: #666; }
 
-/* ========== MATERIAL MODAL ========== */
+/* ========== MATERIAL MODAL (admin) ========== */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -215,99 +313,201 @@ body {
   background: #fff;
   border-radius: 16px;
   width: 100%;
-  max-width: 420px;
-  max-height: 80vh;
+  max-width: 480px;
+  max-height: 85vh;
   overflow-y: auto;
-  padding: 24px 20px 20px;
+  padding: 20px;
 }
-.modal-box h3 {
-  font-size: 17px;
-  margin-bottom: 4px;
-  color: #1a2a3a;
+.modal-box h3 { font-size: 16px; margin-bottom: 4px; }
+.modal-box .modal-sub { font-size: 12px; color: #888; margin-bottom: 12px; }
+.modal-close { float: right; background: none; border: none; font-size: 22px; color: #999; cursor: pointer; }
+
+.mat-edit-item {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  align-items: center;
 }
-.modal-box .modal-sub {
+.mat-edit-item input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 13px;
-  color: #888;
-  margin-bottom: 14px;
 }
-.modal-close {
-  float: right;
+.mat-edit-item .mat-del {
   background: none;
   border: none;
-  font-size: 22px;
-  color: #999;
+  color: #c0392b;
+  font-size: 18px;
   cursor: pointer;
   padding: 0 4px;
 }
-.material-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #f0f2f5;
+.mat-add-row {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  gap: 6px;
+  margin-top: 8px;
 }
-.material-item:last-child { border-bottom: none; }
-.material-item .mat-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.material-item .mat-text { font-size: 13px; color: #444; line-height: 1.5; }
-
-/* ========== FOOTER ========== */
-.footer {
-  text-align: center;
-  padding: 20px 16px;
+.mat-add-row input { flex: 1; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
+.mat-add-row button {
+  padding: 6px 12px;
+  background: #34a878;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
   font-size: 12px;
-  color: #aaa;
+  cursor: pointer;
 }
-.footer .brand-name {
+.modal-save-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  background: #0d1e44;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 600;
-  color: #0d1e44;
+  cursor: pointer;
+}
+
+/* ========== IMPORT MODAL ========== */
+.import-area {
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: monospace;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+.import-btn {
+  padding: 8px 20px;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ========== TOAST ========== */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 999;
+  display: none;
+  white-space: nowrap;
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>🛂 邦德旅行 · 产品目录</h1>
-  <div class="brand-sub">Bond Travel · 高端定制出境旅游</div>
-  <div class="slogan">✦ 邦德护航，旅行无忧 ✦</div>
-  <div class="search-bar">
-    <span class="icon">🔍</span>
-    <input id="searchInput" type="text" placeholder="搜索国家、签证类型..." oninput="filterProducts()">
+<div class="top-bar">
+  <div>
+    <h1>🛠 邦德旅行 · 管理后台</h1>
+    <span class="admin-badge">管理员</span>
   </div>
-  <div class="notice-board" id="noticeBoard" onclick="toggleNotice()">
-    <span class="nt-icon">📢</span>
-    <span class="nt-text" id="noticeText">加载中...</span>
-    <span class="nt-more" id="noticeMore">展开 ∨</span>
+  <div class="top-actions">
+    <a href="index.html" target="_blank">👁 预览前台</a>
   </div>
 </div>
 
+<!-- Notice Editor -->
+<div class="notice-editor">
+  <label>📢 公告板内容（前台显示）</label>
+  <textarea id="noticeInput" placeholder="输入公告内容，支持换行..."></textarea>
+  <button onclick="saveNotice()">💾 保存公告</button>
+</div>
+
+<!-- Action Panel -->
+<div class="panel">
+  <button class="btn-add" onclick="toggleAddForm()">➕ 新增国家</button>
+  <button class="btn-export" onclick="exportData()">📥 导出数据</button>
+  <button class="btn-import" onclick="showImport()">📤 导入数据</button>
+  <button class="btn-reset" onclick="resetData()">🔄 恢复默认</button>
+</div>
+
+<!-- Search -->
+<div class="search-admin">
+  <span class="icon">🔍</span>
+  <input id="searchInput" type="text" placeholder="搜索国家..." oninput="filterAdmin()">
+</div>
+
+<!-- Continent Nav -->
 <div class="continent-nav" id="continentNav"></div>
 
+<!-- Content -->
 <div class="content" id="content"></div>
 
-<div class="footer">
-  <p><span class="brand-name">邦德旅行</span> · 邦德护航，旅行无忧</p>
-  <p style="margin-top:4px;font-size:11px;color:#bbb;">
-    出境旅游 · 签证办理 · 私人订制 · 研学产品
-  </p>
-  <p style="margin-top:4px;font-size:11px;color:#ccc;">
-    如需办理，请联系客服获取最新报价
-  </p>
-</div>
-
-<!-- Material Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h3 id="modalTitle">材料清单</h3>
-    <div class="modal-sub" id="modalSub">国家 · 签证类型</div>
-    <div id="modalContent"></div>
+<!-- Add Country Form -->
+<div class="add-form" id="addForm">
+  <h3>➕ 新增国家/地区</h3>
+  <div class="row">
+    <div style="flex:1;min-width:100px;">
+      <label>国家名称</label>
+      <input id="afName" placeholder="如：马来西亚">
+    </div>
+    <div style="flex:0 0 60px;">
+      <label>国旗Emoji</label>
+      <input id="afFlag" placeholder="🇲🇾" style="text-align:center;">
+    </div>
+    <div style="flex:0 0 100px;">
+      <label>所属大洲</label>
+      <select id="afContinent">
+        <option value="欧洲">欧洲</option>
+        <option value="美洲">美洲</option>
+        <option value="亚洲">亚洲</option>
+        <option value="大洋洲">大洋洲</option>
+        <option value="非洲" selected>非洲</option>
+      </select>
+    </div>
+  </div>
+  <label>签证类型列表（每行一个）</label>
+  <textarea class="types-area" id="afTypes" placeholder="旅游&#10;商务&#10;探亲访友"></textarea>
+  <div class="hint">💡 每行一个签证类型，保存后可在列表中分别设置价格和材料</div>
+  <div class="form-actions">
+    <button class="btn-form-add" onclick="addCountry()">✅ 确认添加</button>
+    <button class="btn-form-cancel" onclick="toggleAddForm()">取消</button>
   </div>
 </div>
+
+<!-- Materials Modal (admin) -->
+<div class="modal-overlay" id="matModal" onclick="if(event.target===this)closeMatModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMatModal()">×</button>
+    <h3 id="matModalTitle">编辑材料清单</h3>
+    <div class="modal-sub" id="matModalSub">国家 · 签证类型</div>
+    <div id="matModalContent"></div>
+    <button class="modal-save-btn" onclick="saveMatModal()">💾 保存材料</button>
+  </div>
+</div>
+
+<!-- Import Modal -->
+<div class="modal-overlay" id="importModal" onclick="if(event.target===this)closeImportModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeImportModal()">×</button>
+    <h3>📤 导入数据</h3>
+    <div class="modal-sub">粘贴之前导出的JSON数据</div>
+    <textarea class="import-area" id="importArea" placeholder='{"欧洲":[...], ...}'></textarea>
+    <button class="import-btn" onclick="doImport()">⚠️ 确认导入（将覆盖现有数据）</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 // ============================================================
-// ★★★ 数据：所有国家/签证/价格/材料 ★★★
-// 格式: {name, types:[], prices:{type:price}, materials:{type:[text,...]}, flag:""}
+// SAME SEED_DATA + CONTINENT ORDER as frontend
 // ============================================================
 const SEED_DATA = {
   "欧洲": [
@@ -504,189 +704,83 @@ const SEED_DATA = {
 const CONTINENT_ORDER = ["欧洲","美洲","亚洲","大洋洲","非洲"];
 const CONTINENT_ICONS = {"欧洲":"🌍","美洲":"🌎","亚洲":"🌏","大洋洲":"🌊","非洲":"🌍"};
 
-let data;
-let activeContinent = CONTINENT_ORDER[0];
+let data, activeContinent = CONTINENT_ORDER[0];
+let editCountryName = null; // for material modal
 
-// ========== DATA LOAD / SAVE ==========
+// ========== DATA ==========
 function loadData() {
   const stored = localStorage.getItem("bondtravel_catalog");
-  if (stored) {
-    try {
-      data = JSON.parse(stored);
-      return;
-    } catch(e) {}
-  }
-  // Deep clone seed
+  if (stored) { try { data = JSON.parse(stored); return; } catch(e) {} }
   data = {};
-  CONTINENT_ORDER.forEach(cont => {
-    data[cont] = (SEED_DATA[cont] || []).map(c => ({
-      ...c,
-      types: [...c.types],
-      prices: {...c.prices},
-      materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k,[...v]])) : {}
-    }));
+  CONTINENT_ORDER.forEach(c => {
+    data[c] = (SEED_DATA[c] || []).map(x => ({...x, types:[...x.types], prices:{...x.prices}, materials:x.materials ? Object.fromEntries(Object.entries(x.materials).map(([k,v])=>[k,[...v]])) : {}}));
   });
   saveData();
 }
-
-function saveData() {
-  localStorage.setItem("bondtravel_catalog", JSON.stringify(data));
+function saveData() { localStorage.setItem("bondtravel_catalog", JSON.stringify(data)); }
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.style.display = "block";
+  setTimeout(() => el.style.display = "none", 2000);
 }
 
-// ========== SEARCH FIX ==========
-function filterProducts() {
-  const q = document.getElementById("searchInput").value.trim().toLowerCase();
-  const sections = document.querySelectorAll(".continent-section");
-  const tabs = document.querySelectorAll(".continent-tab");
-
-  if (q) {
-    // Search mode: show all sections
-    sections.forEach(s => { s.style.display = "block"; });
-    tabs.forEach(t => t.classList.remove("active"));
-  } else {
-    // Reset to active continent
-    sections.forEach(s => s.classList.remove("active"));
-    document.getElementById("section-" + activeContinent).classList.add("active");
-    tabs.forEach(t => {
-      if (t.dataset.continent === activeContinent) t.classList.add("active");
-    });
-  }
-
-  let visibleCount = 0;
-  document.querySelectorAll(".country-card").forEach(card => {
-    const name = card.dataset.country.toLowerCase();
-    const types = JSON.parse(card.dataset.types || "[]");
-    const match = !q || name.includes(q) || types.some(t => t.includes(q));
-    card.style.display = match ? "" : "none";
-    if (match) visibleCount++;
-  });
-
-  const nr = document.getElementById("noResult");
-  if (q && visibleCount === 0) {
-    if (!nr) {
-      const el = document.createElement("div");
-      el.id = "noResult";
-      el.className = "no-result";
-      document.getElementById("content").appendChild(el);
-    }
-    document.getElementById("noResult").textContent = '😕 未找到 "' + q + '"，试试其他关键词';
-    document.getElementById("noResult").style.display = "";
-  } else if (nr) {
-    nr.style.display = "none";
-  }
-}
-
-// ========== MATERIAL MODAL ==========
-function showMaterials(countryName, visaType) {
-  const c = getCountry(countryName);
-  if (!c) return;
-
-  document.getElementById("modalTitle").textContent = "📋 " + countryName + " · 材料清单";
-  document.getElementById("modalSub").textContent = "签证类型：" + visaType;
-
-  const content = document.getElementById("modalContent");
-  content.innerHTML = "";
-
-  let mats = [];
-  if (c.materials && c.materials[visaType]) {
-    mats = c.materials[visaType];
-  } else if (c.materials && c.materials["旅游"]) {
-    mats = c.materials["旅游"];
-  } else {
-    mats = ["有效护照（6个月以上）", "2寸白底彩照2张", "户口本全本复印件", "在职证明+营业执照副本（盖章）", "近6个月银行流水", "房产/车产证明", "行程计划+机票酒店预订", "申请表（亲笔签名）"];
-  }
-
-  mats.forEach((m, i) => {
-    const item = document.createElement("div");
-    item.className = "material-item";
-    item.innerHTML = `<span class="mat-icon">${i+1}.</span><span class="mat-text">${m}</span>`;
-    content.appendChild(item);
-  });
-
-  document.getElementById("modalOverlay").classList.add("show");
-}
-
-function closeModal(e) {
-  if (e && e.target !== document.getElementById("modalOverlay")) return;
-  document.getElementById("modalOverlay").classList.remove("show");
-}
-
-// ========== NOTICE BOARD ==========
-function toggleNotice() {
-  document.getElementById("noticeBoard").classList.toggle("open");
-  document.getElementById("noticeMore").textContent =
-    document.getElementById("noticeBoard").classList.contains("open") ? "收起 ∧" : "展开 ∨";
-}
-
-// ========== HELPERS ==========
-function getCountry(name) {
-  for (const cont of CONTINENT_ORDER) {
-    const c = (data[cont] || []).find(x => x.name === name);
-    if (c) return c;
-  }
-  return null;
+// ========== NOTICE ==========
+function saveNotice() {
+  const val = document.getElementById("noticeInput").value.trim();
+  localStorage.setItem("bondtravel_notice", val);
+  toast("✅ 公告已保存（前台刷新可见）");
 }
 
 // ========== RENDER ==========
-function init() {
+function render() {
   loadData();
-
   const nav = document.getElementById("continentNav");
   const content = document.getElementById("content");
+  nav.innerHTML = "";
+  content.innerHTML = "";
 
-  // Nav tabs
   CONTINENT_ORDER.forEach((cont, i) => {
     const btn = document.createElement("button");
     btn.className = "continent-tab" + (i === 0 ? " active" : "");
-    btn.dataset.continent = cont;
-    btn.textContent = CONTINENT_ICONS[cont] + " " + cont;
-    const span = document.createElement("span");
-    span.className = "count";
-    const countries = data[cont] || [];
-    span.textContent = "(" + countries.length + ")";
-    btn.appendChild(span);
-    btn.onclick = () => switchContinent(cont);
+    btn.textContent = CONTINENT_ICONS[cont] + " " + cont + " (" + (data[cont]||[]).length + ")";
+    btn.onclick = () => { activeContinent = cont; render(); };
     nav.appendChild(btn);
   });
 
-  // Sections
-  CONTINENT_ORDER.forEach((cont, i) => {
-    const section = document.createElement("div");
-    section.className = "continent-section" + (i === 0 ? " active" : "");
-    section.id = "section-" + cont;
+  const cont = activeContinent;
+  const countries = data[cont] || [];
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
 
-    const countries = data[cont] || [];
-    countries.forEach(c => section.appendChild(createCountryCard(c)));
+  const section = document.createElement("div");
+  section.className = "continent-section active";
 
-    content.appendChild(section);
+  countries.forEach((c, idx) => {
+    if (q && !c.name.toLowerCase().includes(q)) return;
+    section.appendChild(createCountryCard(c, cont, idx));
   });
 
-  // Notice board
-  updateNotice();
+  content.appendChild(section);
 
-  // Search input fix: restore active continent on clear
-  document.getElementById("searchInput").addEventListener("search", function() {
-    if (!this.value) filterProducts();
-  });
+  // Load notice
+  document.getElementById("noticeInput").value = localStorage.getItem("bondtravel_notice") || "";
 }
 
-function createCountryCard(c) {
+function createCountryCard(c, cont, idx) {
   const card = document.createElement("div");
   card.className = "country-card";
-  card.id = "card-" + c.name;
   card.dataset.country = c.name;
-  card.dataset.types = JSON.stringify(c.types);
-
-  const flag = c.flag || "🌐";
 
   const header = document.createElement("div");
   header.className = "country-header";
   header.onclick = () => card.classList.toggle("expanded");
   header.innerHTML = `
-    <span class="country-flag">${flag}</span>
-    <span class="country-name">${c.name}</span>
-    <span class="country-count">${c.types.length}种</span>
-    <span class="country-arrow">▼</span>
+    <span class="country-flag">${c.flag || "🌐"}</span>
+    <span class="country-name">${c.name} <span style="font-size:11px;color:#999;">(${c.types.length}种)</span></span>
+    <span class="country-actions">
+      <button class="btn-country-edit" onclick="event.stopPropagation();editCountry('${cont}','${c.name.replace(/'/g,"\\'")}',${idx})">✏️</button>
+      <button class="btn-country-del" onclick="event.stopPropagation();delCountry('${cont}','${c.name.replace(/'/g,"\\'")}',${idx})">🗑</button>
+    </span>
   `;
   card.appendChild(header);
 
@@ -695,12 +789,13 @@ function createCountryCard(c) {
 
   c.types.forEach(type => {
     const price = c.prices[type] || "待询";
+    const hasMat = c.materials && c.materials[type] && c.materials[type].length > 0;
     const item = document.createElement("div");
     item.className = "visa-item";
     item.innerHTML = `
       <span class="visa-type">${type}</span>
-      <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-      <a class="visa-dl" onclick="showMaterials('${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 材料</a>
+      <input class="visa-price-input" value="${price}" data-country="${c.name}" data-type="${type}" data-cont="${cont}" onchange="updatePrice(this)">
+      <button class="visa-mat-btn" onclick="event.stopPropagation();openMatEditor('${cont}','${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 ${hasMat ? '材料' : '+材料'}</button>
     `;
     list.appendChild(item);
   });
@@ -709,25 +804,198 @@ function createCountryCard(c) {
   return card;
 }
 
-function switchContinent(cont) {
-  activeContinent = cont;
-  document.querySelectorAll(".continent-tab").forEach(t => t.classList.remove("active"));
-  document.querySelectorAll(".continent-section").forEach(s => s.classList.remove("active"));
-  document.querySelector(`.continent-tab[data-continent="${cont}"]`).classList.add("active");
-  document.getElementById("section-" + cont).classList.add("active");
-
-  // Clear search
-  document.getElementById("searchInput").value = "";
-  filterProducts();
+// ========== PRICE UPDATE ==========
+function updatePrice(input) {
+  const cont = input.dataset.cont;
+  const name = input.dataset.country;
+  const type = input.dataset.type;
+  const c = data[cont].find(x => x.name === name);
+  if (c) { c.prices[type] = input.value; saveData(); }
 }
 
-function updateNotice() {
-  const saved = localStorage.getItem("bondtravel_notice");
-  const text = saved || "🌟 邦德旅行正式上线！专业签证办理、高端出境定制，欢迎咨询。点击展开查看详情 →";
-  document.getElementById("noticeText").textContent = text;
+// ========== FILTER ==========
+function filterAdmin() { render(); }
+
+// ========== ADD COUNTRY ==========
+function toggleAddForm() {
+  document.getElementById("addForm").classList.toggle("show");
+}
+function addCountry() {
+  const name = document.getElementById("afName").value.trim();
+  const flag = document.getElementById("afFlag").value.trim() || "🌐";
+  const cont = document.getElementById("afContinent").value;
+  const typesText = document.getElementById("afTypes").value.trim();
+  if (!name) { toast("⚠️ 请输入国家名称"); return; }
+  const types = typesText.split("\n").map(s => s.trim()).filter(Boolean);
+  if (types.length === 0) { toast("⚠️ 请至少输入一个签证类型"); return; }
+
+  const prices = {};
+  types.forEach(t => { prices[t] = "待询"; });
+
+  data[cont] = data[cont] || [];
+  data[cont].push({name, flag, types, prices, materials: {}});
+  saveData();
+  toast("✅ 已添加 " + name);
+  toggleAddForm();
+  document.getElementById("afName").value = "";
+  document.getElementById("afFlag").value = "";
+  document.getElementById("afTypes").value = "";
+  render();
 }
 
-init();
+// ========== DELETE COUNTRY ==========
+function delCountry(cont, name) {
+  if (!confirm("确定删除「" + name + "」吗？")) return;
+  data[cont] = (data[cont] || []).filter(c => c.name !== name);
+  saveData();
+  toast("🗑 已删除 " + name);
+  render();
+}
+
+// ========== EDIT COUNTRY ==========
+function editCountry(cont, name, idx) {
+  const c = data[cont][idx];
+  const newName = prompt("国家名称：", c.name);
+  if (!newName || !newName.trim()) return;
+  const newFlag = prompt("国旗Emoji（如 🇯🇵）：", c.flag || "");
+  if (newFlag === null) return;
+  const newTypes = prompt("签证类型（用逗号分隔）：", c.types.join("，"));
+  if (!newTypes || !newTypes.trim()) return;
+
+  c.name = newName.trim();
+  if (newFlag) c.flag = newFlag.trim();
+
+  // Handle types - preserve existing prices/materials, add new ones
+  const newTypeList = newTypes.split(/[,，、]/).map(s => s.trim()).filter(Boolean);
+  newTypeList.forEach(t => {
+    if (!c.prices[t]) c.prices[t] = "待询";
+  });
+  Object.keys(c.prices).forEach(t => {
+    if (!newTypeList.includes(t)) delete c.prices[t];
+  });
+  if (c.materials) {
+    Object.keys(c.materials).forEach(t => {
+      if (!newTypeList.includes(t)) delete c.materials[t];
+    });
+  }
+  c.types = newTypeList;
+
+  saveData();
+  toast("✅ 已更新 " + newName.trim());
+  render();
+}
+
+// ========== MATERIAL EDITOR ==========
+function openMatEditor(cont, name, type) {
+  editCountryName = {cont, name, type};
+  document.getElementById("matModalTitle").textContent = "📋 " + name + " · " + type;
+  document.getElementById("matModalSub").textContent = "编辑签证材料清单（每行一项）";
+
+  const c = data[cont].find(x => x.name === name);
+  if (!c) return;
+  if (!c.materials) c.materials = {};
+  if (!c.materials[type]) c.materials[type] = [];
+
+  const container = document.getElementById("matModalContent");
+  container.innerHTML = "";
+
+  c.materials[type].forEach((mat, i) => {
+    const row = document.createElement("div");
+    row.className = "mat-edit-item";
+    row.innerHTML = `<input value="${mat.replace(/"/g,'&quot;')}" data-idx="${i}"><button class="mat-del" onclick="removeMatItem(${i})">×</button>`;
+    container.appendChild(row);
+  });
+
+  // Add new row
+  const addRow = document.createElement("div");
+  addRow.className = "mat-add-row";
+  addRow.innerHTML = '<input id="newMatInput" placeholder="输入新材料项..."><button onclick="addMatItem()">➕ 添加</button>';
+  container.appendChild(addRow);
+
+  document.getElementById("matModal").classList.add("show");
+}
+
+function addMatItem() {
+  const input = document.getElementById("newMatInput");
+  const val = input.value.trim();
+  if (!val) return;
+  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
+  c.materials[editCountryName.type].push(val);
+  input.value = "";
+  openMatEditor(editCountryName.cont, editCountryName.name, editCountryName.type);
+}
+
+function removeMatItem(idx) {
+  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
+  c.materials[editCountryName.type].splice(idx, 1);
+  openMatEditor(editCountryName.cont, editCountryName.name, editCountryName.type);
+}
+
+function saveMatModal() {
+  const container = document.getElementById("matModalContent");
+  const inputs = container.querySelectorAll('.mat-edit-item input');
+  const mats = Array.from(inputs).map(i => i.value.trim()).filter(Boolean);
+  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
+  c.materials[editCountryName.type] = mats;
+  saveData();
+  toast("✅ 材料清单已保存");
+  closeMatModal();
+}
+
+function closeMatModal() {
+  document.getElementById("matModal").classList.remove("show");
+}
+
+// ========== EXPORT/IMPORT ==========
+function exportData() {
+  // Collect all data
+  const exportObj = {version:1, data: data, notice: localStorage.getItem("bondtravel_notice") || ""};
+  const json = JSON.stringify(exportObj, null, 2);
+  const blob = new Blob([json], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "bondtravel_data_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("📥 数据已导出");
+}
+
+function showImport() {
+  document.getElementById("importModal").classList.add("show");
+}
+function closeImportModal() {
+  document.getElementById("importModal").classList.remove("show");
+}
+function doImport() {
+  const text = document.getElementById("importArea").value.trim();
+  if (!text) { toast("⚠️ 请粘贴数据"); return; }
+  try {
+    const obj = JSON.parse(text);
+    if (!obj.data) { toast("⚠️ 数据格式无效"); return; }
+    if (!confirm("⚠️ 此操作将覆盖所有现有数据，确定吗？")) return;
+    data = obj.data;
+    saveData();
+    if (obj.notice) localStorage.setItem("bondtravel_notice", obj.notice);
+    toast("✅ 数据已导入");
+    closeImportModal();
+    document.getElementById("importArea").value = "";
+    render();
+  } catch(e) {
+    toast("⚠️ JSON解析失败: " + e.message);
+  }
+}
+
+// ========== RESET ==========
+function resetData() {
+  if (!confirm("⚠️ 此操作将删除所有自定义数据，恢复出厂默认！确定吗？")) return;
+  localStorage.removeItem("bondtravel_catalog");
+  toast("🔄 已恢复默认数据");
+  render();
+}
+
+// Init
+render();
 </script>
 </body>
 </html>
