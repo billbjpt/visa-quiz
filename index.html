@@ -309,6 +309,17 @@ body {
   font-weight: 600;
   color: #0d1e44;
 }
+
+/* 无PDF样式 */
+.visa-dl.no-pdf {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  pointer-events: auto !important;
+}
+.visa-dl.no-pdf:hover {
+  color: #999 !important;
+  text-decoration: none !important;
+}
 </style>
 </head>
 <body>
@@ -639,6 +650,9 @@ function sanitizeName(s) {
   // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格和首尾下划线
   return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '').replace(/^_+|_+$/g, '');
 }
+
+// 已有PDF文件列表（103份）
+const PDF_EXISTS = new Set(["丹麦_商务", "丹麦_探亲访友", "丹麦_旅游", "乌兹别克斯坦_商务", "乌兹别克斯坦_旅游", "俄罗斯_电子签", "保加利亚_商务", "保加利亚_探亲访友", "保加利亚_旅游", "克罗地亚_商务", "克罗地亚_探亲访友", "克罗地亚_旅游", "冰岛_商务", "冰岛_探亲访友", "冰岛_旅游", "加拿大_商务", "加拿大_探亲访友", "加拿大_旅游", "加拿大_超级签证", "匈牙利_商务", "匈牙利_探亲访友", "匈牙利_旅游", "南非_探亲访友", "南非_旅游", "卢森堡_商务", "卢森堡_探亲访友", "卢森堡_旅游", "印度_商务", "印度_旅游", "印度尼西亚_商务电子签C2_D2", "印度尼西亚_旅游电子签C1_D1", "厄瓜多尔_电子签", "奥地利_商务", "奥地利_探亲访友", "奥地利_旅游", "尼日利亚_商务", "尼日利亚_旅游", "希腊_商务", "希腊_探亲访友", "希腊_旅游", "德国_商务", "德国_探亲访友", "德国_旅游", "意大利_商务", "意大利_探亲访友", "意大利_旅游", "挪威_商务", "挪威_探亲访友", "挪威_旅游", "捷克_商务", "捷克_探亲访友", "捷克_旅游", "斯洛伐克_个人旅游", "斯洛伐克_商务", "斯洛伐克_探亲访友", "斯洛伐克_文化体育", "新西兰_NZeTA", "新西兰_探亲访友", "比利时_商务", "比利时_探亲访友", "比利时_旅游", "法国_商务", "法国_探亲访友", "法国_旅游", "波兰_商务", "波兰_探亲访友", "波兰_旅游", "澳大利亚_过境签", "爱尔兰_商务", "爱尔兰_探亲访友", "瑞典_商务", "瑞典_探亲访友", "瑞典_旅游", "瑞士_商务", "瑞士_探亲访友", "瑞士_旅游", "美国_B1_B2免面谈", "美国_C或D类_过境_机组", "美国_EVUS登记", "美国_F1留学签证", "美国_签证代传递", "芬兰_商务", "芬兰_探亲访友", "芬兰_旅游", "英国_个人旅游", "英国_商务", "英国_探亲访友", "英国_留学T4", "英国_陪读签证", "荷兰_商务", "荷兰_探亲访友", "荷兰_旅游", "葡萄牙_商务", "葡萄牙_探亲访友", "葡萄牙_旅游", "西班牙_商务", "西班牙_探亲访友", "西班牙_旅游", "越南_另纸签", "越南_电子签", "越南_落地签批文", "阿根廷_个人旅游", "阿根廷_商务"]);
 function materialUrl(countryName, visaType) {
   const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
   return window.location.origin + '/visa-quiz/pdf/' + encodeURI(pdfName);
@@ -654,6 +668,16 @@ function showMaterials(countryName, visaType) {
   window.open(materialUrl(countryName, visaType), '_blank');
 }
 
+
+// 无PDF弹窗
+function showNoPdf() {
+  var m = document.getElementById("noPdfModal");
+  if (m) m.classList.add("show");
+}
+function closeNoPdf() {
+  var m = document.getElementById("noPdfModal");
+  if (m) m.classList.remove("show");
+}
 function closeModal(e) {
   document.getElementById("modalOverlay").classList.remove("show");
 }
@@ -745,13 +769,15 @@ function createCountryCard(c) {
   list.className = "visa-list";
 
   c.types.forEach(type => {
-    const price = c.prices[type] || "待询";
+        const price = c.prices[type] || "待询";
+    const key = sanitizeName(c.name) + '_' + sanitizeName(type);
+    const hasPdf = PDF_EXISTS.has(key);
     const item = document.createElement("div");
     item.className = "visa-item";
     item.innerHTML = `
       <span class="visa-type">${type}</span>
       <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-      <a class=\"visa-dl\" href=\"${materialUrl(c.name, type)}\" target=\"_blank\">📄 材料</a>
+      <a class=\"visa-dl${hasPdf ? \"\" : \" no-pdf\"}\" href=\"${hasPdf ? materialUrl(c.name, type) : \"javascript:void(0)\"}\" target=\"${hasPdf ? \"_blank\" : \"_self\"}\" onclick=\"${hasPdf ? \"\" : \"showNoPdf()\"}\">📄 材料</a>
     `;
     list.appendChild(item);
   });
@@ -833,5 +859,16 @@ function closeDlModal() {
 
 init();
 </script>
+
+<!-- 无PDF提示弹窗 -->
+<div class="modal-overlay" id="noPdfModal" onclick="closeNoPdf()">
+  <div class="modal-content" onclick="event.stopPropagation()" style="max-width:360px;border-radius:12px;padding:20px;text-align:center">
+    <span class="modal-close" onclick="closeNoPdf()">&times;</span>
+    <div style="font-size:48px;margin:15px 0">📋</div>
+    <p style="font-size:18px;color:#333;font-weight:600;margin:10px 0">抱歉此产品信息更新中……</p>
+    <p style="font-size:14px;color:#888;margin:5px 0 20px">请联系客服获取详细材料清单</p>
+    <button onclick="closeNoPdf()" style="background:#07c;color:#fff;border:none;padding:10px 30px;border-radius:6px;font-size:14px;cursor:pointer">知道了</button>
+  </div>
+</div>
 </body>
 </html>
