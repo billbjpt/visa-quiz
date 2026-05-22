@@ -639,14 +639,6 @@ function sanitizeName(s) {
   // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格
   return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '');
 }
-function pdfUrlExists(url, cb) {
-  var x = new XMLHttpRequest();
-  x.open('HEAD', url, true);
-  x.onreadystatechange = function() {
-    if (x.readyState === 4) cb(x.status !== 404);
-  };
-  x.send();
-}
 function showMaterials(countryName, visaType) {
   // 优先查找硬编码的 materials 数据
   const c = getCountry(countryName);
@@ -654,17 +646,10 @@ function showMaterials(countryName, visaType) {
     window.open(c.materials[visaType].url, '_blank');
     return;
   }
-  // 没有硬编码则动态构造PDF路径: pdf/{国家}_{签证类型}.pdf
+  // 动态构造PDF路径: pdf/{国家}_{签证类型}.pdf
   const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
-  const pdfUrl = 'https://billbjpt.github.io/visa-quiz/pdf/' + encodeURI(pdfName);
-  // 先检查文件是否存在
-  pdfUrlExists(pdfUrl, function(exists) {
-    if (exists) {
-      window.open(pdfUrl, '_blank');
-    } else {
-      alert('暂无材料文档，请联系客服获取');
-    }
-  });
+  const pdfUrl = window.location.origin + '/visa-quiz/pdf/' + encodeURI(pdfName);
+  window.open(pdfUrl, '_blank');
 }
 
 function closeModal(e) {
