@@ -636,8 +636,8 @@ function filterProducts() {
 
 // ========== MATERIAL MODAL ==========
 function sanitizeName(s) {
-  // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格
-  return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '');
+  // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格和首尾下划线
+  return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '').replace(/^_+|_+$/g, '');
 }
 function materialUrl(countryName, visaType) {
   const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
