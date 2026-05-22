@@ -73,21 +73,28 @@ body {
   font-size: 12px;
   color: #ffd866;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
   line-height: 1.6;
-  max-height: 60px;
   overflow: hidden;
-  transition: max-height .3s;
-  cursor: pointer;
+  white-space: nowrap;
 }
-.notice-board.open { max-height: 300px; }
-.notice-board .nt-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
-.notice-board .nt-text { flex: 1; }
-.notice-board .nt-more {
-  flex-shrink: 0;
-  color: rgba(255,215,0,0.5);
-  font-size: 11px;
+.notice-board .nt-icon { flex-shrink: 0; font-size: 14px; }
+.notice-board .nt-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 1.6em;
+}
+.notice-board .nt-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollNotice 20s linear infinite;
+  padding-left: 100%;
+}
+@keyframes scrollNotice {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* ========== CONTINENT NAV ========== */
@@ -314,10 +321,11 @@ body {
     <span class="icon">🔍</span>
     <input id="searchInput" type="text" placeholder="搜索国家、签证类型..." oninput="filterProducts()">
   </div>
-  <div class="notice-board" id="noticeBoard" onclick="toggleNotice()">
+  <div class="notice-board" id="noticeBoard">
     <span class="nt-icon">📢</span>
-    <span class="nt-text" id="noticeText">加载中...</span>
-    <span class="nt-more" id="noticeMore">展开 ∨</span>
+    <div class="nt-wrap">
+      <span class="nt-text" id="noticeText">加载中...</span>
+    </div>
   </div>
 </div>
 
@@ -364,18 +372,17 @@ body {
 <script>
 // ============================================================
 // ★★★ 数据：所有国家/签证/价格/材料 ★★★
-// 格式: {name, types:[], prices:{type:price}, materials:{type:[text,...]}, flag:""}
+// 格式: {name, types:[], prices:{type:price}, materials:{type:{url, name}}, flag:""}
+// 材料: url 为PDF链接, name 为文件名; 无材料则不填
 // ============================================================
 const SEED_DATA = {
   "欧洲": [
     {name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学T4":"¥3,000","陪读签证":"¥3,000","两年多次":"¥2,500","五年多次":"¥4,500","十年多次":"¥6,500"}, flag:"🇬🇧",
-     materials:{"个人旅游":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","房产/车产证明（辅助）","行程单+机票酒店预订","申请表"],
-               "商务":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","英方邀请函原件","双方往来证明"]}},
+     materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"法国", types:["商务","探亲访友","旅游","ADS团队签证"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","ADS团队签证":"¥1,000"}, flag:"🇫🇷",
-     materials:{"旅游":["有效护照（6个月以上+至少2页空白）","2寸白底彩照3张","户口本全本复印件","在职证明+营业执照","银行流水（近3-6个月）","房产/车产证明","机票订单+酒店订单","行程单","申根保险（医疗保额3万欧）","申请表","身份证复印件"],
-               "商务":["有效护照（6个月以上）","2寸白底彩照3张","在职证明+营业执照","银行流水","法方邀请函原件","申根保险","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"德国", types:["商务","探亲访友","旅游","ADS团队签证"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","ADS团队签证":"¥1,000"}, flag:"🇩🇪",
-     materials:{"旅游":["有效护照","2寸白底彩照3张","户口本复印件","在职证明+营业执照","银行流水近3-6个月","房产/车产","机票+酒店+行程单","申根保险","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"}}},
     {name:"意大利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇹"},
     {name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇪🇸"},
     {name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇵🇹"},
@@ -400,7 +407,6 @@ const SEED_DATA = {
     {name:"罗马尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇷🇴"},
     {name:"塞尔维亚", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,200"}, flag:"🇷🇸"},
     {name:"俄罗斯", types:["个人旅游","商务","电子签","探亲访友"], prices:{"个人旅游":"¥800","商务":"¥1,200","电子签":"¥500","探亲访友":"¥1,000"}, flag:"🇷🇺"},
-    {name:"申根通用版", types:["商务","探亲访友","旅游","ADS团队"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","ADS团队":"¥800"}, flag:"🇪🇺"},
     {name:"塞浦路斯", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇾"},
     {name:"斯洛文尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇮"},
     {name:"爱沙尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇪"},
@@ -415,9 +421,7 @@ const SEED_DATA = {
   ],
   "美洲": [
     {name:"美国", types:["B1/B2签证","B1/B2免面谈","C或D类(过境/机组)","EVUS登记","F1留学签证","J1访问学者","M1职业培训","签证代传递","H1B工作签","L1跨国经理"], prices:{"B1/B2签证":"¥1,800","B1/B2免面谈":"¥2,500","C或D类(过境/机组)":"¥2,500","EVUS登记":"¥200","F1留学签证":"¥3,500","J1访问学者":"¥3,500","M1职业培训":"¥3,500","签证代传递":"¥1,500","H1B工作签":"¥5,000","L1跨国经理":"¥6,000"}, flag:"🇺🇸",
-     materials:{"B1/B2签证":["有效护照（6个月以上）","2寸白底彩照1张（51×51mm）","DS-160确认页","面谈预约确认信","签证费缴费收据","在职证明+营业执照","银行流水（近6个月）","房产/车产/存款证明","行程说明","旧护照（如有）"],
-               "EVUS登记":["有效护照（美国签证页信息）","EVUS登记号","申请表（在线填写）"],
-               "F1留学签证":["有效护照","I-20表原件","SEVIS缴费收据","DS-160确认页","面谈预约信","学校录取信","成绩单+学历证明","资金证明（覆盖学费生活费）","TOEFL/IELTS/GRE成绩单"]}},
+     materials:{"B1/B2签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"},"EVUS登记":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"}}},
     {name:"加拿大", types:["旅游","商务","探亲访友","超级签证","留学签证","工作签证"], prices:{"旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","超级签证":"¥2,500","留学签证":"¥3,500","工作签证":"¥4,000"}, flag:"🇨🇦"},
     {name:"巴西", types:["商务","旅游","探亲访友"], prices:{"商务":"¥2,000","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇧🇷"},
     {name:"阿根廷", types:["个人旅游","商务","电子签（AVE）"], prices:{"个人旅游":"¥1,800","商务":"¥2,000","电子签（AVE）":"¥1,200"}, flag:"🇦🇷"},
@@ -440,8 +444,7 @@ const SEED_DATA = {
   ],
   "亚洲": [
     {name:"日本", types:["单次旅游","三年多次","五年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","三年多次":"¥800","五年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥500"}, flag:"🇯🇵",
-     materials:{"单次旅游":["有效护照（6个月以上）","2寸白底彩照2张（45×45mm）","户口本全本复印件","在职证明+营业执照","银行流水（近6个月/余额10万+）","房产/车产证明","机票+酒店订单","申请表（申请人亲笔签名）"],
-               "三年多次":["有效护照","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月/余额20万+）","房产/车产证明","行程计划","申请表","年收入20万以上证明"]}},
+     materials:{"单次旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"三年多次":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"}}},
     {name:"韩国", types:["单次旅游","五年多次","十年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","五年多次":"¥800","十年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥600"}, flag:"🇰🇷"},
     {name:"朝鲜", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇰🇵"},
     {name:"印度", types:["旅游","商务","电子签","探亲访友"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","探亲访友":"¥800"}, flag:"🇮🇳"},
@@ -485,12 +488,10 @@ const SEED_DATA = {
     {name:"亚美尼亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"}, flag:"🇦🇲"},
     {name:"阿塞拜疆", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇦🇿"},
     {name:"格鲁吉亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥800","电子签":"¥300"}, flag:"🇬🇪"},
-    {name:"塞浦路斯（亚洲）", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇾"},
   ],
   "大洋洲": [
     {name:"澳大利亚", types:["旅游","商务","探亲访友","过境签","留学签证","打工度假","工作签证"], prices:{"旅游":"¥1,500","商务":"¥2,000","探亲访友":"¥1,500","过境签":"¥800","留学签证":"¥4,000","打工度假":"¥2,000","工作签证":"¥5,000"}, flag:"🇦🇺",
-     materials:{"旅游":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","房产/车产证明","行程计划","签证申请信息表（1419表）","家庭构成表（54表）"],
-               "商务":["有效护照","2寸白底彩照2张","在职证明+营业执照","银行流水","澳方邀请函","双方合作证明","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"新西兰", types:["个人旅游","商务","探亲访友","留学签证","打工度假"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学签证":"¥4,000","打工度假":"¥2,000"}, flag:"🇳🇿"},
     {name:"斐济", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇫🇯"},
     {name:"巴布亚新几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇵🇬"},
@@ -637,42 +638,16 @@ function filterProducts() {
 function showMaterials(countryName, visaType) {
   const c = getCountry(countryName);
   if (!c) return;
-
-  document.getElementById("modalTitle").textContent = "📋 " + countryName + " · 材料清单";
-  document.getElementById("modalSub").textContent = "签证类型：" + visaType;
-
-  const content = document.getElementById("modalContent");
-  content.innerHTML = "";
-
-  let mats = [];
-  if (c.materials && c.materials[visaType]) {
-    mats = c.materials[visaType];
-  } else if (c.materials && c.materials["旅游"]) {
-    mats = c.materials["旅游"];
+  const mat = c.materials && c.materials[visaType];
+  if (mat && mat.url) {
+    window.open(mat.url, '_blank');
   } else {
-    mats = ["有效护照（6个月以上）", "2寸白底彩照2张", "户口本全本复印件", "在职证明+营业执照副本（盖章）", "近6个月银行流水", "房产/车产证明", "行程计划+机票酒店预订", "申请表（亲笔签名）"];
+    alert('暂无材料文档，请联系客服获取');
   }
-
-  mats.forEach((m, i) => {
-    const item = document.createElement("div");
-    item.className = "material-item";
-    item.innerHTML = `<span class="mat-icon">${i+1}.</span><span class="mat-text">${m}</span>`;
-    content.appendChild(item);
-  });
-
-  document.getElementById("modalOverlay").classList.add("show");
 }
 
 function closeModal(e) {
-  if (e && e.target !== document.getElementById("modalOverlay")) return;
   document.getElementById("modalOverlay").classList.remove("show");
-}
-
-// ========== NOTICE BOARD ==========
-function toggleNotice() {
-  document.getElementById("noticeBoard").classList.toggle("open");
-  document.getElementById("noticeMore").textContent =
-    document.getElementById("noticeBoard").classList.contains("open") ? "收起 ∧" : "展开 ∨";
 }
 
 // ========== HELPERS ==========
@@ -720,7 +695,11 @@ function init() {
     section.id = "section-" + cont;
 
     const countries = data[cont] || [];
-    countries.forEach(c => section.appendChild(createCountryCard(c)));
+    countries.forEach(c => {
+      // Only show countries that have at least one visa type with a real price
+      const hasPrice = c.types.some(t => c.prices[t] && c.prices[t] !== "待询");
+      if (hasPrice) section.appendChild(createCountryCard(c));
+    });
 
     content.appendChild(section);
   });

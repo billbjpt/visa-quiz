@@ -523,19 +523,29 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
+// ========== PASSWORD PROTECTION ==========
+const ADMIN_PWD = "bangde888";
+if (localStorage.getItem("admin_authed") !== "1") {
+  const pwd = prompt("🔒 请输入管理密码：");
+  if (pwd !== ADMIN_PWD) {
+    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#0d1e44;color:#fff;font-size:16px;text-align:center;padding:20px;"><div><h2 style="color:#ffd866;margin-bottom:12px;">🔒 密码错误</h2><p style="color:#8ab4f8;">请刷新页面重试</p></div></div>';
+    throw new Error("Auth failed");
+  }
+  localStorage.setItem("admin_authed", "1");
+}
+
 // ============================================================
 // SAME SEED_DATA + CONTINENT ORDER as frontend
-// ============================================================
+// Format: {name, types:[], prices:{type:price}, materials:{type:{url, name}}, flag:""}
+// materials: url = PDF link, name = display name
 const SEED_DATA = {
   "欧洲": [
     {name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学T4":"¥3,000","陪读签证":"¥3,000","两年多次":"¥2,500","五年多次":"¥4,500","十年多次":"¥6,500"}, flag:"🇬🇧",
-     materials:{"个人旅游":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","房产/车产证明（辅助）","行程单+机票酒店预订","申请表"],
-               "商务":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","英方邀请函原件","双方往来证明"]}},
+     materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"法国", types:["商务","探亲访友","旅游","ADS团队签证"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","ADS团队签证":"¥1,000"}, flag:"🇫🇷",
-     materials:{"旅游":["有效护照（6个月以上+至少2页空白）","2寸白底彩照3张","户口本全本复印件","在职证明+营业执照","银行流水（近3-6个月）","房产/车产证明","机票订单+酒店订单","行程单","申根保险（医疗保额3万欧）","申请表","身份证复印件"],
-               "商务":["有效护照（6个月以上）","2寸白底彩照3张","在职证明+营业执照","银行流水","法方邀请函原件","申根保险","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"德国", types:["商务","探亲访友","旅游","ADS团队签证"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","ADS团队签证":"¥1,000"}, flag:"🇩🇪",
-     materials:{"旅游":["有效护照","2寸白底彩照3张","户口本复印件","在职证明+营业执照","银行流水近3-6个月","房产/车产","机票+酒店+行程单","申根保险","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"}}},
     {name:"意大利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇹"},
     {name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇪🇸"},
     {name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇵🇹"},
@@ -560,7 +570,6 @@ const SEED_DATA = {
     {name:"罗马尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇷🇴"},
     {name:"塞尔维亚", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,200"}, flag:"🇷🇸"},
     {name:"俄罗斯", types:["个人旅游","商务","电子签","探亲访友"], prices:{"个人旅游":"¥800","商务":"¥1,200","电子签":"¥500","探亲访友":"¥1,000"}, flag:"🇷🇺"},
-    {name:"申根通用版", types:["商务","探亲访友","旅游","ADS团队"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","ADS团队":"¥800"}, flag:"🇪🇺"},
     {name:"塞浦路斯", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇾"},
     {name:"斯洛文尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇸🇮"},
     {name:"爱沙尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇪"},
@@ -645,7 +654,6 @@ const SEED_DATA = {
     {name:"亚美尼亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥700","电子签":"¥300"}, flag:"🇦🇲"},
     {name:"阿塞拜疆", types:["旅游","商务","电子签"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400"}, flag:"🇦🇿"},
     {name:"格鲁吉亚", types:["旅游","商务","电子签"], prices:{"旅游":"¥500","商务":"¥800","电子签":"¥300"}, flag:"🇬🇪"},
-    {name:"塞浦路斯（亚洲）", types:["旅游","商务"], prices:{"旅游":"¥1,200","商务":"¥1,500"}, flag:"🇨🇾"},
   ],
   "大洋洲": [
     {name:"澳大利亚", types:["旅游","商务","探亲访友","过境签","留学签证","打工度假","工作签证"], prices:{"旅游":"¥1,500","商务":"¥2,000","探亲访友":"¥1,500","过境签":"¥800","留学签证":"¥4,000","打工度假":"¥2,000","工作签证":"¥5,000"}, flag:"🇦🇺",
@@ -806,7 +814,7 @@ function createCountryCard(c, cont, idx) {
 
   c.types.forEach(type => {
     const price = c.prices[type] || "待询";
-    const hasMat = c.materials && c.materials[type] && c.materials[type].length > 0;
+    const hasMat = c.materials && c.materials[type] && c.materials[type].url;
     const item = document.createElement("div");
     item.className = "visa-item";
     item.innerHTML = `
@@ -906,56 +914,46 @@ function editCountry(cont, name, idx) {
 function openMatEditor(cont, name, type) {
   editCountryName = {cont, name, type};
   document.getElementById("matModalTitle").textContent = "📋 " + name + " · " + type;
-  document.getElementById("matModalSub").textContent = "编辑签证材料清单（每行一项）";
+  document.getElementById("matModalSub").textContent = "上传PDF材料文件";
 
   const c = data[cont].find(x => x.name === name);
   if (!c) return;
   if (!c.materials) c.materials = {};
-  if (!c.materials[type]) c.materials[type] = [];
+  const mat = c.materials[type] || {};
 
   const container = document.getElementById("matModalContent");
-  container.innerHTML = "";
-
-  c.materials[type].forEach((mat, i) => {
-    const row = document.createElement("div");
-    row.className = "mat-edit-item";
-    row.innerHTML = `<input value="${mat.replace(/"/g,'&quot;')}" data-idx="${i}"><button class="mat-del" onclick="removeMatItem(${i})">×</button>`;
-    container.appendChild(row);
-  });
-
-  // Add new row
-  const addRow = document.createElement("div");
-  addRow.className = "mat-add-row";
-  addRow.innerHTML = '<input id="newMatInput" placeholder="输入新材料项..."><button onclick="addMatItem()">➕ 添加</button>';
-  container.appendChild(addRow);
+  container.innerHTML = `
+    <div style="margin-bottom:8px;">
+      <label style="font-size:13px;font-weight:600;color:#444;display:block;margin-bottom:4px;">PDF文件链接</label>
+      <input id="matUrlInput" value="${(mat.url||'').replace(/"/g,'&quot;')}" placeholder="https://billbjpt.github.io/visa-quiz/pdf/xxx.pdf" style="width:100%;padding:8px 10px;border:2px solid #0d1e44;border-radius:6px;font-size:13px;outline:none;">
+    </div>
+    <div style="margin-bottom:8px;">
+      <label style="font-size:13px;font-weight:600;color:#444;display:block;margin-bottom:4px;">文件显示名称 <span style="font-weight:400;color:#999;">（选填）</span></label>
+      <input id="matNameInput" value="${(mat.name||'').replace(/"/g,'&quot;')}" placeholder="如：英国旅游签证材料.pdf" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;outline:none;">
+    </div>
+    <div style="background:#fff8e6;padding:8px 12px;border-radius:6px;font-size:12px;color:#666;line-height:1.6;">
+      💡 <strong>提示：</strong>PDF文件放在 GitHub 仓库的 pdf/ 目录下，链接格式：<br>
+      <code style="color:#07c;font-size:11px;">https://billbjpt.github.io/visa-quiz/pdf/文件名.pdf</code><br>
+      后台顶部「资料下载管理」可上传通用PDF，这里填专用PDF链接。
+    </div>
+  `;
 
   document.getElementById("matModal").classList.add("show");
 }
 
-function addMatItem() {
-  const input = document.getElementById("newMatInput");
-  const val = input.value.trim();
-  if (!val) return;
-  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
-  c.materials[editCountryName.type].push(val);
-  input.value = "";
-  openMatEditor(editCountryName.cont, editCountryName.name, editCountryName.type);
-}
-
-function removeMatItem(idx) {
-  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
-  c.materials[editCountryName.type].splice(idx, 1);
-  openMatEditor(editCountryName.cont, editCountryName.name, editCountryName.type);
-}
-
 function saveMatModal() {
-  const container = document.getElementById("matModalContent");
-  const inputs = container.querySelectorAll('.mat-edit-item input');
-  const mats = Array.from(inputs).map(i => i.value.trim()).filter(Boolean);
+  const url = document.getElementById("matUrlInput").value.trim();
+  const name = document.getElementById("matNameInput").value.trim();
   const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
-  c.materials[editCountryName.type] = mats;
+  if (!c) return;
+  if (!c.materials) c.materials = {};
+  if (url) {
+    c.materials[editCountryName.type] = {url, name: name || url.split('/').pop()};
+  } else {
+    delete c.materials[editCountryName.type];
+  }
   saveData();
-  toast("✅ 材料清单已保存");
+  toast("✅ 材料已保存");
   closeMatModal();
 }
 
