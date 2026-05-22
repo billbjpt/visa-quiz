@@ -347,8 +347,7 @@ const questions = [
       { l: "C", t: "曾被拒签，现在条件有重大积极变化", v: -10 },
       { l: "D", t: "曾被拒签，条件无明显变化", v: -25 },
       { l: "E", t: "曾被拒签2次或以上", v: -30 },
-      { l: "F", t: "曾被加拿大/英国/澳大利亚/新西兰拒签", v: -20 },
-      { l: "G", t: "曾因材料问题/不良记录被拒签或遣返", v: -40 }
+
     ]
   }
 ];
@@ -610,7 +609,7 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
   
   // CTA
   html += '<div class="result-cta">';
-  html += '<p><strong>回复【办理国家 + 您的微信/手机号】</strong>，并备注偏好方式（如：仅微信 / 可电话），即可获取专属签证评估方案。</p>';
+  html += '<p>回复：办理国家+联系方式：xxxxx，联系偏好：电联/微信号</p>';
   html += '<button class="btn-contact" onclick="copyContact()">📋 复制联系模板</button>';
   html += '</div>';
   
@@ -621,7 +620,7 @@ function showResult(score, hasSensitive, hasNegativeRejection) {
 }
 
 function copyContact() {
-  const text = '回复【办理国家 + 我的微信号：xxx】，仅微信联系。';
+  const text = '回复：办理国家+联系方式：xxxxx，联系偏好：电联/微信号';
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => {
       alert('已复制：' + text);
