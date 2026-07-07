@@ -3,146 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>帮得签证 · 管理后台</title>
+<meta name="color-scheme" content="light dark">
+<title>帮得签证 · 产品目录</title>
 <style>
+:root {
+  --bg-page: #f0f2f5;
+  --bg-card: #fff;
+  --bg-modal: #fff;
+  --bg-hint: rgba(255,255,255,0.15);
+  --text-primary: #222;
+  --text-secondary: #444;
+  --text-muted: #888;
+  --text-light: #999;
+  --text-white: #fff;
+  --border-light: #f0f2f5;
+  --accent-main: #0d1e44;
+  --accent-blue: #07c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #111;
+    --bg-card: #1e1e1e;
+    --bg-modal: #2a2a2a;
+    --bg-hint: rgba(255,255,255,0.08);
+    --text-primary: #f5f5f5;
+    --text-secondary: #ddd;
+    --text-muted: #c0c0c0;
+    --text-light: #aaa;
+    --text-white: #fff;
+    --border-light: #444;
+    --accent-main: #5a8cd4;
+    --accent-blue: #6ab4ff;
+  }
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
-  background: #0d1e44;
-  color: #222;
+  background: var(--bg-page);
+  color: var(--text-primary);
   min-height: 100vh;
 }
 
-/* ========== TOP BAR ========== */
-.top-bar {
-  background: #0a1530;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ========== HEADER ========== */
+.header {
+  background: linear-gradient(135deg, #0d1e44 0%, #1a3a6b 100%);
+  padding: 24px 16px 16px;
   color: #fff;
+  text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.top-bar h1 { font-size: 18px; font-weight: 700; }
-.top-bar .admin-badge {
-  font-size: 11px;
-  background: #ffd866;
-  color: #0d1e44;
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-weight: 700;
-}
-.top-actions {
-  display: flex;
-  gap: 6px;
-}
-.top-actions a {
+.header h1 { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+.header .brand-sub {
   font-size: 12px;
   color: #8ab4f8;
-  text-decoration: none;
-  padding: 4px 10px;
-  border: 1px solid #8ab4f8;
-  border-radius: 6px;
+  margin-top: 2px;
+  letter-spacing: 1px;
 }
-.top-actions a:active { background: #8ab4f8; color: #fff; }
-
-/* ========== NOTICE EDITOR ========== */
-.notice-editor {
-  margin: 12px 16px;
-  background: rgba(255,215,0,0.08);
-  border: 1px solid rgba(255,215,0,0.2);
-  border-radius: 10px;
-  padding: 12px;
-}
-.notice-editor label {
+.header .slogan {
   font-size: 13px;
   color: #ffd866;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 6px;
-}
-.notice-editor textarea {
-  width: 100%;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 6px;
-  color: #fff;
-  padding: 8px;
-  font-size: 13px;
-  resize: vertical;
-  min-height: 50px;
-  outline: none;
-}
-.notice-editor textarea:focus { border-color: #ffd866; }
-.notice-editor button {
   margin-top: 6px;
-  padding: 6px 16px;
-  background: #ffd866;
-  color: #0d1e44;
-  border: none;
-  border-radius: 6px;
-  font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
+  letter-spacing: 2px;
 }
 
-/* ========== PANEL ========== */
-.panel {
-  margin: 0 16px 12px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.panel button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  flex: 1;
-  min-width: 70px;
-}
-.btn-add { background: #34a878; color: #fff; }
-.btn-edit { background: #0d1e44; color: #fff; border: 1px solid rgba(255,255,255,0.2) !important; }
-.btn-save-all { background: #ffd866; color: #0d1e44; }
-.btn-export { background: #555; color: #fff; }
-.btn-import { background: #666; color: #fff; }
-.btn-reset { background: #c0392b; color: #fff; }
-.btn-cancel { background: #555; color: #fff; }
-
-/* ========== SEARCH (admin) ========== */
-.search-admin {
-  margin: 0 16px 10px;
+/* ========== SEARCH ========== */
+.search-bar {
+  margin: 10px 16px 0;
   position: relative;
 }
-.search-admin input {
+.search-bar input {
   width: 100%;
   padding: 10px 14px 10px 36px;
   border: none;
   border-radius: 8px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.15);
   color: #fff;
   font-size: 14px;
   outline: none;
 }
-.search-admin input::placeholder { color: rgba(255,255,255,0.4); }
-.search-admin .icon {
+.search-bar input::placeholder { color: rgba(255,255,255,0.5); }
+.search-bar .icon {
   position: absolute;
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.5);
+  font-size: 16px;
+}
+
+/* ========== NOTICE BOARD ========== */
+.notice-board {
+  margin: 8px 16px 0;
+  padding: 8px 12px;
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.25);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #ffd866;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.notice-board .nt-icon { flex-shrink: 0; font-size: 14px; }
+.notice-board .nt-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 1.6em;
+}
+.notice-board .nt-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollNotice 20s linear infinite;
+  padding-left: 100%;
+}
+@keyframes scrollNotice {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* ========== CONTINENT NAV ========== */
 .continent-nav {
   display: flex;
   overflow-x: auto;
-  padding: 0 16px 10px;
-  gap: 6px;
+  padding: 10px 16px;
+  gap: 8px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 120px;
+  z-index: 99;
 }
 .continent-nav::-webkit-scrollbar { display: none; }
 .continent-tab {
@@ -151,153 +147,138 @@ body {
   border-radius: 20px;
   font-size: 13px;
   font-weight: 600;
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.6);
+  background: var(--bg-page);
+  color: var(--text-muted);
   border: none;
   cursor: pointer;
+  transition: all .2s;
   white-space: nowrap;
 }
 .continent-tab.active {
-  background: #ffd866;
-  color: #0d1e44;
+  background: var(--accent-main);
+  color: var(--text-white);
+}
+.continent-tab .count {
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 2px;
 }
 
-/* ========== CONTENT ========== */
-.content { padding: 0 16px 100px; max-width: 640px; margin: 0 auto; }
+.content { padding: 12px 16px 80px; max-width: 640px; margin: 0 auto; }
 .continent-section { display: none; }
 .continent-section.active { display: block; }
 
-/* ========== COUNTRY CARD (admin) ========== */
+/* ========== COUNTRY CARD ========== */
 .country-card {
-  background: #fff;
+  background: var(--bg-card);
   border-radius: 12px;
   margin-bottom: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .country-header {
   display: flex;
   align-items: center;
-  padding: 12px 14px;
+  padding: 14px 16px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition: background .15s;
 }
-.country-header:active { background: #f8f9fb; }
-.country-flag { font-size: 22px; margin-right: 10px; }
-.country-name { font-size: 15px; font-weight: 600; color: #1a2a3a; flex: 1; }
-.country-actions { display: flex; gap: 4px; }
-.country-actions button {
-  padding: 4px 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
+.country-header:active { background: var(--bg-page); }
+.country-flag { font-size: 24px; margin-right: 12px; width: 28px; text-align: center; }
+.country-name { font-size: 16px; font-weight: 600; color: var(--text-primary); flex: 1; }
+.country-count { font-size: 12px; color: var(--text-light); margin-right: 8px; }
+.country-arrow {
+  font-size: 14px; color: var(--text-light);
+  transition: transform .25s ease;
 }
-.btn-country-edit { background: #e8ecf1; color: #555; }
-.btn-country-del { background: #ffe0e0; color: #c0392b; }
+.country-card.expanded .country-arrow { transform: rotate(180deg); }
 
-.visa-list { display: none; padding: 0 14px 12px; }
+.visa-list { display: none; padding: 0 16px 14px; }
 .country-card.expanded .visa-list { display: block; }
 
 .visa-item {
   display: flex;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f2f5;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
   gap: 6px;
 }
 .visa-item:last-child { border-bottom: none; }
-.visa-type { flex: 1; font-size: 13px; color: #444; }
-.visa-price-input {
-  width: 80px;
-  padding: 4px 6px;
-  border: 2px solid #dab93c;
-  border-radius: 4px;
-  font-size: 13px;
+.visa-type {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.visa-price {
+  font-size: 14px;
   font-weight: 600;
   color: #c8a832;
-  text-align: center;
-  outline: none;
-  background: #fffdf0;
+  min-width: 60px;
+  text-align: right;
+  white-space: nowrap;
 }
-.visa-price-input:focus { border-color: #0d1e44; }
-.visa-mat-btn {
-  font-size: 11px;
-  padding: 3px 8px;
-  background: #e8f4ff;
-  color: #07c;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* ========== ADD COUNTRY FORM ========== */
-.add-form {
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
-  display: none;
-}
-.add-form.show { display: block; }
-.add-form h3 { font-size: 15px; margin-bottom: 10px; color: #1a2a3a; }
-.add-form .row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-.add-form label {
+.visa-dl {
   font-size: 12px;
-  color: #888;
-  display: block;
-  margin-bottom: 2px;
-}
-.add-form input, .add-form select {
-  flex: 1;
-  min-width: 80px;
-  padding: 6px 10px;
-  border: 1px solid #ddd;
+  color: var(--accent-blue);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--accent-blue);
   border-radius: 6px;
-  font-size: 13px;
-  outline: none;
-}
-.add-form input:focus { border-color: #0d1e44; }
-.add-form .types-area {
-  width: 100%;
-  min-height: 50px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 13px;
-  resize: vertical;
-  outline: none;
-  margin-bottom: 8px;
-}
-.add-form .types-area:focus { border-color: #0d1e44; }
-.add-form .hint {
-  font-size: 11px;
-  color: #999;
-  margin-bottom: 8px;
-}
-.add-form .form-actions {
-  display: flex;
-  gap: 8px;
-}
-.add-form .form-actions button {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
 }
-.btn-form-add { background: #34a878; color: #fff; }
-.btn-form-cancel { background: #e8eaef; color: #666; }
+.visa-dl:active { background: var(--accent-blue); color: #fff; }
 
-/* ========== MATERIAL MODAL (admin) ========== */
+/* ========== DOWNLOAD ITEMS ========== */
+.dl-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-light);
+  gap: 12px;
+}
+.dl-item:last-child { border-bottom: none; }
+.dl-icon { font-size: 28px; flex-shrink: 0; }
+.dl-info { flex: 1; }
+.dl-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.dl-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.dl-btn {
+  padding: 6px 14px;
+  background: var(--accent-main);
+  color: var(--text-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.dl-btn:active { opacity: .8; }
+.dl-btn-outline {
+  background: transparent;
+  color: var(--accent-main);
+  border: 1.5px solid var(--accent-main);
+}
+.dl-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  background: var(--bg-page);
+  color: var(--accent-blue);
+}
+
+.no-result {
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ========== MATERIAL MODAL ========== */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -310,262 +291,160 @@ body {
 }
 .modal-overlay.show { display: flex; }
 .modal-box {
-  background: #fff;
+  background: var(--bg-modal);
   border-radius: 16px;
   width: 100%;
-  max-width: 480px;
-  max-height: 85vh;
+  max-width: 420px;
+  max-height: 80vh;
   overflow-y: auto;
-  padding: 20px;
+  padding: 24px 20px 20px;
 }
-.modal-box h3 { font-size: 16px; margin-bottom: 4px; }
-.modal-box .modal-sub { font-size: 12px; color: #888; margin-bottom: 12px; }
-.modal-close { float: right; background: none; border: none; font-size: 22px; color: #999; cursor: pointer; }
-
-.mat-edit-item {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 6px;
-  align-items: center;
+.modal-box h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+  color: var(--text-primary);
 }
-.mat-edit-item input {
-  flex: 1;
-  padding: 6px 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.modal-box .modal-sub {
   font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
 }
-.mat-edit-item .mat-del {
+.modal-close {
+  float: right;
   background: none;
   border: none;
-  color: #c0392b;
-  font-size: 18px;
+  font-size: 22px;
+  color: var(--text-light);
   cursor: pointer;
   padding: 0 4px;
 }
-.mat-add-row {
+.material-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
-  gap: 6px;
-  margin-top: 8px;
+  align-items: flex-start;
+  gap: 8px;
 }
-.mat-add-row input { flex: 1; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
-.mat-add-row button {
-  padding: 6px 12px;
-  background: #34a878;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+.material-item:last-child { border-bottom: none; }
+.material-item .mat-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.material-item .mat-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* ========== FOOTER ========== */
+.footer {
+  text-align: center;
+  padding: 20px 16px;
   font-size: 12px;
-  cursor: pointer;
+  color: var(--text-light);
 }
-.modal-save-btn {
-  width: 100%;
-  margin-top: 12px;
-  padding: 10px;
-  background: #0d1e44;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
+.footer .brand-name {
   font-weight: 600;
-  cursor: pointer;
+  color: var(--accent-main);
 }
 
-/* ========== IMPORT MODAL ========== */
-.import-area {
-  width: 100%;
-  min-height: 200px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 12px;
-  font-family: monospace;
-  resize: vertical;
-  margin-bottom: 10px;
+/* 无PDF样式 */
+.visa-dl.no-pdf {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  pointer-events: auto !important;
 }
-.import-btn {
-  padding: 8px 20px;
-  background: #c0392b;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ========== TOAST ========== */
-.toast {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  z-index: 999;
-  display: none;
-  white-space: nowrap;
+.visa-dl.no-pdf:hover {
+  color: #999 !important;
+  text-decoration: none !important;
 }
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <div>
-    <h1>🛠 帮得签证 · 管理后台</h1>
-    <span class="admin-badge">管理员</span>
+<div class="header">
+  <h1>🛂 帮得签证 · 产品目录</h1>
+  <div class="brand-sub">您的签证小管家 · 一站式签证解决方案</div>
+  <div class="slogan">✦ 帮得签证，开启无忧旅程 ✦</div>
+  <div class="search-bar">
+    <span class="icon">🔍</span>
+    <input id="searchInput" type="text" placeholder="搜索国家、签证类型..." oninput="filterProducts()">
   </div>
-  <div class="top-actions">
-    <a href="index.html" target="_blank">👁 预览前台</a>
-  </div>
-</div>
-
-<!-- Notice Editor -->
-<div class="notice-editor">
-  <label>📢 公告板内容（前台显示）</label>
-  <textarea id="noticeInput" placeholder="输入公告内容，支持换行..."></textarea>
-  <button onclick="saveNotice()">💾 保存公告</button>
-</div>
-
-<!-- Download Manager -->
-<div class="notice-editor" style="border-color:rgba(52,168,120,0.3);background:rgba(52,168,120,0.06);">
-  <label>📥 资料下载管理（前台"资料下载"栏目展示）</label>
-  <div id="dlManagerList"></div>
-  <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
-    <input id="dlTitle" placeholder="资料名称（如：美国签证DS-160表）" style="flex:2;min-width:120px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
-    <input id="dlUrl" placeholder="PDF链接（完整URL）" style="flex:2;min-width:120px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
-    <input id="dlDesc" placeholder="描述（选填）" style="flex:1;min-width:80px;padding:6px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
-    <input id="dlIcon" placeholder="图标（选填，如📄📋📑）" style="flex:0 0 80px;text-align:center;padding:6px 4px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
-    <input id="dlTag" placeholder="标签（选填，如【PDF】）" style="flex:0 0 90px;text-align:center;padding:6px 4px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;font-size:13px;outline:none;">
-    <button onclick="addDownloadItem()" style="padding:6px 14px;background:#34a878;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">➕ 添加</button>
-  </div>
-  <div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.4);">
-    💡 PDF文件建议上传到 GitHub 仓库的 pdf/ 目录，链接格式如：<code style="color:#8ab4f8;">https://billbjpt.github.io/visa-quiz/pdf/xxx.pdf</code>
+  <div class="notice-board" id="noticeBoard">
+    <span class="nt-icon">📢</span>
+    <div class="nt-wrap">
+      <span class="nt-text" id="noticeText">加载中...</span>
+    </div>
   </div>
 </div>
 
-<!-- Action Panel -->
-<div class="panel">
-  <button class="btn-add" onclick="toggleAddForm()">➕ 新增国家</button>
-  <button class="btn-export" onclick="exportData()">📥 导出数据</button>
-  <button class="btn-import" onclick="showImport()">📤 导入数据</button>
-  <button class="btn-reset" onclick="resetData()">🔄 恢复默认</button>
-</div>
-
-<!-- Search -->
-<div class="search-admin">
-  <span class="icon">🔍</span>
-  <input id="searchInput" type="text" placeholder="搜索国家..." oninput="filterAdmin()">
-</div>
-
-<!-- Continent Nav -->
 <div class="continent-nav" id="continentNav"></div>
 
-<!-- Content -->
 <div class="content" id="content"></div>
 
-<!-- Add Country Form -->
-<div class="add-form" id="addForm">
-  <h3>➕ 新增国家/地区</h3>
-  <div class="row">
-    <div style="flex:1;min-width:100px;">
-      <label>国家名称</label>
-      <input id="afName" placeholder="如：马来西亚">
-    </div>
-    <div style="flex:0 0 60px;">
-      <label>国旗Emoji</label>
-      <input id="afFlag" placeholder="🇲🇾" style="text-align:center;">
-    </div>
-    <div style="flex:0 0 100px;">
-      <label>所属大洲</label>
-      <select id="afContinent">
-        <option value="欧洲">欧洲</option>
-        <option value="美洲">美洲</option>
-        <option value="亚洲">亚洲</option>
-        <option value="大洋洲">大洋洲</option>
-        <option value="非洲" selected>非洲</option>
-      </select>
-    </div>
-  </div>
-  <label>签证类型列表（每行一个）</label>
-  <textarea class="types-area" id="afTypes" placeholder="旅游&#10;商务&#10;探亲访友"></textarea>
-  <div class="hint">💡 每行一个签证类型，保存后可在列表中分别设置价格和材料</div>
-  <div class="form-actions">
-    <button class="btn-form-add" onclick="addCountry()">✅ 确认添加</button>
-    <button class="btn-form-cancel" onclick="toggleAddForm()">取消</button>
-  </div>
+<div class="footer">
+  <p><span class="brand-name">帮得签证</span> · 您的签证小管家</p>
+  <p style="margin-top:4px;font-size:11px;color:var(--text-muted);">
+    签证办理 · 出国旅游 · 商务洽谈 · 探亲访友
+  </p>
+  <p style="margin-top:4px;font-size:11px;color:var(--text-light);">
+    精准方案 · 专家团队 · 实时资讯 · 贴心客服
+  </p>
+  <p style="margin-top:4px;font-size:10px;color:var(--text-light);">
+    <a href="admin.html" style="color:var(--accent-blue);text-decoration:none;">管理后台</a>
+  </p>
 </div>
 
-<!-- Materials Modal (admin) -->
-<div class="modal-overlay" id="matModal" onclick="if(event.target===this)closeMatModal()">
+<!-- Material Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeMatModal()">×</button>
-    <h3 id="matModalTitle">编辑材料清单</h3>
-    <div class="modal-sub" id="matModalSub">国家 · 签证类型</div>
-    <div id="matModalContent"></div>
-    <button class="modal-save-btn" onclick="saveMatModal()">💾 保存材料</button>
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 id="modalTitle">材料清单</h3>
+    <div class="modal-sub" id="modalSub">国家 · 签证类型</div>
+    <div id="modalContent"></div>
   </div>
 </div>
 
-<!-- Import Modal -->
-<div class="modal-overlay" id="importModal" onclick="if(event.target===this)closeImportModal()">
+<!-- Download Materials Modal -->
+<div class="modal-overlay" id="dlModal" onclick="if(event.target===this)closeDlModal()">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeImportModal()">×</button>
-    <h3>📤 导入数据</h3>
-    <div class="modal-sub">粘贴之前导出的JSON数据</div>
-    <textarea class="import-area" id="importArea" placeholder='{"欧洲":[...], ...}'></textarea>
-    <button class="import-btn" onclick="doImport()">⚠️ 确认导入（将覆盖现有数据）</button>
+    <button class="modal-close" onclick="closeDlModal()">×</button>
+    <h3>📥 资料下载</h3>
+    <div class="modal-sub">原始证件、表格模板等PDF文档</div>
+    <div id="dlContent"></div>
+    <div id="dlEmpty" style="text-align:center;padding:30px;color:var(--text-muted);font-size:14px;">
+      暂无资料，请关注后续更新
+    </div>
   </div>
 </div>
-
-<div class="toast" id="toast"></div>
 
 <script>
-// ========== PASSWORD PROTECTION ==========
-const ADMIN_PWD = "bangde888";
-if (localStorage.getItem("admin_authed") !== "1") {
-  const pwd = prompt("🔒 请输入管理密码：");
-  if (pwd !== ADMIN_PWD) {
-    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#0d1e44;color:#fff;font-size:16px;text-align:center;padding:20px;"><div><h2 style="color:#ffd866;margin-bottom:12px;">🔒 密码错误</h2><p style="color:#8ab4f8;">请刷新页面重试</p></div></div>';
-    throw new Error("Auth failed");
-  }
-  localStorage.setItem("admin_authed", "1");
-}
-
 // ============================================================
-// SAME SEED_DATA + CONTINENT ORDER as frontend
-// Format: {name, types:[], prices:{type:price}, materials:{type:{url, name}}, flag:""}
-// materials: url = PDF link, name = display name
+// ★★★ 数据：所有国家/签证/价格/材料 ★★★
+// 格式: {name, types:[], prices:{type:price}, materials:{type:{url, name}}, flag:""}
+// 材料: url 为PDF链接, name 为文件名; 无材料则不填
+// ============================================================
 const SEED_DATA = {
   "欧洲": [
-    {name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学T4":"¥3,000","陪读签证":"¥3,000","两年多次":"¥2,500","五年多次":"¥4,500","十年多次":"¥6,500"}, flag:"🇬🇧",
+    {name:"英国", types:["个人旅游","商务","探亲访友","留学T4","陪读签证","两年多次","五年多次","十年多次"], prices:{"旅游":"¥1,750","商务":"¥1,750","探亲访友":"¥1,750"}, flag:"🇬🇧",
      materials:{"个人旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
-    {name:"法国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇫🇷",
+     {name:"法国", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,290","商务":"¥1,290","探亲访友":"¥1,290"}, flag:"🇫🇷",
      materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
-    {name:"德国", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇩🇪",
+    {name:"德国", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,230","商务":"¥1,230","探亲访友":"¥1,230"}, flag:"🇩🇪",
      materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/schengen_visa_guide.pdf",name:"申根签证指南.pdf"}}},
-    {name:"意大利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇹"},
-    {name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇪🇸"},
-    {name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇵🇹"},
-    {name:"荷兰", types:["商务","探亲访友","旅游","过境签"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","过境签":"¥600"}, flag:"🇳🇱"},
-    {name:"比利时", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇧🇪"},
-    {name:"卢森堡", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇺"},
-    {name:"瑞士", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇨🇭"},
-    {name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","滑雪签":"¥1,200"}, flag:"🇦🇹"},
-    {name:"希腊", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇬🇷"},
-    {name:"瑞典", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇸🇪"},
-    {name:"挪威", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇳🇴"},
-    {name:"丹麦", types:["商务","探亲访友","旅游","格陵兰"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200","格陵兰":"¥2,000"}, flag:"🇩🇰"},
-    {name:"芬兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,800","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇫🇮"},
-    {name:"冰岛", types:["商务","探亲访友","旅游"], prices:{"商务":"¥2,000","探亲访友":"¥1,500","旅游":"¥1,200"}, flag:"🇮🇸"},
-    {name:"爱尔兰", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇮🇪"},
-    {name:"波兰", types:["商务","探亲访友","旅游","工作签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","工作签":"¥3,000"}, flag:"🇵🇱"},
-    {name:"捷克", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇨🇿"},
-    {name:"匈牙利", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇭🇺"},
+    {name:"意大利", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,110","商务":"¥1,110","探亲访友":"¥1,110"}, flag:"🇮🇹"},
+    {name:"西班牙", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,180","商务":"¥1,180","探亲访友":"¥1,180"}, flag:"🇪🇸"},
+    {name:"葡萄牙", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,380","商务":"¥1,380","探亲访友":"¥1,380"}, flag:"🇵🇹"},
+    {name:"荷兰", types:["商务","探亲访友","旅游","过境签"], prices:{"旅游":"¥1,210","商务":"¥1,210","探亲访友":"¥1,210","过境签":"¥1,210"}, flag:"🇳🇱"},
+    {name:"比利时", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,340","商务":"¥1,340","探亲访友":"¥1,340"}, flag:"🇧🇪"},
+    {name:"卢森堡", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,230","商务":"¥1,230","探亲访友":"¥1,230"}, flag:"🇱🇺"},
+    {name:"瑞士", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,250","商务":"¥1,250","探亲访友":"¥1,250"}, flag:"🇨🇭"},
+    {name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"旅游":"¥1,240","商务":"¥1,240","探亲访友":"¥1,240"}, flag:"🇦🇹"},
+    {name:"希腊", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,390","商务":"¥1,390","探亲访友":"¥1,390"}, flag:"🇬🇷"},
+    {name:"瑞典", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,210","商务":"¥1,210","探亲访友":"¥1,210"}, flag:"🇸🇪"},
+    {name:"挪威", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥950","商务":"¥950","探亲访友":"¥950"}, flag:"🇳🇴"},
+    {name:"丹麦", types:["商务","探亲访友","旅游","格陵兰"], prices:{"旅游":"¥1,090","商务":"¥1,090","探亲访友":"¥1,090"}, flag:"🇩🇰"},
+    {name:"芬兰", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,240","商务":"¥1,240","探亲访友":"¥1,240"}, flag:"🇫🇮"},
+    {name:"冰岛", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,350","商务":"¥1,350","探亲访友":"¥1,350"}, flag:"🇮🇸"},
+    {name:"爱尔兰", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥700","商务":"¥700","探亲访友":"¥700"}, flag:"🇮🇪"},
+    {name:"波兰", types:["商务","探亲访友","旅游","工作签"], prices:{"旅游":"¥1,080","商务":"¥1,080","探亲访友":"¥1,080"}, flag:"🇵🇱"},
+    {name:"捷克", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,240","商务":"¥1,240","探亲访友":"¥1,240"}, flag:"🇨🇿"},
+    {name:"匈牙利", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,180","商务":"¥1,180","探亲访友":"¥1,180"}, flag:"🇭🇺"},
     {name:"斯洛伐克", types:["个人旅游","商务","探亲访友","文化体育"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","文化体育":"¥2,000"}, flag:"🇸🇰"},
-    {name:"克罗地亚", types:["商务","探亲访友","旅游","电子签"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000","电子签":"¥600"}, flag:"🇭🇷"},
+    {name:"克罗地亚", types:["商务","探亲访友","旅游","电子签"], prices:{"旅游":"¥1,440","商务":"¥1,440","探亲访友":"¥1,440"}, flag:"🇭🇷"},
     {name:"保加利亚", types:["商务","探亲访友","旅游"], prices:{"商务":"¥1,500","探亲访友":"¥1,300","旅游":"¥1,000"}, flag:"🇧🇬"},
     {name:"罗马尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇷🇴"},
     {name:"塞尔维亚", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥1,200"}, flag:"🇷🇸"},
@@ -575,7 +454,7 @@ const SEED_DATA = {
     {name:"爱沙尼亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇪🇪"},
     {name:"拉脱维亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇻"},
     {name:"立陶宛", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,200"}, flag:"🇱🇹"},
-    {name:"马耳他", types:["商务","旅游","探亲访友"], prices:{"商务":"¥1,800","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇲🇹"},
+    {name:"马耳他", types:["商务","旅游","探亲访友"], prices:{"旅游":"¥1,330","商务":"¥1,330","探亲访友":"¥1,330"}, flag:"🇲🇹"},
     {name:"摩纳哥", types:["旅游","商务"], prices:{"旅游":"¥1,500","商务":"¥1,800"}, flag:"🇲🇨"},
     {name:"乌克兰", types:["商务","旅游","电子签"], prices:{"商务":"¥1,500","旅游":"¥1,200","电子签":"¥600"}, flag:"🇺🇦"},
     {name:"白俄罗斯", types:["商务","旅游"], prices:{"商务":"¥1,200","旅游":"¥800"}, flag:"🇧🇾"},
@@ -584,9 +463,7 @@ const SEED_DATA = {
   ],
   "美洲": [
     {name:"美国", types:["B1/B2签证","B1/B2免面谈","C或D类(过境/机组)","EVUS登记","F1留学签证","J1访问学者","M1职业培训","签证代传递","H1B工作签","L1跨国经理"], prices:{"B1/B2签证":"¥1,800","B1/B2免面谈":"¥2,500","C或D类(过境/机组)":"¥2,500","EVUS登记":"¥200","F1留学签证":"¥3,500","J1访问学者":"¥3,500","M1职业培训":"¥3,500","签证代传递":"¥1,500","H1B工作签":"¥5,000","L1跨国经理":"¥6,000"}, flag:"🇺🇸",
-     materials:{"B1/B2签证":["有效护照（6个月以上）","2寸白底彩照1张（51×51mm）","DS-160确认页","面谈预约确认信","签证费缴费收据","在职证明+营业执照","银行流水（近6个月）","房产/车产/存款证明","行程说明","旧护照（如有）"],
-               "EVUS登记":["有效护照（美国签证页信息）","EVUS登记号","申请表（在线填写）"],
-               "F1留学签证":["有效护照","I-20表原件","SEVIS缴费收据","DS-160确认页","面谈预约信","学校录取信","成绩单+学历证明","资金证明（覆盖学费生活费）","TOEFL/IELTS/GRE成绩单"]}},
+     materials:{"B1/B2签证":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"},"EVUS登记":{url:"https://billbjpt.github.io/visa-quiz/pdf/us_visa_ds160_guide.pdf",name:"美国DS-160指南.pdf"}}},
     {name:"加拿大", types:["旅游","商务","探亲访友","超级签证","留学签证","工作签证"], prices:{"旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","超级签证":"¥2,500","留学签证":"¥3,500","工作签证":"¥4,000"}, flag:"🇨🇦"},
     {name:"巴西", types:["商务","旅游","探亲访友"], prices:{"商务":"¥2,000","旅游":"¥1,500","探亲访友":"¥1,500"}, flag:"🇧🇷"},
     {name:"阿根廷", types:["个人旅游","商务","电子签（AVE）"], prices:{"个人旅游":"¥1,800","商务":"¥2,000","电子签（AVE）":"¥1,200"}, flag:"🇦🇷"},
@@ -609,8 +486,7 @@ const SEED_DATA = {
   ],
   "亚洲": [
     {name:"日本", types:["单次旅游","三年多次","五年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","三年多次":"¥800","五年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥500"}, flag:"🇯🇵",
-     materials:{"单次旅游":["有效护照（6个月以上）","2寸白底彩照2张（45×45mm）","户口本全本复印件","在职证明+营业执照","银行流水（近6个月/余额10万+）","房产/车产证明","机票+酒店订单","申请表（申请人亲笔签名）"],
-               "三年多次":["有效护照","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月/余额20万+）","房产/车产证明","行程计划","申请表","年收入20万以上证明"]}},
+     materials:{"单次旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"三年多次":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"}}},
     {name:"韩国", types:["单次旅游","五年多次","十年多次","商务单次","商务多次","探亲访友"], prices:{"单次旅游":"¥500","五年多次":"¥800","十年多次":"¥1,200","商务单次":"¥600","商务多次":"¥1,000","探亲访友":"¥600"}, flag:"🇰🇷"},
     {name:"朝鲜", types:["旅游","商务"], prices:{"旅游":"¥1,000","商务":"¥1,500"}, flag:"🇰🇵"},
     {name:"印度", types:["旅游","商务","电子签","探亲访友"], prices:{"旅游":"¥600","商务":"¥800","电子签":"¥400","探亲访友":"¥800"}, flag:"🇮🇳"},
@@ -657,8 +533,7 @@ const SEED_DATA = {
   ],
   "大洋洲": [
     {name:"澳大利亚", types:["旅游","商务","探亲访友","过境签","留学签证","打工度假","工作签证"], prices:{"旅游":"¥1,500","商务":"¥2,000","探亲访友":"¥1,500","过境签":"¥800","留学签证":"¥4,000","打工度假":"¥2,000","工作签证":"¥5,000"}, flag:"🇦🇺",
-     materials:{"旅游":["有效护照（6个月以上）","2寸白底彩照2张","户口本全本复印件","在职证明+营业执照","银行流水（近6个月）","房产/车产证明","行程计划","签证申请信息表（1419表）","家庭构成表（54表）"],
-               "商务":["有效护照","2寸白底彩照2张","在职证明+营业执照","银行流水","澳方邀请函","双方合作证明","申请表"]}},
+     materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/visa_checklist_general.pdf",name:"通用签证材料清单.pdf"},"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/employment_letter_template.pdf",name:"在职证明模板.pdf"}}},
     {name:"新西兰", types:["个人旅游","商务","探亲访友","留学签证","打工度假"], prices:{"个人旅游":"¥1,500","商务":"¥1,800","探亲访友":"¥1,500","留学签证":"¥4,000","打工度假":"¥2,000"}, flag:"🇳🇿"},
     {name:"斐济", types:["旅游","商务"], prices:{"旅游":"¥600","商务":"¥800"}, flag:"🇫🇯"},
     {name:"巴布亚新几内亚", types:["商务","旅游"], prices:{"商务":"¥1,500","旅游":"¥1,000"}, flag:"🇵🇬"},
@@ -729,83 +604,195 @@ const SEED_DATA = {
 const CONTINENT_ORDER = ["欧洲","美洲","亚洲","大洋洲","非洲"];
 const CONTINENT_ICONS = {"欧洲":"🌍","美洲":"🌎","亚洲":"🌏","大洋洲":"🌊","非洲":"🌍"};
 
-let data, activeContinent = CONTINENT_ORDER[0];
-let editCountryName = null; // for material modal
+let data;
+let activeContinent = CONTINENT_ORDER[0];
 
-// ========== DATA ==========
+// ========== DATA LOAD / SAVE ==========
 function loadData() {
   const stored = localStorage.getItem("bondtravel_catalog");
-  if (stored) { try { data = JSON.parse(stored); return; } catch(e) {} }
+  if (stored) {
+    try {
+      data = JSON.parse(stored);
+      return;
+    } catch(e) {}
+  }
+  // Deep clone seed
   data = {};
-  CONTINENT_ORDER.forEach(c => {
-    data[c] = (SEED_DATA[c] || []).map(x => ({...x, types:[...x.types], prices:{...x.prices}, materials:x.materials ? Object.fromEntries(Object.entries(x.materials).map(([k,v])=>[k,Array.isArray(v)?[...v]:{...v}])) : {}}));
+  CONTINENT_ORDER.forEach(cont => {
+    data[cont] = (SEED_DATA[cont] || []).map(c => ({
+      ...c,
+      types: [...c.types],
+      prices: {...c.prices},
+      materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k, Array.isArray(v) ? [...v] : {...v}])) : {}
+    }));
   });
   saveData();
 }
-function saveData() { localStorage.setItem("bondtravel_catalog", JSON.stringify(data)); }
-function toast(msg) {
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.style.display = "block";
-  setTimeout(() => el.style.display = "none", 2000);
+
+function saveData() {
+  localStorage.setItem("bondtravel_catalog", JSON.stringify(data));
 }
 
-// ========== NOTICE ==========
-function saveNotice() {
-  const val = document.getElementById("noticeInput").value.trim();
-  localStorage.setItem("bondtravel_notice", val);
-  toast("✅ 公告已保存（前台刷新可见）");
+// ========== SEARCH FIX ==========
+function filterProducts() {
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  const sections = document.querySelectorAll(".continent-section");
+  const tabs = document.querySelectorAll(".continent-tab");
+
+  if (q) {
+    // Search mode: show all sections
+    sections.forEach(s => { s.style.display = "block"; });
+    tabs.forEach(t => t.classList.remove("active"));
+  } else {
+    // Reset to active continent
+    sections.forEach(s => s.classList.remove("active"));
+    document.getElementById("section-" + activeContinent).classList.add("active");
+    tabs.forEach(t => {
+      if (t.dataset.continent === activeContinent) t.classList.add("active");
+    });
+  }
+
+  let visibleCount = 0;
+  document.querySelectorAll(".country-card").forEach(card => {
+    const name = card.dataset.country.toLowerCase();
+    const types = JSON.parse(card.dataset.types || "[]");
+    const match = !q || name.includes(q) || types.some(t => t.includes(q));
+    card.style.display = match ? "" : "none";
+    if (match) visibleCount++;
+  });
+
+  const nr = document.getElementById("noResult");
+  if (q && visibleCount === 0) {
+    if (!nr) {
+      const el = document.createElement("div");
+      el.id = "noResult";
+      el.className = "no-result";
+      document.getElementById("content").appendChild(el);
+    }
+    document.getElementById("noResult").textContent = '😕 未找到 "' + q + '"，试试其他关键词';
+    document.getElementById("noResult").style.display = "";
+  } else if (nr) {
+    nr.style.display = "none";
+  }
+}
+
+// ========== MATERIAL MODAL ==========
+function sanitizeName(s) {
+  // PDF文件名规范: 把 / ( ) · 替换为 _，去除多余空格和首尾下划线
+  return s.replace(/[\/()（）、·]/g, '_').replace(/\s+/g, '').replace(/^_+|_+$/g, '');
+}
+
+// 已有PDF文件列表（103份）
+const PDF_EXISTS = new Set(["丹麦_商务", "丹麦_探亲访友", "丹麦_旅游", "乌兹别克斯坦_商务", "乌兹别克斯坦_旅游", "俄罗斯_电子签", "保加利亚_商务", "保加利亚_探亲访友", "保加利亚_旅游", "克罗地亚_商务", "克罗地亚_探亲访友", "克罗地亚_旅游", "冰岛_商务", "冰岛_探亲访友", "冰岛_旅游", "加拿大_商务", "加拿大_探亲访友", "加拿大_旅游", "加拿大_超级签证", "匈牙利_商务", "匈牙利_探亲访友", "匈牙利_旅游", "南非_探亲访友", "南非_旅游", "卢森堡_商务", "卢森堡_探亲访友", "卢森堡_旅游", "印度_商务", "印度_旅游", "印度尼西亚_商务电子签C2_D2", "印度尼西亚_旅游电子签C1_D1", "厄瓜多尔_电子签", "奥地利_商务", "奥地利_探亲访友", "奥地利_旅游", "尼日利亚_商务", "尼日利亚_旅游", "希腊_商务", "希腊_探亲访友", "希腊_旅游", "德国_商务", "德国_探亲访友", "德国_旅游", "意大利_商务", "意大利_探亲访友", "意大利_旅游", "挪威_商务", "挪威_探亲访友", "挪威_旅游", "捷克_商务", "捷克_探亲访友", "捷克_旅游", "斯洛伐克_个人旅游", "斯洛伐克_商务", "斯洛伐克_探亲访友", "斯洛伐克_文化体育", "新西兰_NZeTA", "新西兰_探亲访友", "比利时_商务", "比利时_探亲访友", "比利时_旅游", "法国_商务", "法国_探亲访友", "法国_旅游", "波兰_商务", "波兰_探亲访友", "波兰_旅游", "澳大利亚_过境签", "爱尔兰_商务", "爱尔兰_探亲访友", "瑞典_商务", "瑞典_探亲访友", "瑞典_旅游", "瑞士_商务", "瑞士_探亲访友", "瑞士_旅游", "美国_B1_B2免面谈", "美国_C或D类_过境_机组", "美国_EVUS登记", "美国_F1留学签证", "美国_签证代传递", "芬兰_商务", "芬兰_探亲访友", "芬兰_旅游", "英国_个人旅游", "英国_商务", "英国_探亲访友", "英国_留学T4", "英国_陪读签证", "荷兰_商务", "荷兰_探亲访友", "荷兰_旅游", "葡萄牙_商务", "葡萄牙_探亲访友", "葡萄牙_旅游", "西班牙_商务", "西班牙_探亲访友", "西班牙_旅游", "越南_另纸签", "越南_电子签", "越南_落地签批文", "阿根廷_个人旅游", "阿根廷_商务"]);
+function materialUrl(countryName, visaType) {
+  const pdfName = sanitizeName(countryName) + '_' + sanitizeName(visaType) + '.pdf';
+  return window.location.origin + '/visa-quiz/pdf/' + encodeURI(pdfName);
+}
+function showMaterials(countryName, visaType) {
+  // 优先查找硬编码的 materials 数据
+  const c = getCountry(countryName);
+  if (c && c.materials && c.materials[visaType] && c.materials[visaType].url) {
+    window.open(c.materials[visaType].url, '_blank');
+    return;
+  }
+  // 动态构造PDF路径
+  window.open(materialUrl(countryName, visaType), '_blank');
+}
+
+
+// 无PDF弹窗
+function showNoPdf() {
+  var m = document.getElementById("noPdfModal");
+  if (m) m.classList.add("show");
+}
+function closeNoPdf() {
+  var m = document.getElementById("noPdfModal");
+  if (m) m.classList.remove("show");
+}
+function closeModal(e) {
+  document.getElementById("modalOverlay").classList.remove("show");
+}
+
+// ========== HELPERS ==========
+function getCountry(name) {
+  for (const cont of CONTINENT_ORDER) {
+    const c = (data[cont] || []).find(x => x.name === name);
+    if (c) return c;
+  }
+  return null;
 }
 
 // ========== RENDER ==========
-function render() {
+function init() {
   loadData();
+
   const nav = document.getElementById("continentNav");
   const content = document.getElementById("content");
-  nav.innerHTML = "";
-  content.innerHTML = "";
 
+  // Nav tabs
   CONTINENT_ORDER.forEach((cont, i) => {
     const btn = document.createElement("button");
     btn.className = "continent-tab" + (i === 0 ? " active" : "");
-    btn.textContent = CONTINENT_ICONS[cont] + " " + cont + " (" + (data[cont]||[]).length + ")";
-    btn.onclick = () => { activeContinent = cont; render(); };
+    btn.dataset.continent = cont;
+    btn.textContent = CONTINENT_ICONS[cont] + " " + cont;
+    const span = document.createElement("span");
+    span.className = "count";
+    const countries = data[cont] || [];
+    span.textContent = "(" + countries.length + ")";
+    btn.appendChild(span);
+    btn.onclick = () => switchContinent(cont);
     nav.appendChild(btn);
   });
 
-  const cont = activeContinent;
-  const countries = data[cont] || [];
-  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  // Download tab
+  const dlTab = document.createElement("button");
+  dlTab.className = "continent-tab";
+  dlTab.textContent = "📥 资料下载";
+  dlTab.onclick = () => showDownloads();
+  nav.appendChild(dlTab);
 
-  const section = document.createElement("div");
-  section.className = "continent-section active";
+  // Sections
+  CONTINENT_ORDER.forEach((cont, i) => {
+    const section = document.createElement("div");
+    section.className = "continent-section" + (i === 0 ? " active" : "");
+    section.id = "section-" + cont;
 
-  countries.forEach((c, idx) => {
-    if (q && !c.name.toLowerCase().includes(q)) return;
-    section.appendChild(createCountryCard(c, cont, idx));
+    const countries = data[cont] || [];
+    countries.forEach(c => {
+      // Only show countries that have at least one visa type with a real price
+      const hasPrice = c.types.some(t => c.prices[t] && c.prices[t] !== "待询");
+      if (hasPrice) section.appendChild(createCountryCard(c));
+    });
+
+    content.appendChild(section);
   });
 
-  content.appendChild(section);
+  // Notice board
+  updateNotice();
 
-  // Load notice
-  document.getElementById("noticeInput").value = localStorage.getItem("bondtravel_notice") || "";
+  // Search input fix: restore active continent on clear
+  document.getElementById("searchInput").addEventListener("search", function() {
+    if (!this.value) filterProducts();
+  });
 }
 
-function createCountryCard(c, cont, idx) {
+function createCountryCard(c) {
   const card = document.createElement("div");
   card.className = "country-card";
+  card.id = "card-" + c.name;
   card.dataset.country = c.name;
+  card.dataset.types = JSON.stringify(c.types);
+
+  const flag = c.flag || "🌐";
 
   const header = document.createElement("div");
   header.className = "country-header";
   header.onclick = () => card.classList.toggle("expanded");
   header.innerHTML = `
-    <span class="country-flag">${c.flag || "🌐"}</span>
-    <span class="country-name">${c.name} <span style="font-size:11px;color:#999;">(${c.types.length}种)</span></span>
-    <span class="country-actions">
-      <button class="btn-country-edit" onclick="event.stopPropagation();editCountry('${cont}','${c.name.replace(/'/g,"\\'")}',${idx})">✏️</button>
-      <button class="btn-country-del" onclick="event.stopPropagation();delCountry('${cont}','${c.name.replace(/'/g,"\\'")}',${idx})">🗑</button>
-    </span>
+    <span class="country-flag">${flag}</span>
+    <span class="country-name">${c.name}</span>
+    <span class="country-count">${c.types.length}种</span>
+    <span class="country-arrow">▼</span>
   `;
   card.appendChild(header);
 
@@ -813,14 +800,15 @@ function createCountryCard(c, cont, idx) {
   list.className = "visa-list";
 
   c.types.forEach(type => {
-    const price = c.prices[type] || "待询";
-    const hasMat = c.materials && c.materials[type] && c.materials[type].url;
+        const price = c.prices[type] || "待询";
+    const key = sanitizeName(c.name) + '_' + sanitizeName(type);
+    const hasPdf = PDF_EXISTS.has(key);
     const item = document.createElement("div");
     item.className = "visa-item";
     item.innerHTML = `
       <span class="visa-type">${type}</span>
-      <input class="visa-price-input" value="${price}" data-country="${c.name}" data-type="${type}" data-cont="${cont}" onchange="updatePrice(this)">
-      <button class="visa-mat-btn" onclick="event.stopPropagation();openMatEditor('${cont}','${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">📄 ${hasMat ? '材料' : '+材料'}</button>
+      <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
+      <a class=\"visa-dl${hasPdf ? '' : ' no-pdf'}\" href=\"${hasPdf ? materialUrl(c.name, type) : 'javascript:void(0)'}\" target=\"${hasPdf ? '_blank' : '_self'}\" onclick=\"${hasPdf ? '' : 'showNoPdf()'}\">📄 材料</a>
     `;
     list.appendChild(item);
   });
@@ -829,263 +817,114 @@ function createCountryCard(c, cont, idx) {
   return card;
 }
 
-// ========== PRICE UPDATE ==========
-function updatePrice(input) {
-  const cont = input.dataset.cont;
-  const name = input.dataset.country;
-  const type = input.dataset.type;
-  const c = data[cont].find(x => x.name === name);
-  if (c) { c.prices[type] = input.value; saveData(); }
+function switchContinent(cont) {
+  activeContinent = cont;
+  document.querySelectorAll(".continent-tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".continent-section").forEach(s => s.classList.remove("active"));
+  document.querySelector(`.continent-tab[data-continent="${cont}"]`).classList.add("active");
+  document.getElementById("section-" + cont).classList.add("active");
+
+  // Clear search
+  document.getElementById("searchInput").value = "";
+  filterProducts();
 }
 
-// ========== FILTER ==========
-function filterAdmin() { render(); }
-
-// ========== ADD COUNTRY ==========
-function toggleAddForm() {
-  document.getElementById("addForm").classList.toggle("show");
-}
-function addCountry() {
-  const name = document.getElementById("afName").value.trim();
-  const flag = document.getElementById("afFlag").value.trim() || "🌐";
-  const cont = document.getElementById("afContinent").value;
-  const typesText = document.getElementById("afTypes").value.trim();
-  if (!name) { toast("⚠️ 请输入国家名称"); return; }
-  const types = typesText.split("\n").map(s => s.trim()).filter(Boolean);
-  if (types.length === 0) { toast("⚠️ 请至少输入一个签证类型"); return; }
-
-  const prices = {};
-  types.forEach(t => { prices[t] = "待询"; });
-
-  data[cont] = data[cont] || [];
-  data[cont].push({name, flag, types, prices, materials: {}});
-  saveData();
-  toast("✅ 已添加 " + name);
-  toggleAddForm();
-  document.getElementById("afName").value = "";
-  document.getElementById("afFlag").value = "";
-  document.getElementById("afTypes").value = "";
-  render();
+function updateNotice() {
+  const saved = localStorage.getItem("bondtravel_notice");
+  const text = saved || "🌟 帮得签证——您的签证小管家！专业签证办理，出国旅游、商务洽谈、探亲访友，一站式服务。点击展开查看详情 →";
+  document.getElementById("noticeText").textContent = text;
 }
 
-// ========== DELETE COUNTRY ==========
-function delCountry(cont, name) {
-  if (!confirm("确定删除「" + name + "」吗？")) return;
-  data[cont] = (data[cont] || []).filter(c => c.name !== name);
-  saveData();
-  toast("🗑 已删除 " + name);
-  render();
-}
-
-// ========== EDIT COUNTRY ==========
-function editCountry(cont, name, idx) {
-  const c = data[cont][idx];
-  const newName = prompt("国家名称：", c.name);
-  if (!newName || !newName.trim()) return;
-  const newFlag = prompt("国旗Emoji（如 🇯🇵）：", c.flag || "");
-  if (newFlag === null) return;
-  const newTypes = prompt("签证类型（用逗号分隔）：", c.types.join("，"));
-  if (!newTypes || !newTypes.trim()) return;
-
-  c.name = newName.trim();
-  if (newFlag) c.flag = newFlag.trim();
-
-  // Handle types - preserve existing prices/materials, add new ones
-  const newTypeList = newTypes.split(/[,，、]/).map(s => s.trim()).filter(Boolean);
-  newTypeList.forEach(t => {
-    if (!c.prices[t]) c.prices[t] = "待询";
-  });
-  Object.keys(c.prices).forEach(t => {
-    if (!newTypeList.includes(t)) delete c.prices[t];
-  });
-  if (c.materials) {
-    Object.keys(c.materials).forEach(t => {
-      if (!newTypeList.includes(t)) delete c.materials[t];
-    });
-  }
-  c.types = newTypeList;
-
-  saveData();
-  toast("✅ 已更新 " + newName.trim());
-  render();
-}
-
-// ========== MATERIAL EDITOR ==========
-function openMatEditor(cont, name, type) {
-  editCountryName = {cont, name, type};
-  document.getElementById("matModalTitle").textContent = "📋 " + name + " · " + type;
-  document.getElementById("matModalSub").textContent = "上传PDF材料文件";
-
-  const c = data[cont].find(x => x.name === name);
-  if (!c) return;
-  if (!c.materials) c.materials = {};
-  const mat = c.materials[type] || {};
-
-  const container = document.getElementById("matModalContent");
-  container.innerHTML = `
-    <div style="margin-bottom:8px;">
-      <label style="font-size:13px;font-weight:600;color:#444;display:block;margin-bottom:4px;">PDF文件链接</label>
-      <input id="matUrlInput" value="${(mat.url||'').replace(/"/g,'&quot;')}" placeholder="https://billbjpt.github.io/visa-quiz/pdf/xxx.pdf" style="width:100%;padding:8px 10px;border:2px solid #0d1e44;border-radius:6px;font-size:13px;outline:none;">
-    </div>
-    <div style="margin-bottom:8px;">
-      <label style="font-size:13px;font-weight:600;color:#444;display:block;margin-bottom:4px;">文件显示名称 <span style="font-weight:400;color:#999;">（选填）</span></label>
-      <input id="matNameInput" value="${(mat.name||'').replace(/"/g,'&quot;')}" placeholder="如：英国旅游签证材料.pdf" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;outline:none;">
-    </div>
-    <div style="background:#fff8e6;padding:8px 12px;border-radius:6px;font-size:12px;color:#666;line-height:1.6;">
-      💡 <strong>提示：</strong>PDF文件放在 GitHub 仓库的 pdf/ 目录下，链接格式：<br>
-      <code style="color:#07c;font-size:11px;">https://billbjpt.github.io/visa-quiz/pdf/文件名.pdf</code><br>
-      后台顶部「资料下载管理」可上传通用PDF，这里填专用PDF链接。
-    </div>
-  `;
-
-  document.getElementById("matModal").classList.add("show");
-}
-
-function saveMatModal() {
-  const url = document.getElementById("matUrlInput").value.trim();
-  const name = document.getElementById("matNameInput").value.trim();
-  const c = data[editCountryName.cont].find(x => x.name === editCountryName.name);
-  if (!c) return;
-  if (!c.materials) c.materials = {};
-  if (url) {
-    c.materials[editCountryName.type] = {url, name: name || url.split('/').pop()};
-  } else {
-    delete c.materials[editCountryName.type];
-  }
-  saveData();
-  toast("✅ 材料已保存");
-  closeMatModal();
-}
-
-function closeMatModal() {
-  document.getElementById("matModal").classList.remove("show");
-}
-
-// ========== EXPORT/IMPORT ==========
-function exportData() {
-  // Collect all data
-  const exportObj = {version:1, data: data, notice: localStorage.getItem("bondtravel_notice") || ""};
-  const json = JSON.stringify(exportObj, null, 2);
-  const blob = new Blob([json], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "bondtravel_data_" + new Date().toISOString().slice(0,10) + ".json";
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("📥 数据已导出");
-}
-
-function showImport() {
-  document.getElementById("importModal").classList.add("show");
-}
-function closeImportModal() {
-  document.getElementById("importModal").classList.remove("show");
-}
-function doImport() {
-  const text = document.getElementById("importArea").value.trim();
-  if (!text) { toast("⚠️ 请粘贴数据"); return; }
-  try {
-    const obj = JSON.parse(text);
-    if (!obj.data) { toast("⚠️ 数据格式无效"); return; }
-    if (!confirm("⚠️ 此操作将覆盖所有现有数据，确定吗？")) return;
-    data = obj.data;
-    saveData();
-    if (obj.notice) localStorage.setItem("bondtravel_notice", obj.notice);
-    toast("✅ 数据已导入");
-    closeImportModal();
-    document.getElementById("importArea").value = "";
-    render();
-  } catch(e) {
-    toast("⚠️ JSON解析失败: " + e.message);
-  }
-}
-
-// ========== RESET ==========
-function resetData() {
-  if (!confirm("⚠️ 此操作将删除所有自定义数据，恢复出厂默认！确定吗？")) return;
-  localStorage.removeItem("bondtravel_catalog");
-  toast("🔄 已恢复默认数据");
-  render();
-}
-
-// ========== DOWNLOAD MANAGEMENT ==========
+// ========== DOWNLOAD MATERIALS ==========
 function getDownloads() {
   const stored = localStorage.getItem("bondtravel_downloads");
   if (stored) { try { return JSON.parse(stored); } catch(e) {} }
-  return [];
+  // Seed data
+  const BASE = "https://billbjpt.github.io/visa-quiz/pdf/";
+  return [
+    {title:"在职证明模板（中英双语）", url:BASE+"employment_letter_template.pdf", desc:"通用在职证明模板，中英文对照，含公司信息、职位、收入等", icon:"📋", tag:"模板"},
+    {title:"申根签证申请指南", url:BASE+"schengen_visa_guide.pdf", desc:"29国申根区签证全流程，材料清单+注意事项", icon:"🌍", tag:"指南"},
+    {title:"美国DS-160填写指南", url:BASE+"us_visa_ds160_guide.pdf", desc:"DS-160在线表格逐项指南，常见错误避免", icon:"🇺🇸", tag:"指南"},
+    {title:"签证材料通用清单", url:BASE+"visa_checklist_general.pdf", desc:"核心材料 + 在职/财务/特殊人群所需材料一览", icon:"📄", tag:"清单"},
+    {title:"帮得签证公司简介", url:BASE+"bangde_visa_brochure.pdf", desc:"公司介绍、服务范围、联系方式", icon:"🏢", tag:"简介"},
+  ];
 }
-function saveDownloads(dl) {
-  localStorage.setItem("bondtravel_downloads", JSON.stringify(dl));
-}
-function renderDownloadList() {
-  const dl = getDownloads();
-  const container = document.getElementById("dlManagerList");
-  container.innerHTML = "";
-  if (dl.length === 0) {
-    container.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.4);padding:8px 0;">暂无资料，在上方添加</div>';
-    return;
-  }
-  dl.forEach((d, i) => {
-    const row = document.createElement("div");
-    row.style.cssText = "display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:13px;";
-    row.innerHTML = `
-      <span style="font-size:18px;">${d.icon || "📄"}</span>
-      <span style="flex:1;color:#fff;">${d.title}</span>
-      <span style="flex:0 0 60px;font-size:11px;color:rgba(255,255,255,0.4);text-overflow:ellipsis;overflow:hidden;">${d.tag || ""}</span>
-      <span style="flex:0 0 40px;">
-        <button onclick="moveDl(${i},-1)" style="background:none;border:none;color:#8ab4f8;cursor:pointer;font-size:14px;" ${i===0?"disabled style='color:#555'":""}>↑</button>
-        <button onclick="moveDl(${i},1)" style="background:none;border:none;color:#8ab4f8;cursor:pointer;font-size:14px;" ${i===dl.length-1?"disabled style='color:#555'":""}>↓</button>
-      </span>
-      <button onclick="delDl(${i})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-size:16px;">×</button>
-    `;
-    container.appendChild(row);
-  });
-}
-function addDownloadItem() {
-  const title = document.getElementById("dlTitle").value.trim();
-  const url = document.getElementById("dlUrl").value.trim();
-  if (!title) { toast("⚠️ 请输入资料名称"); return; }
-  const dl = getDownloads();
-  dl.push({
-    title,
-    url: url || "",
-    desc: document.getElementById("dlDesc").value.trim(),
-    icon: document.getElementById("dlIcon").value.trim() || "📄",
-    tag: document.getElementById("dlTag").value.trim()
-  });
-  saveDownloads(dl);
-  renderDownloadList();
-  document.getElementById("dlTitle").value = "";
-  document.getElementById("dlUrl").value = "";
-  document.getElementById("dlDesc").value = "";
-  document.getElementById("dlIcon").value = "";
-  document.getElementById("dlTag").value = "";
-  toast("✅ 已添加资料：" + title);
-}
-function delDl(idx) {
-  const dl = getDownloads();
-  dl.splice(idx, 1);
-  saveDownloads(dl);
-  renderDownloadList();
-}
-function moveDl(idx, dir) {
-  const dl = getDownloads();
-  const target = idx + dir;
-  if (target < 0 || target >= dl.length) return;
-  [dl[idx], dl[target]] = [dl[target], dl[idx]];
-  saveDownloads(dl);
-  renderDownloadList();
-}
-// Update render to also render download list
-const origRender = render;
-render = function() {
-  origRender();
-  renderDownloadList();
-};
 
-// Init
-render();
+function showDownloads() {
+  const downloads = getDownloads();
+  const container = document.getElementById("dlContent");
+  const empty = document.getElementById("dlEmpty");
+
+  container.innerHTML = "";
+
+  if (downloads.length === 0) {
+    empty.style.display = "block";
+  } else {
+    empty.style.display = "none";
+    downloads.forEach((d, i) => {
+      const icon = d.icon || "📄";
+      const tagHtml = d.tag ? `<span class="dl-tag">${d.tag}</span>` : "";
+      const btnHtml = d.url
+        ? `<a class="dl-btn" href="${d.url}" target="_blank" rel="noopener">⬇ 下载</a>`
+        : `<span class="dl-btn dl-btn-outline">暂无文件</span>`;
+      const div = document.createElement("div");
+      div.className = "dl-item";
+      div.innerHTML = `
+        <span class="dl-icon">${icon}</span>
+        <div class="dl-info">
+          <div class="dl-title">${d.title}${tagHtml}</div>
+          <div class="dl-desc">${d.desc || ""}</div>
+        </div>
+        ${btnHtml}
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  document.getElementById("dlModal").classList.add("show");
+}
+
+function closeDlModal() {
+  document.getElementById("dlModal").classList.remove("show");
+}
+
+init();
 </script>
+
+<!-- 无PDF提示弹窗 -->
+<style>
+.no-pdf-modal {
+  max-width: 360px;
+  background: var(--bg-modal);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: var(--text-primary);
+  margin: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.no-pdf-modal .icon { font-size: 48px; margin: 15px 0; }
+.no-pdf-modal .title { font-size: 18px; font-weight: 600; margin: 10px 0; color: var(--text-primary); }
+.no-pdf-modal .sub { font-size: 14px; color: var(--text-secondary); margin: 5px 0 20px; }
+.no-pdf-modal .btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+</style>
+<div class="modal-overlay" id="noPdfModal" onclick="closeNoPdf()">
+  <div class="no-pdf-modal" onclick="event.stopPropagation()">
+    <span class="modal-close" onclick="closeNoPdf()">&times;</span>
+    <div class="icon">📋</div>
+    <p class="title">抱歉此产品信息更新中……</p>
+    <p class="sub">请联系客服获取详细材料清单</p>
+    <button class="btn" onclick="closeNoPdf()">知道了</button>
+  </div>
+</div>
 </body>
 </html>
