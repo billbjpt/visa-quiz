@@ -393,7 +393,7 @@ body {
     <a href="admin.html" style="color:var(--accent-blue);text-decoration:none;">管理后台</a>
   </p>
   <p style="margin-top:6px;font-size:10px;color:var(--text-light);opacity:0.6;">
-    v100.001.003
+    <span id="footerVersion"></span>
   </p>
 </div>
 
@@ -614,6 +614,7 @@ let activeContinent = CONTINENT_ORDER[0];
 
 // ========== DATA LOAD / SAVE ==========
 const APP_VERSION = "100.001.004";
+document.addEventListener("DOMContentLoaded",()=>{const fv=document.getElementById("footerVersion");if(fv)fv.textContent="v"+APP_VERSION;});
 function loadData() {
   const stored = localStorage.getItem("bondtravel_catalog");
   const storedVersion = localStorage.getItem("bondtravel_version");
