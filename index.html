@@ -393,7 +393,7 @@ body {
     <a href="admin.html" style="color:var(--accent-blue);text-decoration:none;">管理后台</a>
   </p>
   <p style="margin-top:6px;font-size:10px;color:var(--text-light);opacity:0.6;">
-    v100.001.002
+    v100.001.003
   </p>
 </div>
 
@@ -617,7 +617,7 @@ let data;
 let activeContinent = CONTINENT_ORDER[0];
 
 // ========== DATA LOAD / SAVE ==========
-const APP_VERSION = "100.001.002";
+const APP_VERSION = "100.001.003";
 function loadData() {
   const stored = localStorage.getItem("bondtravel_catalog");
   const storedVersion = localStorage.getItem("bondtravel_version");
@@ -904,7 +904,7 @@ function closeDlModal() {
 init();
 
 function handleDlClick(countryName, visaType) {
-  console.log('[DEBUG] handleDlClick called:', countryName, visaType);
+  // Look up from data (localStorage) first
   var country = null;
   for (var cont in data) {
     for (var i = 0; i < data[cont].length; i++) {
@@ -912,19 +912,24 @@ function handleDlClick(countryName, visaType) {
     }
     if (country) break;
   }
-  console.log('[DEBUG] country found:', !!country);
-  console.log('[DEBUG] country.materials:', country ? country.materials : 'null');
   if (!country || !country.materials) { window.open(materialUrl(countryName, visaType)); return; }
   
   var mat = country.materials[visaType];
-  console.log('[DEBUG] mat:', mat);
-  console.log('[DEBUG] mat.personas:', mat ? mat.personas : 'null');
-  if (mat && mat.personas && mat.personas.length > 0) {
-    console.log('[DEBUG] Showing persona modal with', mat.personas.length, 'personas');
-    showPersonaModal(countryName, visaType, mat.personas, mat.url);
-  } else {
-    console.log('[DEBUG] No personas, opening direct download');
+  // Fallback: check SEED_DATA directly if personas missing in data
+  if (!mat || !mat.personas || mat.personas.length === 0) {
+    for (var cont2 in SEED_DATA) {
+      var seedCountry = SEED_DATA[cont2].find(function(c){ return c.name === countryName; });
+      if (seedCountry && seedCountry.materials && seedCountry.materials[visaType]) {
+        var seedMat = seedCountry.materials[visaType];
+        if (seedMat.personas && seedMat.personas.length > 0) {
+          showPersonaModal(countryName, visaType, seedMat.personas, seedMat.url);
+          return;
+        }
+      }
+    }
     window.open(materialUrl(countryName, visaType));
+  } else {
+    showPersonaModal(countryName, visaType, mat.personas, mat.url);
   }
 }
 
