@@ -904,6 +904,7 @@ function closeDlModal() {
 init();
 
 function handleDlClick(countryName, visaType) {
+  console.log('[DEBUG] handleDlClick called:', countryName, visaType);
   var country = null;
   for (var cont in data) {
     for (var i = 0; i < data[cont].length; i++) {
@@ -911,12 +912,18 @@ function handleDlClick(countryName, visaType) {
     }
     if (country) break;
   }
+  console.log('[DEBUG] country found:', !!country);
+  console.log('[DEBUG] country.materials:', country ? country.materials : 'null');
   if (!country || !country.materials) { window.open(materialUrl(countryName, visaType)); return; }
   
   var mat = country.materials[visaType];
+  console.log('[DEBUG] mat:', mat);
+  console.log('[DEBUG] mat.personas:', mat ? mat.personas : 'null');
   if (mat && mat.personas && mat.personas.length > 0) {
+    console.log('[DEBUG] Showing persona modal with', mat.personas.length, 'personas');
     showPersonaModal(countryName, visaType, mat.personas, mat.url);
   } else {
+    console.log('[DEBUG] No personas, opening direct download');
     window.open(materialUrl(countryName, visaType));
   }
 }
