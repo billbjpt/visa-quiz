@@ -373,9 +373,24 @@ body {
 </div>
 <script>
 (function(){
-  if(sessionStorage.getItem("admin_auth")==="ok"){
-    document.getElementById("pwdGate").style.display="none";
-    return;
+  // Generate device fingerprint from UA + screen + timezone
+  function fp(){
+    var s=navigator.userAgent+"|"+screen.width+"x"+screen.height+"|"+Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}
+    return "fp_"+Math.abs(h).toString(36);
+  }
+  var device=fp();
+  var auth=localStorage.getItem("admin_auth");
+  if(auth){
+    try{
+      var d=JSON.parse(auth);
+      // Check: same device + within 24 hours
+      if(d.device===device && d.ts && (Date.now()-d.ts)<86400000){
+        document.getElementById("pwdGate").style.display="none";
+        return;
+      }
+    }catch(e){}
+    localStorage.removeItem("admin_auth");
   }
   document.getElementById("userInput").focus();
   document.getElementById("pwdInput").addEventListener("keydown",function(e){if(e.key==="Enter")checkPwd()});
@@ -390,7 +405,11 @@ async function checkPwd(){
   var uh=await sha256(u);
   var ph=await sha256(p);
   if(uh==="5263f4450deae59f40cb309eb46814ff2b5c933b04a0b8af33c70c8576f8c2ba" && ph==="8a245b164bd58280fff48063aed92c3f895a5fce9053beba2f6c7548d28ca3d6"){
-    sessionStorage.setItem("admin_auth","ok");
+    var fp_val;
+    var s=navigator.userAgent+"|"+screen.width+"x"+screen.height+"|"+Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}
+    fp_val="fp_"+Math.abs(h).toString(36);
+    localStorage.setItem("admin_auth",JSON.stringify({device:fp_val,ts:Date.now()}));
     document.getElementById("pwdGate").style.display="none";
   }else{
     document.getElementById("pwdErr").style.display="block";
