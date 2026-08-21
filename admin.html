@@ -872,7 +872,7 @@ function createCountryCard(c) {
   c.types.forEach(type => {
         const price = c.prices[type] || "待询";
     const key = sanitizeName(c.name) + '_' + sanitizeName(type);
-    const hasPdf = PDF_EXISTS.has(key);
+    const hasPdf = PDF_EXISTS.has(key) || (c.materials && c.materials[type]);
     const item = document.createElement("div");
     item.className = "visa-item";
     item.innerHTML = `
