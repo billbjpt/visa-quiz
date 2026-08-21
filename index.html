@@ -352,27 +352,11 @@ body {
   text-decoration: none !important;
 }
 
-/* ========== PERSONA MODAL ========== */
-.persona-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  background: var(--bg-card);
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all .15s;
-  text-decoration: none;
-  color: var(--text-primary);
-}
-.persona-btn:active { background: var(--bg-page); transform: scale(0.98); }
-.persona-icon { font-size: 24px; flex-shrink: 0; }
-.persona-label { font-size: 14px; font-weight: 600; }
-.persona-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
+/* Persona Modal */
+.persona-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border:1px solid var(--border-light);border-radius:10px;background:var(--bg-card);margin-bottom:8px;cursor:pointer;transition:all .15s;text-decoration:none;color:var(--text-primary)}
+.persona-btn:active{background:var(--bg-page);transform:scale(0.98)}
+.persona-icon{font-size:24px;flex-shrink:0}
+.persona-label{font-size:14px;font-weight:600}
 </style>
 </head>
 <body>
@@ -454,7 +438,7 @@ const SEED_DATA = {
     {name:"比利时", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%AF%94%E5%88%A9%E6%97%B6_%E6%97%85%E6%B8%B8.pdf",name:"比利时_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%AF%94%E5%88%A9%E6%97%B6_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"比利时_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%AF%94%E5%88%A9%E6%97%B6_%E5%95%86%E5%8A%A1.pdf",name:"比利时_商务.pdf"}}, flag:"🇧🇪"},
     {name:"卢森堡", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%8D%A2%E6%A3%AE%E5%A0%A1_%E6%97%85%E6%B8%B8.pdf",name:"卢森堡_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%8D%A2%E6%A3%AE%E5%A0%A1_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"卢森堡_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%8D%A2%E6%A3%AE%E5%A0%A1_%E5%95%86%E5%8A%A1.pdf",name:"卢森堡_商务.pdf"}}, flag:"🇱🇺"},
     {name:"瑞士", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%A3%AB_%E6%97%85%E6%B8%B8.pdf",name:"瑞士_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%A3%AB_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"瑞士_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%A3%AB_%E5%95%86%E5%8A%A1.pdf",name:"瑞士_商务.pdf"}}, flag:"🇨🇭"},
-    {name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500materials:{", types:["商务","探亲访友","旅游","滑雪签"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500", "旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E6%97%85%E6%B8%B8.pdf",name:"奥地利_旅游.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利个人旅游签证资料须知.pdf"},{label:"学生",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%AD%A6%E7%94%9F%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【学生】奥地利个人旅游签证资料须知.pdf"},{label:"退休人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E9%80%80%E4%BC%91%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【退休人员】奥地利个人旅游签证资料须知.pdf"},{label:"自由职业/无业",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E6%97%A0%E4%B8%9A%E6%88%96%E8%87%AA%E7%94%B1%E8%81%8C%E4%B8%9A%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【无业或自由职业】奥地利个人旅游签证资料须知.pdf"}]}, "商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E5%95%86%E5%8A%A1.pdf",name:"奥地利_商务.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E5%95%86%E5%8A%A1%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利商务签证资料须知.pdf"}]}, "探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"奥地利_探亲访友.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利探亲访友签证资料须知.pdf"}},{label:"学生",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%AD%A6%E7%94%9F%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【学生】奥地利探亲访友签证资料须知.pdf"},{label:"退休人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E9%80%80%E4%BC%91%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【退休人员】奥地利探亲访友签证资料须知.pdf"},{label:"自由职业/无业",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E6%97%A0%E4%B8%9A%E6%88%96%E8%87%AA%E7%94%B1%E8%81%8C%E4%B8%9A%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【无业或自由职业】奥地利探亲访友签证资料须知.pdf"}]}}, flag:"🇦🇹"},
+    {name:"奥地利", types:["商务","探亲访友","旅游","滑雪签"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E6%97%85%E6%B8%B8.pdf",name:"奥地利_旅游.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利个人旅游签证资料须知.pdf"},{label:"学生",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%AD%A6%E7%94%9F%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【学生】奥地利个人旅游签证资料须知.pdf"},{label:"退休人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E9%80%80%E4%BC%91%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【退休人员】奥地利个人旅游签证资料须知.pdf"},{label:"自由职业/无业",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E6%97%A0%E4%B8%9A%E6%88%96%E8%87%AA%E7%94%B1%E8%81%8C%E4%B8%9A%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E4%B8%AA%E4%BA%BA%E6%97%85%E6%B8%B8%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【无业或自由职业】奥地利个人旅游签证资料须知.pdf"}]}, "商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E5%95%86%E5%8A%A1.pdf",name:"奥地利_商务.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E5%95%86%E5%8A%A1%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利商务签证资料须知.pdf"}]}, "探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%A5%A5%E5%9C%B0%E5%88%A9_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"奥地利_探亲访友.pdf",personas:[{label:"在职人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【在职人员】奥地利探亲访友签证资料须知.pdf"},{label:"学生",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E5%AD%A6%E7%94%9F%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【学生】奥地利探亲访友签证资料须知.pdf"},{label:"退休人员",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E9%80%80%E4%BC%91%E4%BA%BA%E5%91%98%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【退休人员】奥地利探亲访友签证资料须知.pdf"},{label:"自由职业/无业",url:"https://billbjpt.github.io/visa-quiz/pdf/%E3%80%90%E6%97%A0%E4%B8%9A%E6%88%96%E8%87%AA%E7%94%B1%E8%81%8C%E4%B8%9A%E3%80%91%E5%A5%A5%E5%9C%B0%E5%88%A9%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B%E7%AD%BE%E8%AF%81%E8%B5%84%E6%96%99%E9%A1%BB%E7%9F%A5.pdf",name:"【无业或自由职业】奥地利探亲访友签证资料须知.pdf"}]}}, flag:"🇦🇹"},
     {name:"希腊", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%B8%8C%E8%85%8A_%E6%97%85%E6%B8%B8.pdf",name:"希腊_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%B8%8C%E8%85%8A_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"希腊_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E5%B8%8C%E8%85%8A_%E5%95%86%E5%8A%A1.pdf",name:"希腊_商务.pdf"}}, flag:"🇬🇷"},
     {name:"瑞典", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%85%B8_%E6%97%85%E6%B8%B8.pdf",name:"瑞典_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%85%B8_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"瑞典_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E7%91%9E%E5%85%B8_%E5%95%86%E5%8A%A1.pdf",name:"瑞典_商务.pdf"}}, flag:"🇸🇪"},
     {name:"挪威", types:["商务","探亲访友","旅游"], prices:{"旅游":"¥1,500","商务":"¥1,500","探亲访友":"¥1,500"}, materials:{"旅游":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%8C%AA%E5%A8%81_%E6%97%85%E6%B8%B8.pdf",name:"挪威_旅游.pdf"}}, materials:{"探亲访友":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%8C%AA%E5%A8%81_%E6%8E%A2%E4%BA%B2%E8%AE%BF%E5%8F%8B.pdf",name:"挪威_探亲访友.pdf"}}, materials:{"商务":{url:"https://billbjpt.github.io/visa-quiz/pdf/%E6%8C%AA%E5%A8%81_%E5%95%86%E5%8A%A1.pdf",name:"挪威_商务.pdf"}}, flag:"🇳🇴"},
@@ -830,7 +814,7 @@ function createCountryCard(c) {
     item.innerHTML = `
       <span class="visa-type">${type}</span>
       <span class="visa-price" id="price-${c.name}-${type}">${price}</span>
-      <a class=\"visa-dl${hasPdf ? '' : ' no-pdf'}\" href=\"javascript:void(0)\" onclick=\"${hasPdf ? 'handleDlClick(this,\''+c.name+'\',\''+type+'\')' : 'showNoPdf()'}\">📄 材料</a>
+      <a class=\"visa-dl${hasPdf ? '' : ' no-pdf'}\" href=\"javascript:void(0)\" onclick=\"${hasPdf ? 'handleDlClick(\''+c.name+'\',\''+type+'\')' : 'showNoPdf()'}\">📄 材料</a>
     `;
     list.appendChild(item);
   });
@@ -912,67 +896,45 @@ function closeDlModal() {
 
 init();
 
-// ========== PERSONA SELECTION ==========
-function showPersonaModal(countryName, visaType, personas, genericUrl) {
-  document.getElementById("personaTitle").textContent = countryName + " · " + visaType;
-  document.getElementById("personaSub").textContent = "请选择您的身份，下载对应材料清单";
-  
-  const container = document.getElementById("personaContent");
-  container.innerHTML = "";
-  
-  const icons = {"在职人员":"👔","学生":"🎓","退休人员":"👴","自由职业/无业":"💼"};
-  
-  personas.forEach(p => {
-    const btn = document.createElement("a");
-    btn.className = "persona-btn";
-    btn.href = p.url;
-    btn.target = "_blank";
-    btn.innerHTML = `
-      <span class="persona-icon">${icons[p.label] || "📄"}</span>
-      <div>
-        <div class="persona-label">${p.label}</div>
-      </div>
-    `;
-    container.appendChild(btn);
-  });
-  
-  const genericLink = document.getElementById("personaGenericLink");
-  if (genericUrl) {
-    genericLink.href = genericUrl;
-    genericLink.style.display = "block";
-  } else {
-    genericLink.style.display = "none";
-  }
-  
-  document.getElementById("personaModal").classList.add("show");
-}
-
-
-function handleDlClick(el, countryName, visaType) {
-  // Find the country data
-  const country = ALL_DATA.find(c => c.name === countryName);
-  if (!country) { window.open(materialUrl(countryName, visaType)); return; }
-  
-  // Check if materials for this type have personas
-  let matData = null;
-  if (country.materials) {
-    // Materials might be an array of single-key objects
-    const mats = Array.isArray(country.materials) ? country.materials : [country.materials];
-    for (const m of mats) {
-      if (m[visaType]) { matData = m[visaType]; break; }
+function handleDlClick(countryName, visaType) {
+  var country = null;
+  for (var cont in data) {
+    for (var i = 0; i < data[cont].length; i++) {
+      if (data[cont][i].name === countryName) { country = data[cont][i]; break; }
     }
+    if (country) break;
   }
+  if (!country || !country.materials) { window.open(materialUrl(countryName, visaType)); return; }
   
-  if (matData && matData.personas && matData.personas.length > 0) {
-    showPersonaModal(countryName, visaType, matData.personas, matData.url);
+  var mat = country.materials[visaType];
+  if (mat && mat.personas && mat.personas.length > 0) {
+    showPersonaModal(countryName, visaType, mat.personas, mat.url);
   } else {
     window.open(materialUrl(countryName, visaType));
   }
 }
-function closePersonaModal() {
-  document.getElementById("personaModal").classList.remove("show");
+
+function showPersonaModal(countryName, visaType, personas, genericUrl) {
+  document.getElementById("personaTitle").textContent = countryName + " · " + visaType;
+  document.getElementById("personaSub").textContent = "请选择您的身份，下载对应材料清单";
+  var container = document.getElementById("personaContent");
+  container.innerHTML = "";
+  var icons = {"在职人员":"👔","学生":"🎓","退休人员":"👴","自由职业/无业":"💼"};
+  personas.forEach(function(p) {
+    var btn = document.createElement("a");
+    btn.className = "persona-btn";
+    btn.href = p.url;
+    btn.target = "_blank";
+    btn.innerHTML = '<span class="persona-icon">' + (icons[p.label]||"📄") + '</span><div><div class="persona-label">' + p.label + '</div></div>';
+    container.appendChild(btn);
+  });
+  var gl = document.getElementById("personaGenericLink");
+  if (genericUrl) { gl.href = genericUrl; document.getElementById("personaGeneric").style.display = "block"; }
+  else { document.getElementById("personaGeneric").style.display = "none"; }
+  document.getElementById("personaModal").classList.add("show");
 }
 
+function closePersonaModal() { document.getElementById("personaModal").classList.remove("show"); }
 </script>
 
 <!-- 无PDF提示弹窗 -->
@@ -1001,27 +963,11 @@ function closePersonaModal() {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ========== PERSONA MODAL ========== */
-.persona-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  background: var(--bg-card);
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all .15s;
-  text-decoration: none;
-  color: var(--text-primary);
-}
-.persona-btn:active { background: var(--bg-page); transform: scale(0.98); }
-.persona-icon { font-size: 24px; flex-shrink: 0; }
-.persona-label { font-size: 14px; font-weight: 600; }
-.persona-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
+/* Persona Modal */
+.persona-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border:1px solid var(--border-light);border-radius:10px;background:var(--bg-card);margin-bottom:8px;cursor:pointer;transition:all .15s;text-decoration:none;color:var(--text-primary)}
+.persona-btn:active{background:var(--bg-page);transform:scale(0.98)}
+.persona-icon{font-size:24px;flex-shrink:0}
+.persona-label{font-size:14px;font-weight:600}
 </style>
 <div class="modal-overlay" id="noPdfModal" onclick="closeNoPdf()">
   <div class="no-pdf-modal" onclick="event.stopPropagation()">
@@ -1040,13 +986,10 @@ function closePersonaModal() {
     <h3 id="personaTitle" style="font-size:16px;margin-bottom:4px;">选择您的身份</h3>
     <div id="personaSub" style="font-size:13px;color:var(--text-muted);margin-bottom:16px;"></div>
     <div id="personaContent"></div>
-    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-light);">
-      <a id="personaGenericLink" href="#" target="_blank" style="display:block;text-align:center;font-size:13px;color:var(--accent-blue);text-decoration:none;padding:8px;">
-        📄 下载通用版（不分人群）
-      </a>
+    <div id="personaGeneric" style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-light);">
+      <a id="personaGenericLink" href="#" target="_blank" style="display:block;text-align:center;font-size:13px;color:var(--accent-blue);text-decoration:none;padding:8px;">📄 下载通用版（不分人群）</a>
     </div>
   </div>
 </div>
-
 </body>
 </html>
