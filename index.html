@@ -617,15 +617,18 @@ let data;
 let activeContinent = CONTINENT_ORDER[0];
 
 // ========== DATA LOAD / SAVE ==========
+const APP_VERSION = "100.001.002";
 function loadData() {
   const stored = localStorage.getItem("bondtravel_catalog");
-  if (stored) {
+  const storedVersion = localStorage.getItem("bondtravel_version");
+  if (stored && storedVersion === APP_VERSION) {
     try {
       data = JSON.parse(stored);
       return;
     } catch(e) {}
   }
-  // Deep clone seed
+  // Version changed or no cache - reload from SEED_DATA
+  localStorage.removeItem("bondtravel_catalog");
   data = {};
   CONTINENT_ORDER.forEach(cont => {
     data[cont] = (SEED_DATA[cont] || []).map(c => ({
@@ -635,6 +638,7 @@ function loadData() {
       materials: c.materials ? Object.fromEntries(Object.entries(c.materials).map(([k,v]) => [k, Array.isArray(v) ? [...v] : {...v}])) : {}
     }));
   });
+  localStorage.setItem("bondtravel_version", APP_VERSION);
   saveData();
 }
 
