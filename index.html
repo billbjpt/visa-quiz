@@ -904,33 +904,26 @@ function closeDlModal() {
 init();
 
 function handleDlClick(countryName, visaType) {
-  // Look up from data (localStorage) first
-  var country = null;
-  for (var cont in data) {
-    for (var i = 0; i < data[cont].length; i++) {
-      if (data[cont][i].name === countryName) { country = data[cont][i]; break; }
-    }
-    if (country) break;
-  }
-  if (!country || !country.materials) { window.open(materialUrl(countryName, visaType)); return; }
-  
-  var mat = country.materials[visaType];
-  // Fallback: check SEED_DATA directly if personas missing in data
-  if (!mat || !mat.personas || mat.personas.length === 0) {
-    for (var cont2 in SEED_DATA) {
-      var seedCountry = SEED_DATA[cont2].find(function(c){ return c.name === countryName; });
-      if (seedCountry && seedCountry.materials && seedCountry.materials[visaType]) {
-        var seedMat = seedCountry.materials[visaType];
-        if (seedMat.personas && seedMat.personas.length > 0) {
-          showPersonaModal(countryName, visaType, seedMat.personas, seedMat.url);
-          return;
+  // Always check SEED_DATA directly for personas
+  for (var cont in SEED_DATA) {
+    for (var i = 0; i < SEED_DATA[cont].length; i++) {
+      if (SEED_DATA[cont][i].name === countryName) {
+        var c = SEED_DATA[cont][i];
+        if (c.materials && c.materials[visaType]) {
+          var mat = c.materials[visaType];
+          if (mat.personas && mat.personas.length > 0) {
+            showPersonaModal(countryName, visaType, mat.personas, mat.url);
+            return;
+          }
         }
+        // Has materials but no personas - direct download
+        window.open(materialUrl(countryName, visaType));
+        return;
       }
     }
-    window.open(materialUrl(countryName, visaType));
-  } else {
-    showPersonaModal(countryName, visaType, mat.personas, mat.url);
   }
+  // Country not found in SEED_DATA - try materialUrl
+  window.open(materialUrl(countryName, visaType));
 }
 
 function showPersonaModal(countryName, visaType, personas, genericUrl) {
