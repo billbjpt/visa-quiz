@@ -450,8 +450,7 @@ async function checkPwd(){
     精准方案 · 专家团队 · 实时资讯 · 贴心客服
   </p>
   <p style="margin-top:4px;font-size:10px;color:var(--text-light);">
-    <a href="index.html" style="color:var(--accent-blue);text-decoration:none;">← 前台</a>
-    <a href="admin.html" style="color:var(--accent-blue);text-decoration:none;margin-left:12px;">管理后台</a>
+    <a href="index.html" style="color:var(--accent-blue);text-decoration:none;font-weight:600;">← 返回前台</a>
     <button onclick="exportData()" style="margin-left:12px;padding:4px 12px;background:var(--accent-blue);color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;">📥 导出数据</button>
     <button onclick="resetData()" style="margin-left:6px;padding:4px 12px;background:#e74c3c;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;">🔄 重置默认</button>
   </p>
@@ -774,6 +773,92 @@ function closeNoPdf() {
   var m = document.getElementById("noPdfModal");
   if (m) m.classList.remove("show");
 }
+
+// ========== UPLOAD MATERIAL ==========
+var _uploadTarget = null;
+function uploadMaterial(el, countryName, visaType) {
+  _uploadTarget = { el, countryName, visaType };
+  var input = document.getElementById('pdfFileInput');
+  if (!input) {
+    input = document.createElement('input');
+    input.type = 'file';
+    input.id = 'pdfFileInput';
+    input.accept = '.pdf';
+    input.style.display = 'none';
+    input.onchange = handlePdfUpload;
+    document.body.appendChild(input);
+  }
+  input.value = '';
+  input.click();
+}
+
+function handlePdfUpload(e) {
+  var file = e.target.files[0];
+  if (!file || !_uploadTarget) return;
+  if (!file.name.toLowerCase().endsWith('.pdf')) {
+    showToast('请选择PDF文件'); return;
+  }
+  var t = _uploadTarget;
+  var pdfName = sanitizeName(t.countryName) + '_' + sanitizeName(t.visaType) + '.pdf';
+  showToast('上传中: ' + pdfName + '...');
+
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    var base64 = ev.target.result.split(',')[1];
+    var token = localStorage.getItem('bondtravel_gh_token') || '';
+    if (!token) {
+      token = prompt('请输入GitHub Token（首次使用需输入，之后自动记住）：');
+      if (!token) { showToast('需要GitHub Token才能上传'); return; }
+      localStorage.setItem('bondtravel_gh_token', token);
+    }
+    // Check if file exists first (need SHA for update)
+    fetch('https://api.github.com/repos/billbjpt/visa-quiz/contents/pdf/' + encodeURIComponent(pdfName), {
+      headers: { 'Authorization': 'token ' + token }
+    }).then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(existing) {
+      var body = {
+        message: 'Upload PDF: ' + pdfName,
+        content: base64
+      };
+      if (existing && existing.sha) body.sha = existing.sha;
+      return fetch('https://api.github.com/repos/billbjpt/visa-quiz/contents/pdf/' + encodeURIComponent(pdfName), {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.content) {
+        // Update SEED_DATA
+        var c = getCountry(t.countryName);
+        if (c) {
+          if (!c.materials) c.materials = {};
+          var pdfUrl = 'https://billbjpt.github.io/visa-quiz/pdf/' + encodeURIComponent(pdfName);
+          c.materials[t.visaType] = { url: pdfUrl, name: pdfName };
+          // Update PDF_EXISTS
+          var key = sanitizeName(t.countryName) + '_' + sanitizeName(t.visaType);
+          PDF_EXISTS.add(key);
+          // Save
+          saveData();
+          // Update button
+          t.el.textContent = '🔄 更换';
+          t.el.classList.remove('no-pdf');
+          showToast('上传成功: ' + pdfName);
+        }
+      } else {
+        showToast('上传失败: ' + (data.message || '未知错误'));
+      }
+    })
+    .catch(function(err) {
+      showToast('上传失败: ' + err.message);
+    });
+  };
+  reader.readAsDataURL(file);
+}
 function closeModal(e) {
   document.getElementById("modalOverlay").classList.remove("show");
 }
@@ -940,7 +1025,7 @@ function createCountryCard(c) {
     item.innerHTML = `
       <span class="visa-type">${type}</span>
       <span class="visa-price editable-price" id="price-${c.name}-${type}" onclick="editPrice(this,'${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">${price}</span>
-      <a class=\"visa-dl${hasPdf ? '' : ' no-pdf'}\" href=\"${hasPdf ? materialUrl(c.name, type) : 'javascript:void(0)'}\" target=\"${hasPdf ? '_blank' : '_self'}\" onclick=\"${hasPdf ? '' : 'showNoPdf()'}\">📄 材料</a>
+      <a class="visa-dl${hasPdf ? '' : ' no-pdf'}" href="javascript:void(0)" onclick="uploadMaterial(this,'${c.name.replace(/'/g,"\\'")}','${type.replace(/'/g,"\\'")}')">${hasPdf ? '🔄 更换' : '📤 上传'}</a>
     `;
     list.appendChild(item);
   });
