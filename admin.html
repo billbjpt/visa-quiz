@@ -776,8 +776,98 @@ function closeNoPdf() {
 
 // ========== UPLOAD MATERIAL ==========
 var _uploadTarget = null;
+var _uploadMode = 'direct'; // 'direct' or 'persona'
+
 function uploadMaterial(el, countryName, visaType) {
   _uploadTarget = { el, countryName, visaType };
+  
+  // 关闭之前的弹出菜单
+  var oldMenu = document.getElementById('uploadMenu');
+  if (oldMenu) oldMenu.remove();
+  
+  // 创建弹出菜单
+  var menu = document.createElement('div');
+  menu.id = 'uploadMenu';
+  menu.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;';
+  menu.onclick = function(e) { if (e.target === menu) menu.remove(); };
+  
+  var box = document.createElement('div');
+  box.style.cssText = 'background:#fff;border-radius:12px;padding:24px;min-width:260px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.2);';
+  
+  var title = document.createElement('div');
+  title.style.cssText = 'font-size:16px;font-weight:700;color:#1a3a5c;margin-bottom:16px;text-align:center;';
+  title.textContent = countryName + ' · ' + visaType;
+  box.appendChild(title);
+  
+  // 直接更换按钮
+  var btnDirect = document.createElement('div');
+  btnDirect.style.cssText = 'padding:14px 16px;background:#f0f6ff;border-radius:8px;margin-bottom:10px;cursor:pointer;text-align:center;font-size:15px;color:#1a3a5c;font-weight:600;';
+  btnDirect.textContent = '🔄 直接更换';
+  btnDirect.onclick = function() {
+    menu.remove();
+    _uploadMode = 'direct';
+    startFilePick();
+  };
+  box.appendChild(btnDirect);
+  
+  // 创建更换按钮
+  var btnCreate = document.createElement('div');
+  btnCreate.style.cssText = 'padding:14px 16px;background:#f0fff4;border-radius:8px;margin-bottom:10px;cursor:pointer;text-align:center;font-size:15px;color:#065f46;font-weight:600;';
+  btnCreate.textContent = '➕ 创建更换';
+  btnCreate.onclick = function() {
+    menu.remove();
+    var label = prompt('请输入人群/标签名称（如：在职、学生、退休）：');
+    if (!label || !label.trim()) return;
+    _uploadTarget.customLabel = label.trim();
+    _uploadMode = 'persona';
+    startFilePick();
+  };
+  box.appendChild(btnCreate);
+  
+  // 查看已有人群
+  var c = getCountry(countryName);
+  if (c && c.materials && c.materials[visaType] && c.materials[visaType].personas && c.materials[visaType].personas.length > 0) {
+    var listTitle = document.createElement('div');
+    listTitle.style.cssText = 'font-size:13px;color:#999;margin:8px 0 6px;text-align:center;';
+    listTitle.textContent = '已有人群 (' + c.materials[visaType].personas.length + ')';
+    box.appendChild(listTitle);
+    
+    c.materials[visaType].personas.forEach(function(p, idx) {
+      var pItem = document.createElement('div');
+      pItem.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fafafa;border-radius:6px;margin-bottom:4px;font-size:13px;';
+      var pName = document.createElement('span');
+      pName.textContent = p.label;
+      pName.style.color = '#333';
+      var pDel = document.createElement('span');
+      pDel.textContent = '✕';
+      pDel.style.cssText = 'color:#e74c3c;cursor:pointer;font-weight:bold;padding:0 4px;';
+      pDel.onclick = function(e) {
+        e.stopPropagation();
+        if (confirm('删除人群「' + p.label + '」的PDF？')) {
+          c.materials[visaType].personas.splice(idx, 1);
+          saveData();
+          showToast('已删除: ' + p.label);
+          menu.remove();
+        }
+      };
+      pItem.appendChild(pName);
+      pItem.appendChild(pDel);
+      box.appendChild(pItem);
+    });
+  }
+  
+  // 取消按钮
+  var btnCancel = document.createElement('div');
+  btnCancel.style.cssText = 'padding:12px;text-align:center;cursor:pointer;font-size:14px;color:#999;margin-top:8px;';
+  btnCancel.textContent = '取消';
+  btnCancel.onclick = function() { menu.remove(); };
+  box.appendChild(btnCancel);
+  
+  menu.appendChild(box);
+  document.body.appendChild(menu);
+}
+
+function startFilePick() {
   var input = document.getElementById('pdfFileInput');
   if (!input) {
     input = document.createElement('input');
@@ -799,7 +889,16 @@ function handlePdfUpload(e) {
     showToast('请选择PDF文件'); return;
   }
   var t = _uploadTarget;
-  var pdfName = sanitizeName(t.countryName) + '_' + sanitizeName(t.visaType) + '.pdf';
+  var pdfName;
+  
+  if (_uploadMode === 'persona' && t.customLabel) {
+    // 人群模式：文件名 = 国家_签证类型_【人群标签】.pdf
+    pdfName = '【' + sanitizeName(t.customLabel) + '】' + sanitizeName(t.countryName) + sanitizeName(t.visaType) + '签证资料须知.pdf';
+  } else {
+    // 直接更换模式：标准命名
+    pdfName = sanitizeName(t.countryName) + '_' + sanitizeName(t.visaType) + '.pdf';
+  }
+  
   showToast('上传中: ' + pdfName + '...');
 
   var reader = new FileReader();
@@ -833,12 +932,27 @@ function handlePdfUpload(e) {
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.content) {
-        // Update SEED_DATA
         var c = getCountry(t.countryName);
         if (c) {
           if (!c.materials) c.materials = {};
           var pdfUrl = 'https://billbjpt.github.io/visa-quiz/pdf/' + encodeURIComponent(pdfName);
-          c.materials[t.visaType] = { url: pdfUrl, name: pdfName };
+          
+          if (_uploadMode === 'persona' && t.customLabel) {
+            // 创建人群模式：添加到personas数组
+            if (!c.materials[t.visaType]) c.materials[t.visaType] = { url: '', name: '', personas: [] };
+            if (!c.materials[t.visaType].personas) c.materials[t.visaType].personas = [];
+            c.materials[t.visaType].personas.push({
+              label: t.customLabel,
+              url: pdfUrl,
+              name: pdfName
+            });
+          } else {
+            // 直接更换模式：替换主URL
+            c.materials[t.visaType] = c.materials[t.visaType] || {};
+            c.materials[t.visaType].url = pdfUrl;
+            c.materials[t.visaType].name = pdfName;
+          }
+          
           // Update PDF_EXISTS
           var key = sanitizeName(t.countryName) + '_' + sanitizeName(t.visaType);
           PDF_EXISTS.add(key);
